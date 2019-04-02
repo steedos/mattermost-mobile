@@ -19,7 +19,7 @@ export MATCH_PASSWORD=
 export MATCH_GIT_URL=
 
 # The bundle identifier(s) of your app (comma-separated)
-export MATCH_APP_IDENTIFIER=com.mattermost.rnbeta.MattermostShare,com.mattermost.rnbeta
+export MATCH_APP_IDENTIFIER=com.steedos.messenger.MattermostShare,com.steedos.messenger
 
 # Define the profile type. Valid values are: appstore, adhoc, development, enterprise
 export MATCH_TYPE=appstore
@@ -48,7 +48,7 @@ export PILOT_SKIP_WAITING_FOR_BUILD_PROCESSING=true
 export SUPPLY_TRACK=
 
 # The package id of the application, should match MAIN_APP_IDENTIFIER
-export SUPPLY_PACKAGE_NAME=com.mattermost.rnbeta
+export SUPPLY_PACKAGE_NAME=com.steedos.messenger
 
 # The path to the service account json file used to authenticate with Google
 export SUPPLY_JSON_KEY=
@@ -96,7 +96,7 @@ export BUILD_FOR_RELEASE=true
 export REPLACE_ASSETS=true
 
 # The bundle / package identifier for the app.
-export MAIN_APP_IDENTIFIER=com.mattermost.rnbeta
+export MAIN_APP_IDENTIFIER=com.steedos.messenger
 
 # Submit the app to TestFlight once the build finishes
 export SUBMIT_IOS_TO_TESTFLIGHT=true
@@ -106,13 +106,13 @@ export SUBMIT_ANDROID_TO_GOOGLE_PLAY=true
 
 #### IOS SPECIFIC ####
 # The bundle identifier for the share extension.
-export EXTENSION_APP_IDENTIFIER=com.mattermost.rnbeta.MattermostShare
+export EXTENSION_APP_IDENTIFIER=com.steedos.messenger.MattermostShare
 
 # The iOS App Group identifier used to share data between the app and the share extension.
-export IOS_APP_GROUP=group.com.mattermost.rnbeta
+export IOS_APP_GROUP=group.com.steedos.messenger
 
 # The iOS iCloud container identifier used to support iCloud storage.
-export IOS_ICLOUD_CONTAINER=iCloud.com.mattermost.rnbeta
+export IOS_ICLOUD_CONTAINER=iCloud.com.steedos.messenger
 
 # Method used to export the archive. Valid values are: app-store, ad-hoc, package, enterprise, development, developer-id
 export IOS_BUILD_EXPORT_METHOD=app-store

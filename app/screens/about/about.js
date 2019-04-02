@@ -19,7 +19,7 @@ import {changeOpacity, makeStyleSheetFromTheme, setNavigatorStyles} from 'app/ut
 import AppIcon from 'app/components/app_icon';
 import Config from 'assets/config';
 
-const MATTERMOST_BUNDLE_IDS = ['com.mattermost.rnbeta', 'com.mattermost.rn'];
+const MATTERMOST_BUNDLE_IDS = ['com.steedos.messenger', 'com.mattermost.rn'];
 
 export default class About extends PureComponent {
     static propTypes = {

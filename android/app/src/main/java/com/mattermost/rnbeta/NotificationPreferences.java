@@ -1,4 +1,4 @@
-package com.mattermost.rnbeta;
+package com.steedos.messenger;
 
 import android.content.Context;
 import android.content.SharedPreferences;

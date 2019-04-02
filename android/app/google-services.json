@@ -41,7 +41,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:184930218130:android:c7debfa7ea3f75a7",
         "android_client_info": {
-          "package_name": "com.mattermost.rnbeta"
+          "package_name": "com.steedos.messenger"
         }
       },
       "oauth_client": [

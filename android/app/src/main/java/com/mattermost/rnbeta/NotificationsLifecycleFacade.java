@@ -1,4 +1,4 @@
-package com.mattermost.rnbeta;
+package com.steedos.messenger;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;

@@ -1,4 +1,4 @@
-package com.mattermost.rnbeta;
+package com.steedos.messenger;
 
 import android.app.Application;
 import android.content.Context;

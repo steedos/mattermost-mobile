@@ -1,4 +1,4 @@
-package com.mattermost.rnbeta;
+package com.steedos.messenger;
 
 import com.mattermost.share.SharePackage;
 import com.mattermost.share.RealPathUtil;
