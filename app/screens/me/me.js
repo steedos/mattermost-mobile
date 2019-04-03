@@ -9,7 +9,7 @@ import {
     InteractionManager,
     Keyboard,
     ScrollView,
-    View,
+    View, Text
 } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -25,32 +25,28 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import {t} from 'app/utils/i18n';
 
-import DrawerItem from './drawer_item';
-import UserInfo from './user_info';
-import StatusLabel from './status_label';
+import DrawerItem from 'app/components/sidebars/settings/drawer_item';
+import UserInfo from 'app/components/sidebars/settings/user_info';
+import StatusLabel from 'app/components/sidebars/settings/status_label';
 
 const DRAWER_INITIAL_OFFSET = 80;
 
-export default class SettingsDrawer extends PureComponent {
+export default class Me extends PureComponent {
     static propTypes = {
         actions: PropTypes.shape({
             logout: PropTypes.func.isRequired,
             setStatus: PropTypes.func.isRequired,
         }).isRequired,
-        blurPostTextBox: PropTypes.func.isRequired,
         children: PropTypes.node,
         currentUser: PropTypes.object.isRequired,
-        deviceWidth: PropTypes.number.isRequired,
         navigator: PropTypes.object,
         status: PropTypes.string,
-        theme: PropTypes.object.isRequired,
-        isTab: PropTypes.bool
+        theme: PropTypes.object.isRequired
     };
 
     static defaultProps = {
         currentUser: {},
-        status: 'offline',
-        isTab: false
+        status: 'offline'
     };
 
     static contextTypes = {
@@ -64,47 +60,6 @@ export default class SettingsDrawer extends PureComponent {
             this.closeButton = source;
         });
     }
-
-    componentDidMount() {
-        BackHandler.addEventListener('hardwareBackPress', this.handleAndroidBack);
-    }
-
-    componentWillUnmount() {
-        BackHandler.removeEventListener('hardwareBackPress', this.handleAndroidBack);
-    }
-
-    handleAndroidBack = () => {
-        if (this.refs.drawer && this.drawerOpened) {
-            this.refs.drawer.closeDrawer();
-            return true;
-        }
-
-        return false;
-    };
-
-    openSettingsSidebar = () => {
-        this.props.blurPostTextBox();
-
-        if (this.refs.drawer && !this.drawerOpened) {
-            this.refs.drawer.openDrawer();
-        }
-    };
-
-    closeSettingsSidebar = () => {
-        if (this.refs.drawer && this.drawerOpened) {
-            this.refs.drawer.closeDrawer();
-        }
-    };
-
-    handleDrawerClose = () => {
-        this.drawerOpened = false;
-        Keyboard.dismiss();
-    };
-
-    handleDrawerOpen = () => {
-        this.drawerOpened = true;
-        Keyboard.dismiss();
-    };
 
     handleSetStatus = preventDoubleTap(() => {
         const items = [{
@@ -190,14 +145,14 @@ export default class SettingsDrawer extends PureComponent {
 
     logout = preventDoubleTap(() => {
         const {logout} = this.props.actions;
-        this.closeSettingsSidebar();
+        //this.closeSettingsSidebar();
         logout();
     });
 
     openModal = (screen, title, passProps) => {
         const {navigator, theme} = this.props;
 
-        this.closeSettingsSidebar();
+        //this.closeSettingsSidebar();
 
         InteractionManager.runAfterInteractions(() => {
             navigator.showModal({
@@ -238,23 +193,13 @@ export default class SettingsDrawer extends PureComponent {
         );
     };
 
-    renderNavigationView = () => {
+    render() {
         const {currentUser, navigator, theme} = this.props;
         const style = getStyleSheet(theme);
 
         return (
-            <SafeAreaView
-                backgroundColor={theme.centerChannelBg}
-                navBarBackgroundColor={theme.centerChannelBg}
-                footerColor={theme.centerChannelBg}
-                footerComponent={<View style={style.container}/>}
-                headerComponent={<View style={style.container}/>}
-                navigator={navigator}
-                theme={theme}
-            >
                 <View style={style.container}>
                     <ScrollView
-                        alwaysBounceVertical={false}
                         contentContainerStyle={style.wrapper}
                     >
                         <UserInfo
@@ -317,7 +262,6 @@ export default class SettingsDrawer extends PureComponent {
                         </View>
                     </ScrollView>
                 </View>
-            </SafeAreaView>
         );
     };
 
@@ -341,7 +285,7 @@ export default class SettingsDrawer extends PureComponent {
             navigator.dismissModal({
                 animationType: 'none',
             });
-            this.closeSettingsSidebar();
+            //this.closeSettingsSidebar();
             this.confirmReset(status);
             return;
         }
@@ -349,25 +293,6 @@ export default class SettingsDrawer extends PureComponent {
         EventEmitter.emit(NavigationTypes.NAVIGATION_CLOSE_MODAL);
     };
 
-    render() {
-        const {children, deviceWidth} = this.props;
-        if (this.props.isTab)
-            return this.renderNavigationView()
-
-        return (
-            <DrawerLayout
-                ref='drawer'
-                renderNavigationView={this.renderNavigationView}
-                onDrawerClose={this.handleDrawerClose}
-                onDrawerOpen={this.handleDrawerOpen}
-                drawerPosition='right'
-                drawerWidth={deviceWidth - DRAWER_INITIAL_OFFSET}
-                useNativeAnimations={true}
-            >
-                {children}
-            </DrawerLayout>
-        );
-    }
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {

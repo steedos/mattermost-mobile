@@ -3,6 +3,7 @@
 
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import {ViewTypes} from 'app/constants';
 import {intlShape} from 'react-intl';
 import {
     ActivityIndicator,
@@ -18,6 +19,7 @@ import {
 } from 'react-native';
 import Button from 'react-native-button';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
 import ErrorText from 'app/components/error_text';
 import FormattedText from 'app/components/formatted_text';
@@ -85,20 +87,21 @@ export default class Login extends PureComponent {
 
         this.scheduleSessionExpiredNotification();
 
-        navigator.resetTo({
-            screen: 'Channel',
-            title: '',
-            animated: false,
-            backButtonTitle: '',
-            navigatorStyle: {
-                animated: true,
-                animationType: 'fade',
-                navBarHidden: true,
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-                screenBackgroundColor: 'transparent',
-            },
-        });
+        // navigator.resetTo({
+        //     screen: 'Channel',
+        //     title: '',
+        //     animated: false,
+        //     backButtonTitle: '',
+        //     navigatorStyle: {
+        //         animated: true,
+        //         animationType: 'fade',
+        //         navBarHidden: true,
+        //         statusBarHidden: false,
+        //         statusBarHideWithNavBar: false,
+        //         screenBackgroundColor: 'transparent',
+        //     },
+        // });
+        EventEmitter.emit(ViewTypes.LAUNCH_CHANNEL, true);
     };
 
     goToMfa = () => {

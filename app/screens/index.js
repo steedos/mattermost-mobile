@@ -68,4 +68,7 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('TimezoneSettings', () => wrapWithContextProvider(require('app/screens/timezone').default), store, Provider);
     Navigation.registerComponent('ErrorTeamsList', () => wrapWithContextProvider(require('app/screens/error_teams_list').default), store, Provider);
     Navigation.registerComponent('UserProfile', () => wrapWithContextProvider(require('app/screens/user_profile').default), store, Provider);
+
+    Navigation.registerComponent("Me", () => wrapWithContextProvider(require('app/screens/me').default), store, Provider);
+    
 }
