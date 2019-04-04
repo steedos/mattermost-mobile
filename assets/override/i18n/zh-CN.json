@@ -154,7 +154,7 @@
   "mobile.calendar.dayNamesShort": "周日,周一,周二,周三,周四,周五,周六",
   "mobile.calendar.monthNames": "一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月",
   "mobile.calendar.monthNamesShort": "一月,二月,三月,四月,五月,六月,七月,八月,九月,十月,十一月,十二月",
-  "mobile.channel_drawer.search": "转条到...",
+  "mobile.channel_drawer.search": "跳转到...",
   "mobile.channel_info.alertMessageDeleteChannel": "您确定要归档 {term} {name}？",
   "mobile.channel_info.alertMessageLeaveChannel": "您确定要离开{term} {name}？",
   "mobile.channel_info.alertNo": "否",
@@ -546,5 +546,7 @@
   "user.settings.push_notification.disabled_long": "您的系统管理员未开启推送通知。",
   "user.settings.push_notification.offline": "离线",
   "user.settings.push_notification.online": "在线，离开或离线",
-  "web.root.signup_info": "所有团队的通讯一站式解决，随时随地可访问和搜索"
+  "web.root.signup_info": "所有团队的通讯一站式解决，随时随地可访问和搜索",
+  "mobile.tabs.channels": "华信",
+  "mobile.tabs.me": "我"
 }

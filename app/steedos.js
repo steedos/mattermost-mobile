@@ -367,10 +367,11 @@ const launchSelectServer = () => {
 const launchChannel = () => {
     const {dispatch, getState} = store;
     const theme = getTheme(getState());
+    const translations = app.getTranslations();
 
     Navigation.startTabBasedApp({
         tabs: [{
-            label: 'Chat',
+            label: translations[t('mobile.tabs.channels')],
             screen: 'Channel',
             icon: require('assets/images/tabs/chat.png'),
             navigatorStyle: {
@@ -379,8 +380,8 @@ const launchChannel = () => {
                 statusBarHideWithNavBar: false,
             },
         },{
-            label: 'Me',
-            title: 'Me',
+            label: translations[t('mobile.tabs.me')],
+            title: translations[t('mobile.tabs.me')],
             screen: 'Me',
             icon: require('assets/images/tabs/me.png'),
             navigatorStyle: {
