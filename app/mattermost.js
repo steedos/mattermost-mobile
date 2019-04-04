@@ -45,6 +45,7 @@ import {deleteFileCache} from 'app/utils/file';
 import avoidNativeBridge from 'app/utils/avoid_native_bridge';
 import {t} from 'app/utils/i18n';
 import LocalConfig from 'assets/config';
+import {ViewTypes} from 'app/constants';
 
 import App from './app';
 import './fetch_preconfig';
@@ -342,45 +343,6 @@ const handleSwitchToDefaultChannel = (teamId) => {
     store.dispatch(selectDefaultChannel(teamId));
 };
 
-const launchSelectServer = () => {
-    Navigation.startSingleScreenApp({
-        screen: {
-            screen: 'SelectServer',
-            navigatorStyle: {
-                navBarHidden: true,
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-                screenBackgroundColor: 'transparent',
-            },
-        },
-        passProps: {
-            allowOtherServers: app.allowOtherServers,
-        },
-        appStyle: {
-            orientation: 'auto',
-        },
-        animationType: 'fade',
-    });
-};
-
-const launchChannel = () => {
-    Navigation.startSingleScreenApp({
-        screen: {
-            screen: 'Channel',
-            navigatorStyle: {
-                navBarHidden: true,
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-                screenBackgroundColor: 'transparent',
-            },
-        },
-        appStyle: {
-            orientation: 'auto',
-        },
-        animationType: 'fade',
-    });
-};
-
 const handleAppStateChange = (appState) => {
     const isActive = appState === 'active';
 
@@ -456,7 +418,7 @@ const launchEntry = () => {
         },
         animationType: 'fade',
     });
-};
+}
 
 configurePushNotifications();
 const startedSharedExtension = Platform.OS === 'android' && MattermostShare.isOpened;

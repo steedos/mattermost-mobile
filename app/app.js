@@ -296,7 +296,7 @@ export default class App {
 
         let screen = 'SelectServer';
         if (this.token && this.url) {
-            screen = 'Channel';
+            screen = 'Channels';
             tracker.initialLoad = Date.now();
 
             try {
@@ -311,7 +311,7 @@ export default class App {
         case 'SelectServer':
             EventEmitter.emit(ViewTypes.LAUNCH_LOGIN, true);
             break;
-        case 'Channel':
+        case 'Channels':
             EventEmitter.emit(ViewTypes.LAUNCH_CHANNEL, true);
             break;
         }

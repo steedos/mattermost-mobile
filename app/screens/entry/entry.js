@@ -14,6 +14,8 @@ import DeviceInfo from 'react-native-device-info';
 import {setSystemEmojis} from 'mattermost-redux/actions/emojis';
 import {Client4} from 'mattermost-redux/client';
 import EventEmitter from 'mattermost-redux/utils/event_emitter';
+import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
+import {Navigation, NativeEventsReceiver} from 'react-native-navigation';
 
 import {
     app,
@@ -29,6 +31,8 @@ import EmptyToolbar from 'app/components/start/empty_toolbar';
 import Loading from 'app/components/loading';
 import SafeAreaView from 'app/components/safe_area_view';
 import StatusBar from 'app/components/status_bar';
+import {t} from 'app/utils/i18n';
+
 
 const lazyLoadSelectServer = () => {
     return require('app/screens/select_server').default;
@@ -96,6 +100,8 @@ export default class Entry extends PureComponent {
         if (initializeModules) {
             this.props.initializeModules();
         }
+
+        this.launchSelectServer()
     };
 
     handleLaunchChannel = (initializeModules) => {
@@ -104,6 +110,88 @@ export default class Entry extends PureComponent {
         if (initializeModules) {
             this.props.initializeModules();
         }
+
+        this.launchChannel()
+    };
+
+    launchSelectServer = () => {
+        Navigation.startSingleScreenApp({
+            screen: {
+                screen: 'SelectServer',
+                navigatorStyle: {
+                    navBarHidden: true,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    screenBackgroundColor: 'transparent',
+                },
+            },
+            passProps: {
+                allowOtherServers: app.allowOtherServers,
+            },
+            appStyle: {
+                orientation: 'auto',
+            },
+            animationType: 'fade',
+        });
+    };
+    
+    launchChannel = () => {
+        const {dispatch, getState} = store;
+        const theme = getTheme(getState());
+        const translations = app.getTranslations();
+    
+        Navigation.startTabBasedApp({
+            tabs: [{
+                title: translations[t('mobile.tabs.channels')],
+                label: translations[t('mobile.tabs.channels')],
+                screen: 'Channels',
+                icon: require('assets/images/tabs/chat.png'),
+                navigatorStyle: {
+                    navBarHidden: false,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    navBarTextColor: theme.sidebarHeaderTextColor,
+                    navBarBackgroundColor: theme.sidebarHeaderBg,
+                    navBarButtonColor: theme.sidebarHeaderTextColor,
+                    screenBackgroundColor: theme.centerChannelBg,
+                },
+            },
+            // {
+            //     label: translations[t('mobile.tabs.channels')],
+            //     screen: 'Channel',
+            //     icon: require('assets/images/tabs/chat.png'),
+            //     navigatorStyle: {
+            //         navBarHidden: true,
+            //         statusBarHidden: false,
+            //         statusBarHideWithNavBar: false,
+            //     },
+            // },
+            {
+                label: translations[t('mobile.tabs.me')],
+                title: translations[t('mobile.tabs.me')],
+                screen: 'Me',
+                icon: require('assets/images/tabs/me.png'),
+                navigatorStyle: {
+                    navBarHidden: false,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    navBarTextColor: theme.sidebarHeaderTextColor,
+                    navBarBackgroundColor: theme.sidebarHeaderBg,
+                    navBarButtonColor: theme.sidebarHeaderTextColor,
+                    screenBackgroundColor: theme.centerChannelBg,
+                },
+            }],
+            tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
+              tabBarButtonColor: theme.centerChannelColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+              tabBarSelectedButtonColor: theme.linkColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+              tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
+              initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+            },
+            appStyle: {
+                orientation: 'auto',
+            },
+            animationType: 'fade',
+        });
     };
 
     listenForHydration = () => {
@@ -228,38 +316,12 @@ export default class Entry extends PureComponent {
         setSystemEmojis(EmojiIndicesByAlias);
     };
 
-    renderLogin = () => {
-        const SelectServer = lazyLoadSelectServer();
-        const props = {
-            allowOtherServers: app.allowOtherServers,
-            navigator: this.props.navigator,
-        };
-
-        return wrapWithContextProvider(SelectServer)(props);
-    };
-
-    renderChannel = () => {
-        const ChannelScreen = lazyLoadChannel();
-        const props = {
-            navigator: this.props.navigator,
-        };
-
-        return wrapWithContextProvider(ChannelScreen, false)(props);
-    };
-
+    
     render() {
         const {
             navigator,
             isLandscape,
         } = this.props;
-
-        if (this.state.launchLogin) {
-            return this.renderLogin();
-        }
-
-        if (this.state.launchChannel) {
-            return this.renderChannel();
-        }
 
         let toolbar = null;
         let loading = null;
