@@ -73,7 +73,7 @@ export default class TermsOfService extends PureComponent {
         this.leftButton.icon = props.closeButton;
 
         props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
-        this.setNavigatorButtons(false);
+        this.setNavigatorButtons(true);
     }
 
     componentDidMount() {

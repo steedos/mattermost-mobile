@@ -70,5 +70,7 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('UserProfile', () => wrapWithContextProvider(require('app/screens/user_profile').default), store, Provider);
 
     Navigation.registerComponent("Me", () => wrapWithContextProvider(require('app/screens/me').default), store, Provider);
-    
+    Navigation.registerComponent('Channels', () => wrapWithContextProvider(require('app/screens/channels').default, false), store, Provider);
+    Navigation.registerComponent('ChannelSimple', () => wrapWithContextProvider(require('app/screens/channel_simple').default), store, Provider);
+
 }

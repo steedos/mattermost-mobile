@@ -371,6 +371,21 @@ const launchChannel = () => {
 
     Navigation.startTabBasedApp({
         tabs: [{
+            title: translations[t('mobile.tabs.channels')],
+            label: translations[t('mobile.tabs.channels')],
+            screen: 'Channels',
+            icon: require('assets/images/tabs/chat.png'),
+            navigatorStyle: {
+                navBarHidden: false,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+        },
+        {
             label: translations[t('mobile.tabs.channels')],
             screen: 'Channel',
             icon: require('assets/images/tabs/chat.png'),
@@ -379,7 +394,8 @@ const launchChannel = () => {
                 statusBarHidden: false,
                 statusBarHideWithNavBar: false,
             },
-        },{
+        },
+        {
             label: translations[t('mobile.tabs.me')],
             title: translations[t('mobile.tabs.me')],
             screen: 'Me',

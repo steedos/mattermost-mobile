@@ -70,7 +70,7 @@
   "combined_system_message.you": "您",
   "create_comment.addComment": "添加一个评论...",
   "create_post.deactivated": "您正在查看已注销用户的归档频道。",
-  "create_post.write": "Write to {channelDisplayName}",
+  "create_post.write": "写信息",
   "edit_post.editPost": "编辑信息...",
   "edit_post.save": "保存",
   "error.team_not_found.title": "未找到团队",
