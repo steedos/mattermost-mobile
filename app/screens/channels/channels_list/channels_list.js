@@ -153,7 +153,7 @@ export default class ChannelsList extends PureComponent {
             <View
                 style={styles.container}
             >
-                <View style={styles.statusBar}>
+                {/* <View style={styles.statusBar}>
                     <View style={styles.headerContainer}>
                         <View style={styles.switchContainer}>
                             <SwitchTeamsButton
@@ -163,7 +163,7 @@ export default class ChannelsList extends PureComponent {
                         </View>
                         {title}
                     </View>
-                </View>
+                </View> */}
                 {list}
             </View>
         );

@@ -364,12 +364,12 @@ export default class ChannelSidebar extends Component {
         }
 
         return (
-            <SafeAreaView
-                backgroundColor={theme.sidebarHeaderBg}
-                footerColor={theme.sidebarHeaderBg}
-                navigator={navigator}
-                excludeHeader={true}
-            >
+            // <SafeAreaView
+            //     backgroundColor={theme.sidebarHeaderBg}
+            //     footerColor={theme.sidebarHeaderBg}
+            //     navigator={navigator}
+            //     excludeHeader={true}
+            // >
                 <View
                 key='channelsList'
                 style={style.swiperContent}
@@ -385,7 +385,7 @@ export default class ChannelSidebar extends Component {
                         drawerOpened={this.state.drawerOpened}
                     />
                 </View>
-            </SafeAreaView>
+            // </SafeAreaView>
         );
     };
 
