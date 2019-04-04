@@ -393,6 +393,12 @@ const launchChannel = () => {
                 screenBackgroundColor: theme.centerChannelBg,
             },
         }],
+        tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
+          tabBarButtonColor: theme.centerChannelColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+          tabBarSelectedButtonColor: theme.linkColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+          tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
+          initialTabIndex: 1, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+        },
         passProps: {
             initializeModules,
         },
