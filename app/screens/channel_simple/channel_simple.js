@@ -54,6 +54,7 @@ export default class ChannelSimple extends PureComponent {
             selectInitialChannel: PropTypes.func.isRequired,
             recordLoadTime: PropTypes.func.isRequired,
         }).isRequired,
+        channel: PropTypes.object,
         currentChannelId: PropTypes.string,
         channelsRequestFailed: PropTypes.bool,
         currentTeamId: PropTypes.string,
@@ -96,6 +97,8 @@ export default class ChannelSimple extends PureComponent {
         if (this.props.showTermsOfService && !this.props.disableTermsModal) {
             this.showTermsOfServiceModal();
         }
+        const {channel, currentChannelId} = this.props;
+        EventEmitter.emit('switch_channel', channel, currentChannelId);
 
         EventEmitter.emit('renderDrawer');
     }

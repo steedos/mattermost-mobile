@@ -385,16 +385,16 @@ const launchChannel = () => {
                 screenBackgroundColor: theme.centerChannelBg,
             },
         },
-        {
-            label: translations[t('mobile.tabs.channels')],
-            screen: 'Channel',
-            icon: require('assets/images/tabs/chat.png'),
-            navigatorStyle: {
-                navBarHidden: true,
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-            },
-        },
+        // {
+        //     label: translations[t('mobile.tabs.channels')],
+        //     screen: 'Channel',
+        //     icon: require('assets/images/tabs/chat.png'),
+        //     navigatorStyle: {
+        //         navBarHidden: true,
+        //         statusBarHidden: false,
+        //         statusBarHideWithNavBar: false,
+        //     },
+        // },
         {
             label: translations[t('mobile.tabs.me')],
             title: translations[t('mobile.tabs.me')],

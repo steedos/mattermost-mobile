@@ -219,7 +219,7 @@ export default class ChannelSidebar extends Component {
         }
 
         const {navigator, theme, currentTeamId} = this.props;
-        EventEmitter.emit('switch_channel', channel, currentChannelId);
+        
 
         InteractionManager.runAfterInteractions(() => {
             navigator.push({
@@ -231,10 +231,9 @@ export default class ChannelSidebar extends Component {
                     navBarHidden: true,
                     tabBarHidden: true,
                 },
-                passProps: {
-                    currentChannelId: currentChannelId,
-                    currentTeamId: currentTeamId
-                },
+                passProps:{
+                    channel
+                }
             });
         });
     };
