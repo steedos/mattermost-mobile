@@ -63,14 +63,17 @@ export default class Me extends PureComponent {
     }
 
     onNavigatorEvent(event) {
+        const {navigator, theme} = this.props;
         switch(event.id) {
             case 'willAppear':
+            this.props.navigator.setStyle({
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            });
             break;
         case 'didAppear':  {
-            this.props.navigator.toggleTabs({
-                to: 'shown', // required, 'hidden' = hide navigation bar, 'shown' = show navigation bar
-                animated: true // does the toggle have transition animation or does it happen immediately (optional). By default animated: true
-            });
             break;
         }
         case 'willDisappear':
@@ -173,6 +176,10 @@ export default class Me extends PureComponent {
     navigateTo= (screen, title, passProps) => {
         const {navigator, theme} = this.props;
 
+        // navigator.toggleTabs({
+        //     to: 'hidden', // required, 'hidden' = hide navigation bar, 'shown' = show navigation bar
+        //     animated: false // does the toggle have transition animation or does it happen immediately (optional). By default animated: true
+        // });
         InteractionManager.runAfterInteractions(() => {
             navigator.push({
                 screen: screen,
@@ -184,12 +191,9 @@ export default class Me extends PureComponent {
                     navBarTextColor: theme.sidebarHeaderTextColor,
                     navBarBackgroundColor: theme.sidebarHeaderBg,
                     navBarButtonColor: theme.sidebarHeaderTextColor,
+                    tabBarHidden: true,
                 },
                 passProps: passProps,
-            });
-            this.props.navigator.toggleTabs({
-                to: 'hidden', // required, 'hidden' = hide navigation bar, 'shown' = show navigation bar
-                animated: true // does the toggle have transition animation or does it happen immediately (optional). By default animated: true
             });
         });
     };
