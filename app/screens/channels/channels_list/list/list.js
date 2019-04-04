@@ -16,7 +16,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {General} from 'mattermost-redux/constants';
 import {debounce} from 'mattermost-redux/actions/helpers';
 
-import ChannelItem from 'app/components/sidebars/main/channels_list/channel_item';
+import ChannelItem from '../channel_item';
 import {ListTypes} from 'app/constants';
 import {SidebarSectionTypes} from 'app/constants/view';
 import {t} from 'app/utils/i18n';
