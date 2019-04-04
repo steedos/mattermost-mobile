@@ -59,6 +59,27 @@ export default class Me extends PureComponent {
         MaterialIcon.getImageSource('close', 20, props.theme.sidebarHeaderTextColor).then((source) => {
             this.closeButton = source;
         });
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    onNavigatorEvent(event) {
+        switch(event.id) {
+            case 'willAppear':
+            break;
+        case 'didAppear':  {
+            this.props.navigator.toggleTabs({
+                to: 'shown', // required, 'hidden' = hide navigation bar, 'shown' = show navigation bar
+                animated: true // does the toggle have transition animation or does it happen immediately (optional). By default animated: true
+            });
+            break;
+        }
+        case 'willDisappear':
+            break;
+        case 'didDisappear':
+            break;
+        case 'willCommitPreview':
+            break;
+        }
     }
 
     handleSetStatus = preventDoubleTap(() => {
@@ -119,7 +140,7 @@ export default class Me extends PureComponent {
     goToFlagged = preventDoubleTap(() => {
         const {formatMessage} = this.context.intl;
 
-        this.openModal(
+        this.navigateTo(
             'FlaggedPosts',
             formatMessage({id: 'search_header.title3', defaultMessage: 'Flagged Posts'}),
         );
@@ -128,7 +149,7 @@ export default class Me extends PureComponent {
     goToMentions = preventDoubleTap(() => {
         const {intl} = this.context;
 
-        this.openModal(
+        this.navigateTo(
             'RecentMentions',
             intl.formatMessage({id: 'search_header.title2', defaultMessage: 'Recent Mentions'}),
         );
@@ -137,7 +158,7 @@ export default class Me extends PureComponent {
     goToSettings = preventDoubleTap(() => {
         const {intl} = this.context;
 
-        this.openModal(
+        this.navigateTo(
             'Settings',
             intl.formatMessage({id: 'mobile.routes.settings', defaultMessage: 'Settings'}),
         );
@@ -149,10 +170,32 @@ export default class Me extends PureComponent {
         logout();
     });
 
-    openModal = (screen, title, passProps) => {
+    navigateTo= (screen, title, passProps) => {
         const {navigator, theme} = this.props;
 
-        //this.closeSettingsSidebar();
+        InteractionManager.runAfterInteractions(() => {
+            navigator.push({
+                screen: screen,
+                title: title,
+                animated: true,
+                backButtonTitle: '',
+                navigatorStyle: {
+                    navBarHidden: false,
+                    navBarTextColor: theme.sidebarHeaderTextColor,
+                    navBarBackgroundColor: theme.sidebarHeaderBg,
+                    navBarButtonColor: theme.sidebarHeaderTextColor,
+                },
+                passProps: passProps,
+            });
+            this.props.navigator.toggleTabs({
+                to: 'hidden', // required, 'hidden' = hide navigation bar, 'shown' = show navigation bar
+                animated: true // does the toggle have transition animation or does it happen immediately (optional). By default animated: true
+            });
+        });
+    };
+
+    openModal = (screen, title, passProps) => {
+        const {navigator, theme} = this.props;
 
         InteractionManager.runAfterInteractions(() => {
             navigator.showModal({
@@ -299,7 +342,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.03),
+            backgroundColor: theme.centerChannelBg,
         },
         wrapper: {
             flex: 1,

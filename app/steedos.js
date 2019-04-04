@@ -365,7 +365,9 @@ const launchSelectServer = () => {
 };
 
 const launchChannel = () => {
-    
+    const {dispatch, getState} = store;
+    const theme = getTheme(getState());
+
     Navigation.startTabBasedApp({
         tabs: [{
             label: 'Chat',
@@ -385,6 +387,10 @@ const launchChannel = () => {
                 navBarHidden: false,
                 statusBarHidden: false,
                 statusBarHideWithNavBar: false,
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
             },
         }],
         passProps: {
