@@ -20,7 +20,7 @@ import DrawerLayout from 'app/components/sidebars/drawer_layout';
 import tracker from 'app/utils/time_tracker';
 import {t} from 'app/utils/i18n';
 
-import ChannelsList from 'app/components/sidebars/main/channels_list';
+import ChannelsList from './channels_list';
 import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
 import TeamsList from 'app/components/sidebars/main/teams_list';
 
