@@ -31,6 +31,7 @@ import {t} from 'app/utils/i18n';
 import {setMfaPreflightDone, getMfaPreflightDone} from 'app/utils/security';
 
 import {RequestStatus} from 'mattermost-redux/constants';
+import startTabs from 'app/screens/tabs';
 
 const mfaExpectedErrors = ['mfa.validate_token.authenticate.app_error', 'ent.mfa.validate_token.authenticate.app_error'];
 
@@ -87,21 +88,7 @@ export default class Login extends PureComponent {
 
         this.scheduleSessionExpiredNotification();
 
-        // navigator.resetTo({
-        //     screen: 'Channel',
-        //     title: '',
-        //     animated: false,
-        //     backButtonTitle: '',
-        //     navigatorStyle: {
-        //         animated: true,
-        //         animationType: 'fade',
-        //         navBarHidden: true,
-        //         statusBarHidden: false,
-        //         statusBarHideWithNavBar: false,
-        //         screenBackgroundColor: 'transparent',
-        //     },
-        // });
-        EventEmitter.emit(ViewTypes.LAUNCH_CHANNEL, true);
+        startTabs();
     };
 
     goToMfa = () => {

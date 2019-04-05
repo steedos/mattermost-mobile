@@ -26,7 +26,7 @@ import {recordLoadTime} from 'app/actions/views/root';
 import {selectDefaultTeam} from 'app/actions/views/select_team';
 
 
-import MainSidebar from './channels';
+import Channels from './channels';
 
 function mapStateToProps(state) {
     const {myChannels: channelsRequest} = state.requests.channels;
@@ -65,4 +65,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(MainSidebar);
+export default connect(mapStateToProps, mapDispatchToProps, null, {withRef: true})(Channels);

@@ -19,6 +19,7 @@ import SafeAreaView from 'app/components/safe_area_view';
 import DrawerLayout from 'app/components/sidebars/drawer_layout';
 import tracker from 'app/utils/time_tracker';
 import {t} from 'app/utils/i18n';
+import {app} from 'app/mattermost';
 
 import ChannelsList from './channels_list';
 import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
@@ -120,16 +121,22 @@ export default class ChannelSidebar extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        const {currentTeamId, deviceWidth, isLandscape, teamsCount} = this.props;
+        console.log("shouldComponentUpdate")
+        console.log(nextProps)
+        console.log(this.currentUserId);
+        const {currentUserId, currentTeamId, deviceWidth, isLandscape, teamsCount} = this.props;
         const {openDrawerOffset} = this.state;
 
         if (nextState.openDrawerOffset !== openDrawerOffset || nextState.show !== this.state.show) {
             return true;
         }
 
-        return nextProps.currentTeamId !== currentTeamId ||
+        const shouldUpdate =  nextProps.currentUserId !== currentUserId ||
+            nextProps.currentTeamId !== currentTeamId ||
             nextProps.isLandscape !== isLandscape || nextProps.deviceWidth !== deviceWidth ||
             nextProps.teamsCount !== teamsCount;
+        console.log(shouldUpdate)
+        return shouldUpdate;
     }
 
     componentWillUnmount() {
@@ -338,6 +345,12 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
+        console.log("render")
+        if (!this.props.currentUserId){
+            return (
+                <View></View>
+            )
+        }
         const {
             navigator,
             teamsCount,

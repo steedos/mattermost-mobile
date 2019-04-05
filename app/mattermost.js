@@ -10,7 +10,7 @@ import {
     Keyboard,
     NativeModules,
     Platform,
-    YellowBox,
+    YellowBox, 
 } from 'react-native';
 const {StatusBarManager, MattermostShare, Initialization} = NativeModules;
 
@@ -149,6 +149,27 @@ const handleLogout = () => {
     launchSelectServer();
 };
 
+const launchSelectServer = () => {
+    Navigation.startSingleScreenApp({
+        screen: {
+            screen: 'SelectServer',
+            navigatorStyle: {
+                navBarHidden: true,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                screenBackgroundColor: 'transparent',
+            },
+        },
+        passProps: {
+            allowOtherServers: app.allowOtherServers,
+        },
+        appStyle: {
+            orientation: 'auto',
+        },
+        animationType: 'fade',
+    });
+};
+
 const restartApp = async () => {
     Navigation.dismissModal({animationType: 'none'});
 
@@ -159,7 +180,7 @@ const restartApp = async () => {
         console.warn('Failed to load initial data while restarting', e); // eslint-disable-line no-console
     }
 
-    launchChannel();
+    launchEntry();
 };
 
 const handleServerVersionChanged = async (serverVersion) => {
