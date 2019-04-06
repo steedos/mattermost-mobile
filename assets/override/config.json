@@ -2,7 +2,7 @@
     "DefaultServerUrl": "https://messenger.steedos.cn/",
     "TestServerUrl": "http://localhost:8065",
     "DefaultTheme": "default",
-    "ShowErrorsList": false,
+    "ShowErrorsList": true,
     "MinServerVersion": "4.0.0",
     "EELearnURL": "about.mattermost.com",
     "TeamEditionLearnURL": "mattermost.org",
@@ -11,7 +11,7 @@
     "PlatformNoticeURL": "https://about.mattermost.com/platform-notice-txt/",
     "MobileNoticeURL": "https://about.mattermost.com/mobile-notice-txt/",
     "SegmentApiKey": "",
-    "ExperimentalUsernamePressIsMention": true,
+    "ExperimentalUsernamePressIsMention": false,
 
     "HideEmailLoginExperimental": false,
     "HideGitLabLoginExperimental": false,
@@ -32,7 +32,7 @@
 
     "ExperimentalNormalizeMarkdownLinks": false,
 
-    "AutoSelectServerUrl": true,
+    "AutoSelectServerUrl": false,
 
     "EnableMobileClientUpgrade": false,
     "EnableMobileClientUpgradeUserSetting": false,
