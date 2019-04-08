@@ -239,7 +239,7 @@ export default class Permalink extends PureComponent {
                 EventEmitter.emit('reset_channel');
             } else {
                 navigator.resetTo({
-                    screen: 'Channel',
+                    screen: 'ChannelSimple',
                     animated: true,
                     animationType: 'fade',
                     navigatorStyle: {

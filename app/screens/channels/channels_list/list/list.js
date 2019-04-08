@@ -66,7 +66,6 @@ export default class List extends PureComponent {
             orderedChannelIds,
             unreadChannelIds,
         } = this.props;
-        console.log(orderedChannelIds)
 
         if (nextProps.canCreatePrivateChannels !== canCreatePrivateChannels ||
             nextProps.unreadChannelIds !== unreadChannelIds ||

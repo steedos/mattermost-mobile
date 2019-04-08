@@ -118,12 +118,14 @@ export default class ChannelSidebar extends Component {
                 this.setState({openDrawerOffset});
             }
         }
+
+        if (nextProps.currentTeamId && this.props.currentTeamId !== nextProps.currentTeamId) {
+            this.loadChannels(nextProps.currentTeamId);
+        }
+
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate")
-        console.log(nextProps)
-        console.log(this.currentUserId);
         const {currentUserId, currentTeamId, deviceWidth, isLandscape, teamsCount} = this.props;
         const {openDrawerOffset} = this.state;
 
@@ -135,7 +137,6 @@ export default class ChannelSidebar extends Component {
             nextProps.currentTeamId !== currentTeamId ||
             nextProps.isLandscape !== isLandscape || nextProps.deviceWidth !== deviceWidth ||
             nextProps.teamsCount !== teamsCount;
-        console.log(shouldUpdate)
         return shouldUpdate;
     }
 
@@ -345,7 +346,6 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
-        console.log("render")
         if (!this.props.currentUserId){
             return (
                 <View></View>
