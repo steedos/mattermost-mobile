@@ -2605,7 +2605,7 @@
 				CODE_SIGN_ENTITLEMENTS = Mattermost/Mattermost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 183;
+				CURRENT_PROJECT_VERSION = 185;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = G6293UGCRM;
 				ENABLE_BITCODE = NO;
@@ -2664,7 +2664,7 @@
 				CODE_SIGN_ENTITLEMENTS = Mattermost/Mattermost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 183;
+				CURRENT_PROJECT_VERSION = 185;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = G6293UGCRM;
 				ENABLE_BITCODE = NO;
