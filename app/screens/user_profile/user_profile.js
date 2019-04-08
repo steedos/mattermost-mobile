@@ -60,23 +60,37 @@ export default class UserProfile extends PureComponent {
         }
     }
 
-    close = () => {
+    gotoChannel = (channel) => {
         const {navigator, theme} = this.props;
 
-        navigator.resetTo({
-            screen: 'Channel',
+        // navigator.resetTo({
+        //     screen: 'Channel',
+        //     animated: true,
+        //     navigatorStyle: {
+        //         animated: true,
+        //         animationType: 'fade',
+        //         navBarHidden: true,
+        //         statusBarHidden: false,
+        //         statusBarHideWithNavBar: false,
+        //         screenBackgroundColor: theme.centerChannelBg,
+        //     },
+        //     passProps: {
+        //         disableTermsModal: true,
+        //     },
+        // });
+
+        navigator.push({
+            screen: "ChannelSimple",
+            //title: channel.display_name,
             animated: true,
+            backButtonTitle: '',
             navigatorStyle: {
-                animated: true,
-                animationType: 'fade',
                 navBarHidden: true,
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-                screenBackgroundColor: theme.centerChannelBg,
+                tabBarHidden: true,
             },
             passProps: {
-                disableTermsModal: true,
-            },
+                channel
+            }
         });
     };
 
@@ -158,6 +172,7 @@ export default class UserProfile extends PureComponent {
         actions.setChannelDisplayName(userDisplayName);
 
         const result = await actions.makeDirectChannel(user.id);
+        console.log(result)
         if (result.error) {
             actions.setChannelDisplayName(currentChannelDisplayName);
             alertErrorWithFallback(
@@ -172,7 +187,7 @@ export default class UserProfile extends PureComponent {
                 }
             );
         } else {
-            this.close();
+            this.gotoChannel(result.data);
         }
     };
 
