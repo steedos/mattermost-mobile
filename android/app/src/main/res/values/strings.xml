@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mattermost Beta</string>
+    <string name="app_name">华信</string>
     <string name="inAppPinCode_title">in-App Pincode</string>
     <string name="inAppPinCode_description">Require users to authenticate as the owner of the phone before using the app. Prompts for fingerprint or passcode when the app first opens and when the app has been in the background for more than 5 minutes.</string>
     <string name="blurApplicationScreen_title">Blur Application Screen</string>
@@ -8,8 +8,8 @@
     <string name="jailbreakProtection_description">Disable app launch on Jailbroken or rooted devices.</string>
     <string name="copyAndPasteProtection_title">Copy&amp;Paste Protection</string>
     <string name="copyAndPasteProtection_description">Disable the ability to copy from or paste into any text inputs in the app.</string>
-    <string name="serverUrl_title">Mattermost Server URL</string>
-    <string name="serverUrl_description">Set a default Mattermost server URL.</string>
+    <string name="serverUrl_title">Server URL</string>
+    <string name="serverUrl_description">Set a default server URL.</string>
     <string name="allowOtherServers_title">Allow Other Servers</string>
     <string name="allowOtherServers_description">Allow the user to change the above server URL.</string>
     <string name="username_title">Default Username</string>
