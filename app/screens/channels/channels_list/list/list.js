@@ -347,6 +347,7 @@ export default class List extends PureComponent {
                 isUnread={unreadChannelIds.includes(item)}
                 isFavorite={favoriteChannelIds.includes(item)}
                 navigator={this.props.navigator}
+                divider={true}
                 onSelectChannel={this.onSelectChannel}
             />
         );

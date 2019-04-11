@@ -40,6 +40,7 @@ export default class ChannelItem extends PureComponent {
         unreadMsgs: PropTypes.number.isRequired,
         isSearchResult: PropTypes.bool,
         isBot: PropTypes.bool.isRequired,
+        separator: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -99,9 +100,17 @@ export default class ChannelItem extends PureComponent {
             shouldHideChannel,
             theme,
             isSearchResult,
+            separator,
             channel,
             isBot,
         } = this.props;
+
+        const style = getStyleSheet(theme);
+
+        let divider;
+        if (separator) {
+            divider = (<View style={style.divider}/>);
+        }
 
         const isArchived = channel.delete_at > 0;
 
@@ -138,7 +147,6 @@ export default class ChannelItem extends PureComponent {
             }, {displayname: displayName});
         }
 
-        const style = getStyleSheet(theme);
         const isActive = channelId === currentChannelId;
 
         let extraItemStyle;
@@ -209,6 +217,7 @@ export default class ChannelItem extends PureComponent {
                             </Text>
                             {badge}
                         </View>
+                        {divider}
                     </View>
                 </TouchableHighlight>
             </AnimatedView>
@@ -222,6 +231,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             flexDirection: 'row',
             height: 44,
+            backgroundColor: theme.centerChannelBg,
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
