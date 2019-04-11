@@ -25,7 +25,7 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import {t} from 'app/utils/i18n';
 
-import DrawerItem from 'app/components/sidebars/settings/drawer_item';
+import DrawerItem from './drawer_item';
 import UserInfo from 'app/components/sidebars/settings/user_info';
 import StatusLabel from 'app/components/sidebars/settings/status_label';
 
@@ -352,6 +352,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         wrapper: {
             flex: 1,
             paddingTop: 0,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
         },
         block: {
             borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
