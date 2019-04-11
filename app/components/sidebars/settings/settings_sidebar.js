@@ -44,13 +44,13 @@ export default class SettingsDrawer extends PureComponent {
         navigator: PropTypes.object,
         status: PropTypes.string,
         theme: PropTypes.object.isRequired,
-        isTab: PropTypes.bool
+        isTab: PropTypes.bool,
     };
 
     static defaultProps = {
         currentUser: {},
         status: 'offline',
-        isTab: false
+        isTab: false,
     };
 
     static contextTypes = {
@@ -351,8 +351,9 @@ export default class SettingsDrawer extends PureComponent {
 
     render() {
         const {children, deviceWidth} = this.props;
-        if (this.props.isTab)
-            return this.renderNavigationView()
+        if (this.props.isTab) {
+            return this.renderNavigationView();
+        }
 
         return (
             <DrawerLayout

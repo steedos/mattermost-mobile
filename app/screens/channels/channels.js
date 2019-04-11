@@ -8,7 +8,7 @@ import {
     Keyboard,
     StyleSheet,
     View,
-    InteractionManager
+    InteractionManager,
 } from 'react-native';
 import {intlShape} from 'react-intl';
 
@@ -36,6 +36,7 @@ export default class ChannelSidebar extends Component {
             setChannelDisplayName: PropTypes.func.isRequired,
             setChannelLoading: PropTypes.func.isRequired,
         }).isRequired,
+
         //blurPostTextBox: PropTypes.func.isRequired,
         children: PropTypes.node,
         currentTeamId: PropTypes.string.isRequired,
@@ -65,7 +66,7 @@ export default class ChannelSidebar extends Component {
             show: true,
             openDrawerOffset,
             drawerOpened: true,
-        };        
+        };
     }
 
     componentWillMount() {
@@ -122,7 +123,6 @@ export default class ChannelSidebar extends Component {
         if (nextProps.currentTeamId && this.props.currentTeamId !== nextProps.currentTeamId) {
             this.loadChannels(nextProps.currentTeamId);
         }
-
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -133,7 +133,7 @@ export default class ChannelSidebar extends Component {
             return true;
         }
 
-        const shouldUpdate =  nextProps.currentUserId !== currentUserId ||
+        const shouldUpdate = nextProps.currentUserId !== currentUserId ||
             nextProps.currentTeamId !== currentTeamId ||
             nextProps.isLandscape !== isLandscape || nextProps.deviceWidth !== deviceWidth ||
             nextProps.teamsCount !== teamsCount;
@@ -202,7 +202,7 @@ export default class ChannelSidebar extends Component {
 
     selectChannel = (channel, currentChannelId, closeDrawer = true) => {
         const {setChannelLoading} = this.props.actions;
-        this.handleUpdateTitle(channel)
+        this.handleUpdateTitle(channel);
 
         tracker.channelSwitch = Date.now();
 
@@ -227,11 +227,10 @@ export default class ChannelSidebar extends Component {
         }
 
         const {navigator, theme, currentTeamId} = this.props;
-        
 
         InteractionManager.runAfterInteractions(() => {
             navigator.push({
-                screen: "ChannelSimple",
+                screen: 'ChannelSimple',
                 title: channel.display_name,
                 animated: true,
                 backButtonTitle: '',
@@ -239,9 +238,9 @@ export default class ChannelSidebar extends Component {
                     navBarHidden: true,
                     tabBarHidden: true,
                 },
-                passProps:{
-                    channel
-                }
+                passProps: {
+                    channel,
+                },
             });
         });
     };
@@ -346,10 +345,10 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
-        if (!this.props.currentUserId){
+        if (!this.props.currentUserId) {
             return (
-                <View></View>
-            )
+                <View/>
+            );
         }
         const {
             navigator,
@@ -377,31 +376,32 @@ export default class ChannelSidebar extends Component {
         }
 
         return (
+
             // <SafeAreaView
             //     backgroundColor={theme.sidebarHeaderBg}
             //     footerColor={theme.sidebarHeaderBg}
             //     navigator={navigator}
             //     excludeHeader={true}
             // >
-                <View
+            <View
                 key='channelsList'
                 style={style.swiperContent}
-                >
-                    <ChannelsList
-                        navigator={navigator}
-                        onSelectChannel={this.selectChannel}
-                        onJoinChannel={this.joinChannel}
-                        onShowTeams={this.showTeams}
-                        onSearchStart={this.onSearchStart}
-                        onSearchEnds={this.onSearchEnds}
-                        theme={theme}
-                        drawerOpened={this.state.drawerOpened}
-                    />
-                </View>
-            // </SafeAreaView>
-        );
-    };
+            >
+                <ChannelsList
+                    navigator={navigator}
+                    onSelectChannel={this.selectChannel}
+                    onJoinChannel={this.joinChannel}
+                    onShowTeams={this.showTeams}
+                    onSearchStart={this.onSearchStart}
+                    onSearchEnds={this.onSearchEnds}
+                    theme={theme}
+                    drawerOpened={this.state.drawerOpened}
+                />
+            </View>
 
+        // </SafeAreaView>
+        );
+    }
 }
 
 const style = StyleSheet.create({

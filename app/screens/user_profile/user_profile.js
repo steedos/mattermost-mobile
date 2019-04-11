@@ -80,7 +80,8 @@ export default class UserProfile extends PureComponent {
         // });
 
         navigator.push({
-            screen: "ChannelSimple",
+            screen: 'ChannelSimple',
+
             //title: channel.display_name,
             animated: true,
             backButtonTitle: '',
@@ -89,8 +90,8 @@ export default class UserProfile extends PureComponent {
                 tabBarHidden: true,
             },
             passProps: {
-                channel
-            }
+                channel,
+            },
         });
     };
 
@@ -172,7 +173,7 @@ export default class UserProfile extends PureComponent {
         actions.setChannelDisplayName(userDisplayName);
 
         const result = await actions.makeDirectChannel(user.id);
-        console.log(result)
+        console.log(result);
         if (result.error) {
             actions.setChannelDisplayName(currentChannelDisplayName);
             alertErrorWithFallback(

@@ -59,8 +59,10 @@ export default class ChannelSimpleNavBar extends PureComponent {
 
         return (
             <View style={[style.header, padding, {height}]}>
-                <ChannelDrawerButton openDrawer={openChannelDrawer}
-                    navigator={navigator}/>
+                <ChannelDrawerButton
+                    openDrawer={openChannelDrawer}
+                    navigator={navigator}
+                />
                 <ChannelTitle onPress={onPress}/>
                 <ChannelSearchButton
                     navigator={navigator}

@@ -101,7 +101,7 @@ export default class Entry extends PureComponent {
             this.props.initializeModules();
         }
 
-        this.launchSelectServer()
+        this.launchSelectServer();
     };
 
     handleLaunchChannel = (initializeModules) => {
@@ -111,7 +111,7 @@ export default class Entry extends PureComponent {
             this.props.initializeModules();
         }
 
-        startTabs()
+        startTabs();
     };
 
     launchSelectServer = () => {
@@ -257,7 +257,6 @@ export default class Entry extends PureComponent {
         setSystemEmojis(EmojiIndicesByAlias);
     };
 
-    
     render() {
         const {
             navigator,

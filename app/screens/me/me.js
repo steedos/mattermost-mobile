@@ -9,7 +9,7 @@ import {
     InteractionManager,
     Keyboard,
     ScrollView,
-    View, Text
+    View, Text,
 } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -41,12 +41,12 @@ export default class Me extends PureComponent {
         currentUser: PropTypes.object.isRequired,
         navigator: PropTypes.object,
         status: PropTypes.string,
-        theme: PropTypes.object.isRequired
+        theme: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
         currentUser: {},
-        status: 'offline'
+        status: 'offline',
     };
 
     static contextTypes = {
@@ -64,8 +64,8 @@ export default class Me extends PureComponent {
 
     onNavigatorEvent(event) {
         const {navigator, theme} = this.props;
-        switch(event.id) {
-            case 'willAppear':
+        switch (event.id) {
+        case 'willAppear':
             this.props.navigator.setStyle({
                 navBarTextColor: theme.sidebarHeaderTextColor,
                 navBarBackgroundColor: theme.sidebarHeaderBg,
@@ -73,7 +73,7 @@ export default class Me extends PureComponent {
                 screenBackgroundColor: theme.centerChannelBg,
             });
             break;
-        case 'didAppear':  {
+        case 'didAppear': {
             break;
         }
         case 'willDisappear':
@@ -169,6 +169,7 @@ export default class Me extends PureComponent {
 
     logout = preventDoubleTap(() => {
         const {logout} = this.props.actions;
+
         //this.closeSettingsSidebar();
         logout();
     });
@@ -182,8 +183,8 @@ export default class Me extends PureComponent {
         // });
         InteractionManager.runAfterInteractions(() => {
             navigator.push({
-                screen: screen,
-                title: title,
+                screen,
+                title,
                 animated: true,
                 backButtonTitle: '',
                 navigatorStyle: {
@@ -193,7 +194,7 @@ export default class Me extends PureComponent {
                     navBarButtonColor: theme.sidebarHeaderTextColor,
                     tabBarHidden: true,
                 },
-                passProps: passProps,
+                passProps,
             });
         });
     };
@@ -245,72 +246,72 @@ export default class Me extends PureComponent {
         const style = getStyleSheet(theme);
 
         return (
-                <View style={style.container}>
-                    <ScrollView
-                        contentContainerStyle={style.wrapper}
-                    >
-                        <UserInfo
-                            onPress={this.goToEditProfile}
-                            user={currentUser}
+            <View style={style.container}>
+                <ScrollView
+                    contentContainerStyle={style.wrapper}
+                >
+                    <UserInfo
+                        onPress={this.goToEditProfile}
+                        user={currentUser}
+                    />
+                    <View style={style.block}>
+                        <DrawerItem
+                            labelComponent={this.renderUserStatusLabel(currentUser.id)}
+                            leftComponent={this.renderUserStatusIcon(currentUser.id)}
+                            separator={false}
+                            onPress={this.handleSetStatus}
+                            theme={theme}
                         />
-                        <View style={style.block}>
-                            <DrawerItem
-                                labelComponent={this.renderUserStatusLabel(currentUser.id)}
-                                leftComponent={this.renderUserStatusIcon(currentUser.id)}
-                                separator={false}
-                                onPress={this.handleSetStatus}
-                                theme={theme}
-                            />
-                        </View>
-                        <View style={style.separator}/>
-                        <View style={style.block}>
-                            <DrawerItem
-                                defaultMessage='Recent Mentions'
-                                i18nId='search_header.title2'
-                                iconName='ios-at'
-                                iconType='ion'
-                                onPress={this.goToMentions}
-                                separator={true}
-                                theme={theme}
-                            />
-                            <DrawerItem
-                                defaultMessage='Flagged Posts'
-                                i18nId='search_header.title3'
-                                iconName='ios-flag'
-                                iconType='ion'
-                                onPress={this.goToFlagged}
-                                separator={false}
-                                theme={theme}
-                            />
-                        </View>
-                        <View style={style.separator}/>
-                        <View style={style.block}>
-                            <DrawerItem
-                                defaultMessage='Settings'
-                                i18nId='mobile.routes.settings'
-                                iconName='ios-options'
-                                iconType='ion'
-                                onPress={this.goToSettings}
-                                separator={false}
-                                theme={theme}
-                            />
-                        </View>
-                        <View style={style.separator}/>
-                        <View style={style.block}>
-                            <DrawerItem
-                                centered={true}
-                                defaultMessage='Logout'
-                                i18nId='sidebar_right_menu.logout'
-                                isDestructor={true}
-                                onPress={this.logout}
-                                separator={false}
-                                theme={theme}
-                            />
-                        </View>
-                    </ScrollView>
-                </View>
+                    </View>
+                    <View style={style.separator}/>
+                    <View style={style.block}>
+                        <DrawerItem
+                            defaultMessage='Recent Mentions'
+                            i18nId='search_header.title2'
+                            iconName='ios-at'
+                            iconType='ion'
+                            onPress={this.goToMentions}
+                            separator={true}
+                            theme={theme}
+                        />
+                        <DrawerItem
+                            defaultMessage='Flagged Posts'
+                            i18nId='search_header.title3'
+                            iconName='ios-flag'
+                            iconType='ion'
+                            onPress={this.goToFlagged}
+                            separator={false}
+                            theme={theme}
+                        />
+                    </View>
+                    <View style={style.separator}/>
+                    <View style={style.block}>
+                        <DrawerItem
+                            defaultMessage='Settings'
+                            i18nId='mobile.routes.settings'
+                            iconName='ios-options'
+                            iconType='ion'
+                            onPress={this.goToSettings}
+                            separator={false}
+                            theme={theme}
+                        />
+                    </View>
+                    <View style={style.separator}/>
+                    <View style={style.block}>
+                        <DrawerItem
+                            centered={true}
+                            defaultMessage='Logout'
+                            i18nId='sidebar_right_menu.logout'
+                            isDestructor={true}
+                            onPress={this.logout}
+                            separator={false}
+                            theme={theme}
+                        />
+                    </View>
+                </ScrollView>
+            </View>
         );
-    };
+    }
 
     confirmReset = (status) => {
         const {intl} = this.context;
@@ -332,6 +333,7 @@ export default class Me extends PureComponent {
             navigator.dismissModal({
                 animationType: 'none',
             });
+
             //this.closeSettingsSidebar();
             this.confirmReset(status);
             return;
@@ -339,7 +341,6 @@ export default class Me extends PureComponent {
         this.updateStatus(status);
         EventEmitter.emit(NavigationTypes.NAVIGATION_CLOSE_MODAL);
     };
-
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {

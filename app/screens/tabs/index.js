@@ -1,3 +1,5 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {Navigation, NativeEventsReceiver} from 'react-native-navigation';
 
@@ -6,8 +8,6 @@ import {
     store,
 } from 'app/mattermost';
 import {t} from 'app/utils/i18n';
-
-
 
 export default startTabs = () => {
     const {dispatch, getState} = store;
@@ -30,6 +30,7 @@ export default startTabs = () => {
                 screenBackgroundColor: theme.centerChannelBg,
             },
         },
+
         // {
         //     label: translations[t('mobile.tabs.channels')],
         //     screen: 'Channel',

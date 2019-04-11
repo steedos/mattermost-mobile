@@ -10,7 +10,7 @@ import {
     Keyboard,
     NativeModules,
     Platform,
-    YellowBox, 
+    YellowBox,
 } from 'react-native';
 const {StatusBarManager, MattermostShare, Initialization} = NativeModules;
 
@@ -439,7 +439,7 @@ const launchEntry = () => {
         },
         animationType: 'fade',
     });
-}
+};
 
 configurePushNotifications();
 const startedSharedExtension = Platform.OS === 'android' && MattermostShare.isOpened;

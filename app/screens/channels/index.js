@@ -25,7 +25,6 @@ import {connection} from 'app/actions/device';
 import {recordLoadTime} from 'app/actions/views/root';
 import {selectDefaultTeam} from 'app/actions/views/select_team';
 
-
 import Channels from './channels';
 
 function mapStateToProps(state) {
@@ -33,7 +32,7 @@ function mapStateToProps(state) {
     const {currentUserId} = state.entities.users;
 
     return {
-        ...getDimensions(state),        
+        ...getDimensions(state),
         channelsRequestFailed: channelsRequest.status === RequestStatus.FAILURE,
         currentTeamId: getCurrentTeamId(state),
         currentUserId,

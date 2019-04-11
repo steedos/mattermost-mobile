@@ -72,7 +72,7 @@ export default class ChannelSimple extends PureComponent {
     static defaultProps = {
         disableTermsModal: false,
     };
-    
+
     constructor(props) {
         super(props);
 
@@ -308,6 +308,7 @@ export default class ChannelSimple extends PureComponent {
         const loaderDimensions = this.channelLoaderDimensions();
 
         return (
+
             // <MainSidebar
             //     ref={this.channelSidebarRef}
             //     blurPostTextBox={this.blurPostTextBox}
@@ -318,36 +319,37 @@ export default class ChannelSimple extends PureComponent {
             //         blurPostTextBox={this.blurPostTextBox}
             //         navigator={navigator}
             //     >
-                    <SafeAreaView navigator={navigator}>
-                        {/* <StatusBar/> */}
-                        <NetworkIndicator/>
-                        <ChannelNavBar
-                            navigator={navigator}
-                            openChannelDrawer={this.openChannelSidebar}
-                            openSettingsDrawer={this.openSettingsSidebar}
-                            onPress={this.goToChannelInfo}
-                        />
-                        <KeyboardLayout>
-                            <View style={style.flex}>
-                                <ChannelPostList navigator={navigator}/>
-                            </View>
-                            <PostTextbox
-                                ref={this.attachPostTextBox}
-                                navigator={navigator}
-                            />
-                        </KeyboardLayout>
-                        <ChannelLoader
-                            style={[style.channelLoader, loaderDimensions]}
-                            maxRows={isLandscape ? 4 : 6}
-                        />
-                        {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
-                    </SafeAreaView>
-            //     </SettingsSidebar>
-            //     <InteractiveDialogController
-            //         navigator={navigator}
-            //         theme={theme}
-            //     />
-            // </MainSidebar>
+            <SafeAreaView navigator={navigator}>
+                {/* <StatusBar/> */}
+                <NetworkIndicator/>
+                <ChannelNavBar
+                    navigator={navigator}
+                    openChannelDrawer={this.openChannelSidebar}
+                    openSettingsDrawer={this.openSettingsSidebar}
+                    onPress={this.goToChannelInfo}
+                />
+                <KeyboardLayout>
+                    <View style={style.flex}>
+                        <ChannelPostList navigator={navigator}/>
+                    </View>
+                    <PostTextbox
+                        ref={this.attachPostTextBox}
+                        navigator={navigator}
+                    />
+                </KeyboardLayout>
+                <ChannelLoader
+                    style={[style.channelLoader, loaderDimensions]}
+                    maxRows={isLandscape ? 4 : 6}
+                />
+                {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
+            </SafeAreaView>
+
+        //     </SettingsSidebar>
+        //     <InteractiveDialogController
+        //         navigator={navigator}
+        //         theme={theme}
+        //     />
+        // </MainSidebar>
         );
     }
 }

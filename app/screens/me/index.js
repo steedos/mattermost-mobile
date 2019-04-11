@@ -1,3 +1,5 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 import Me from './me';
 
 import {bindActionCreators} from 'redux';
@@ -9,17 +11,15 @@ import {getCurrentUser, getStatusForUserId} from 'mattermost-redux/selectors/ent
 
 import {getDimensions} from 'app/selectors/device';
 
-
 function mapStateToProps(state) {
-
     const currentUser = getCurrentUser(state) || {};
     const status = getStatusForUserId(state, currentUser.id);
-    
+
     return {
         ...getDimensions(state),
         theme: getTheme(state),
-        currentUser: currentUser,
-        status: status
+        currentUser,
+        status,
     };
 }
 

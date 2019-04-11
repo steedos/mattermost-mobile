@@ -29,7 +29,7 @@ class ChannelDrawerButton extends PureComponent {
         mentionCount: PropTypes.number,
         myTeamMembers: PropTypes.object,
         theme: PropTypes.object,
-        navigator: PropTypes.object.isRequired
+        navigator: PropTypes.object.isRequired,
     };
 
     static defaultProps = {
