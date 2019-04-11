@@ -224,7 +224,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             height: 44,
         },
         borderActive: {
-            backgroundColor: theme.sidebarTextActiveBorder,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             width: 5,
         },
         item: {
@@ -234,11 +234,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             paddingLeft: 16,
         },
         itemActive: {
-            backgroundColor: changeOpacity(theme.sidebarTextActiveColor, 0.1),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             paddingLeft: 11,
         },
         text: {
-            color: changeOpacity(theme.sidebarText, 0.4),
+            color: changeOpacity(theme.centerChannelColor, 0.4),
             fontSize: 14,
             fontWeight: '600',
             paddingRight: 40,
@@ -248,10 +248,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             lineHeight: 44,
         },
         textActive: {
-            color: theme.sidebarTextActiveColor,
+            color: theme.centerChannelColor,
         },
         textUnread: {
-            color: theme.sidebarUnreadText,
+            color: theme.centerChannelColor,
         },
         badge: {
             backgroundColor: theme.mentionBg,

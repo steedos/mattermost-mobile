@@ -173,7 +173,7 @@ export default class ChannelsList extends PureComponent {
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
-            backgroundColor: theme.sidebarBg,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
             flex: 1,
         },
         statusBar: {
@@ -215,7 +215,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         title: {
             flex: 1,
-            color: changeOpacity(theme.sidebarText, 0.4),
+            color: changeOpacity(theme.centerChannelColor, 0.4),
             opacity: 1,
             fontSize: 13,
             fontWeight: '400',
@@ -235,7 +235,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             }),
         },
         divider: {
-            backgroundColor: changeOpacity(theme.sidebarText, 0.1),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             height: 1,
         },
         actionContainer: {
@@ -245,7 +245,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: changeOpacity(theme.sidebarText, 0.4),
+            color: changeOpacity(theme.centerChannelColor, 0.4),
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,
