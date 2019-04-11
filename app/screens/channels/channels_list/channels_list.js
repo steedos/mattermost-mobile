@@ -184,7 +184,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             paddingLeft: 10,
             backgroundColor: theme.sidebarHeaderBg,
             flexDirection: 'row',
-            borderBottomWidth: 1,
+            borderBottomWidth: 0,
             borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.10),
             ...Platform.select({
                 android: {
@@ -254,10 +254,6 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         above: {
             backgroundColor: theme.mentionBg,
             top: 9,
-        },
-        divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 1,
         },
     };
 });

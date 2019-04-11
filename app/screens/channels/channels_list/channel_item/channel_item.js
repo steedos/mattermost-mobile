@@ -269,7 +269,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         badge: {
             backgroundColor: theme.mentionBg,
-            borderColor: theme.sidebarHeaderBg,
+            borderColor: theme.centerChannelBg,
             borderRadius: 10,
             borderWidth: 1,
             padding: 3,
