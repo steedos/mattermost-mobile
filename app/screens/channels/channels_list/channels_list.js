@@ -245,7 +245,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: theme.sidebarText,
+            color: changeOpacity(theme.sidebarText, 0.4),
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,
