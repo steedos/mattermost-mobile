@@ -216,8 +216,8 @@ export default class ChannelItem extends PureComponent {
                                 {channelDisplayName}
                             </Text>
                             {badge}
+                            {divider}
                         </View>
-                        {divider}
                     </View>
                 </TouchableHighlight>
             </AnimatedView>
@@ -232,6 +232,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
             height: 44,
             backgroundColor: theme.centerChannelBg,
+            borderTopWidth: 0,
+            borderBottomWidth: 1,
+            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
@@ -278,6 +282,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         muted: {
             opacity: 0.5,
+        },
+        divider: {
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            height: 1,
         },
     };
 });

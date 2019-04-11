@@ -255,5 +255,9 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.mentionBg,
             top: 9,
         },
+        divider: {
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            height: 1,
+        },
     };
 });
