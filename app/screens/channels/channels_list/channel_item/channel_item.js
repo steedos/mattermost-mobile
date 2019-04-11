@@ -15,7 +15,7 @@ import {
 import {intlShape} from 'react-intl';
 
 import Badge from 'app/components/badge';
-import ChannelIcon from 'app/components/channel_icon';
+import ChannelIcon from './channel_icon';
 import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 
@@ -248,7 +248,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             paddingLeft: 11,
         },
         text: {
-            color: changeOpacity(theme.centerChannelColor, 0.4),
+            color: changeOpacity(theme.centerChannelColor, 0.9),
             fontSize: 14,
             fontWeight: '600',
             paddingRight: 40,

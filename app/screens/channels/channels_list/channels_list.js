@@ -210,6 +210,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
+            paddingTop: 16,
             height: 48,
             marginLeft: 16,
         },

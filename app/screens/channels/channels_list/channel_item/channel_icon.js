@@ -58,7 +58,7 @@ export default class ChannelIcon extends React.PureComponent {
         let unreadGroupBox;
         let activeGroup;
         let unreadGroup;
-        let offlineColor = changeOpacity(theme.sidebarText, 0.5);
+        let offlineColor = changeOpacity(theme.centerChannelColor, 0.5);
 
         if (isUnread) {
             unreadIcon = style.iconUnread;
@@ -178,10 +178,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             color: changeOpacity(theme.centerChannelColor, 0.4),
         },
         iconActive: {
-            color: theme.sidebarTextActiveColor,
+            color: theme.centerChannelColor,
         },
         iconUnread: {
-            color: theme.sidebarUnreadText,
+            color: theme.centerChannelColor,
         },
         iconInfo: {
             color: theme.centerChannelColor,
@@ -197,10 +197,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             justifyContent: 'center',
         },
         groupBoxActive: {
-            borderColor: theme.sidebarTextActiveColor,
+            borderColor: theme.centerChannelColor,
         },
         groupBoxUnread: {
-            borderColor: theme.sidebarUnreadText,
+            borderColor: theme.centerChannelColor,
         },
         groupBoxInfo: {
             borderColor: theme.centerChannelColor,
@@ -211,10 +211,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             fontWeight: '600',
         },
         groupActive: {
-            color: theme.sidebarTextActiveColor,
+            color: theme.centerChannelColor,
         },
         groupUnread: {
-            color: theme.sidebarUnreadText,
+            color: theme.centerChannelColor,
         },
         groupInfo: {
             color: theme.centerChannelColor,
