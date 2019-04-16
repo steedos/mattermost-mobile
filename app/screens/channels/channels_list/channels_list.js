@@ -28,6 +28,7 @@ export default class ChannelsList extends PureComponent {
         onSearchStart: PropTypes.func.isRequired,
         onSelectChannel: PropTypes.func.isRequired,
         onShowTeams: PropTypes.func.isRequired,
+        onRefresh: PropTypes.func.isRequired,
         theme: PropTypes.object.isRequired,
         drawerOpened: PropTypes.bool,
     };
@@ -110,6 +111,7 @@ export default class ChannelsList extends PureComponent {
                 <List
                     navigator={navigator}
                     onSelectChannel={this.onSelectChannel}
+                    onRefresh={this.props.onRefresh}
                     styles={styles}
                 />
             );
@@ -153,7 +155,7 @@ export default class ChannelsList extends PureComponent {
             <View
                 style={styles.container}
             >
-                {/* <View style={styles.statusBar}>
+                <View style={styles.statusBar}>
                     <View style={styles.headerContainer}>
                         <View style={styles.switchContainer}>
                             <SwitchTeamsButton
@@ -163,7 +165,7 @@ export default class ChannelsList extends PureComponent {
                         </View>
                         {title}
                     </View>
-                </View> */}
+                </View>
                 {list}
             </View>
         );
@@ -178,6 +180,9 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         statusBar: {
             backgroundColor: theme.sidebarHeaderBg,
+        },
+        itemContainer: {
+            backgroundColor: theme.centerChannelBg,
         },
         headerContainer: {
             alignItems: 'center',
@@ -234,6 +239,12 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
                     marginBottom: 3,
                 },
             }),
+        },
+        itemDivider: {
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
+            //color: changeOpacity(theme.centerChannelColor, 0.0),
+            height: 1,
+            marginLeft: 44,
         },
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),

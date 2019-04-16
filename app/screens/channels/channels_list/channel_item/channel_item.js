@@ -205,18 +205,23 @@ export default class ChannelItem extends PureComponent {
                     onLongPress={this.onPreview}
                 >
                     <View style={[style.container, mutedStyle]}>
-                        {extraBorder}
+                        {/* {extraBorder} */}
                         <View style={[style.item, extraItemStyle]}>
-                            {icon}
-                            <Text
-                                style={[style.text, extraTextStyle]}
-                                ellipsizeMode='tail'
-                                numberOfLines={1}
-                            >
-                                {channelDisplayName}
-                            </Text>
-                            {badge}
-                            {divider}
+                            <View>
+                                {icon}
+                            </View>
+                            <View style={style.wrapper}>
+                                <View style={style.labelContainer}>
+                                    <Text
+                                        style={[style.text]}
+                                        ellipsizeMode='tail'
+                                        numberOfLines={1}
+                                    >
+                                        {channelDisplayName}
+                                    </Text>
+                                    {badge}
+                                </View>
+                            </View>
                         </View>
                     </View>
                 </TouchableHighlight>
@@ -227,15 +232,15 @@ export default class ChannelItem extends PureComponent {
 
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
+        wrapper: {
+            flex: 1,
+        },
         container: {
+            alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            height: 44,
+            height: 50,
             backgroundColor: theme.centerChannelBg,
-            borderTopWidth: 0,
-            borderBottomWidth: 1,
-            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
@@ -248,24 +253,30 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             paddingLeft: 16,
         },
         itemActive: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            paddingLeft: 11,
+            //backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            //paddingLeft: 11,
+        },
+        labelContainer: {
+            alignItems: 'center',
+            flex: 1,
+            flexDirection: 'row',
         },
         text: {
-            color: changeOpacity(theme.centerChannelColor, 0.9),
-            fontSize: 14,
-            fontWeight: '600',
+            color: changeOpacity(theme.centerChannelColor, 0.6),
+            fontSize: 16,
             paddingRight: 40,
-            height: '100%',
+            alignItems: 'center',
             flex: 1,
             textAlignVertical: 'center',
-            lineHeight: 44,
+            includeFontPadding: false,
         },
         textActive: {
             color: theme.centerChannelColor,
+            fontWeight: '600',
         },
         textUnread: {
             color: theme.centerChannelColor,
+            fontWeight: '600',
         },
         badge: {
             backgroundColor: theme.mentionBg,
@@ -284,7 +295,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             opacity: 0.5,
         },
         divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
             height: 1,
         },
     };

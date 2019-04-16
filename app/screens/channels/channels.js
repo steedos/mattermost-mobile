@@ -24,6 +24,7 @@ import {app} from 'app/mattermost';
 import ChannelsList from './channels_list';
 import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
 import TeamsList from 'app/components/sidebars/main/teams_list';
+import NetworkIndicator from 'app/components/network_indicator';
 
 const DRAWER_INITIAL_OFFSET = 0;
 const DRAWER_LANDSCAPE_OFFSET = 0;
@@ -81,6 +82,15 @@ export default class ChannelSidebar extends Component {
         if (this.props.currentChannelId) {
             PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         }
+    }
+
+    onRefresh = async () => {
+        const {
+            loadChannelsIfNecessary,
+            loadProfilesAndTeamMembersForDMSidebar,
+            selectInitialChannel,
+        } = this.props.actions;
+        return await loadChannelsIfNecessary(this.props.currentTeamId);
     }
 
     loadChannels = (teamId) => {
@@ -384,9 +394,11 @@ export default class ChannelSidebar extends Component {
             //     excludeHeader={true}
             // >
             <View
-                key='channelsList'
+                key='channels'
                 style={style.swiperContent}
+                excludeHeader={true}
             >
+                <NetworkIndicator/>
                 <ChannelsList
                     navigator={navigator}
                     onSelectChannel={this.selectChannel}
@@ -394,6 +406,7 @@ export default class ChannelSidebar extends Component {
                     onShowTeams={this.showTeams}
                     onSearchStart={this.onSearchStart}
                     onSearchEnds={this.onSearchEnds}
+                    onRefresh={this.onRefresh}
                     theme={theme}
                     drawerOpened={this.state.drawerOpened}
                 />

@@ -36,6 +36,7 @@ export default class List extends PureComponent {
         favoriteChannelIds: PropTypes.array.isRequired,
         navigator: PropTypes.object,
         onSelectChannel: PropTypes.func.isRequired,
+        onRefresh: PropTypes.func.isRequired,
         unreadChannelIds: PropTypes.array.isRequired,
         styles: PropTypes.object.isRequired,
         theme: PropTypes.object.isRequired,
@@ -53,6 +54,7 @@ export default class List extends PureComponent {
             sections: this.buildSections(props),
             showIndicator: false,
             width: 0,
+            refreshing: false
         };
 
         MaterialIcon.getImageSource('close', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
@@ -310,6 +312,14 @@ export default class List extends PureComponent {
         onSelectChannel(channel, currentChannelId);
     };
 
+    onRefresh = () =>{
+        const {onRefresh} = this.props;
+        this.state.refreshing = true;
+        onRefresh().then( ()=> {
+            this.state.refreshing = false;
+        })
+    }
+
     onLayout = (event) => {
         const {width} = event.nativeEvent.layout;
         this.setState({width: width - 40});
@@ -338,6 +348,15 @@ export default class List extends PureComponent {
         );
     };
 
+    renderItemSeparator = () => {
+        const {styles} = this.props;
+        return (
+            <View style={styles.itemContainer}>
+                <View style={[styles.itemDivider]}/>
+            </View>
+        );
+    };
+
     renderItem = ({item}) => {
         const {favoriteChannelIds, unreadChannelIds} = this.props;
 
@@ -347,7 +366,7 @@ export default class List extends PureComponent {
                 isUnread={unreadChannelIds.includes(item)}
                 isFavorite={favoriteChannelIds.includes(item)}
                 navigator={this.props.navigator}
-                divider={true}
+                separator={false}
                 onSelectChannel={this.onSelectChannel}
             />
         );
@@ -366,14 +385,14 @@ export default class List extends PureComponent {
 
         return (
             <View>
-                {/* {topSeparator && this.renderSectionSeparator()} */}
+                {topSeparator && this.renderSectionSeparator()}
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>
                         {intl.formatMessage({id, defaultMessage}).toUpperCase()}
                     </Text>
                     {action && this.renderSectionAction(styles, action)}
                 </View>
-                {/* {bottomSeparator && this.renderSectionSeparator()} */}
+                {bottomSeparator && this.renderSectionSeparator()}
             </View>
         );
     };
@@ -429,6 +448,9 @@ export default class List extends PureComponent {
                     maxToRenderPerBatch={10}
                     stickySectionHeadersEnabled={false}
                     viewabilityConfig={VIEWABILITY_CONFIG}
+                    onRefresh={this.onRefresh}
+                    refreshing={this.state.refreshing}
+                    ItemSeparatorComponent={this.renderItemSeparator}
                 />
                 {showIndicator &&
                 <UnreadIndicator
