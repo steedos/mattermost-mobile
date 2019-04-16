@@ -8,6 +8,7 @@ import {joinChannel} from 'mattermost-redux/actions/channels';
 import {getTeams} from 'mattermost-redux/actions/teams';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {getCurrentTeamId, getMyTeamsCount} from 'mattermost-redux/selectors/entities/teams';
+import {getCurrentChannelId} from 'mattermost-redux/selectors/entities/channels';
 
 import {setChannelDisplayName, setChannelLoading} from 'app/actions/views/channel';
 import {makeDirectChannel} from 'app/actions/views/more_dms';
@@ -20,6 +21,7 @@ import {
     loadChannelsIfNecessary,
     loadProfilesAndTeamMembersForDMSidebar,
     selectInitialChannel,
+    unselectChannel,
 } from 'app/actions/views/channel';
 import {connection} from 'app/actions/device';
 import {recordLoadTime} from 'app/actions/views/root';
@@ -36,6 +38,7 @@ function mapStateToProps(state) {
         channelsRequestFailed: channelsRequest.status === RequestStatus.FAILURE,
         currentTeamId: getCurrentTeamId(state),
         currentUserId,
+        currentChannelId: getCurrentChannelId(state),
         isLandscape: isLandscape(state),
         isTablet: isTablet(state),
         teamsCount: getMyTeamsCount(state),
@@ -52,6 +55,7 @@ function mapDispatchToProps(dispatch) {
             logout,
             selectDefaultTeam,
             selectInitialChannel,
+            unselectChannel,
             recordLoadTime,
             startPeriodicStatusUpdates,
             stopPeriodicStatusUpdates,

@@ -83,7 +83,8 @@ export function loadFromPushNotification(notification, startAppFromPushNotificat
             dispatch(selectTeam({id: teamId}));
         }
 
-        dispatch(handleSelectChannel(channelId, startAppFromPushNotification));
+        // TODO: do not jump to channel
+        // dispatch(handleSelectChannel(channelId, startAppFromPushNotification));
     };
 }
 

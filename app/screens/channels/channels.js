@@ -36,12 +36,14 @@ export default class ChannelSidebar extends Component {
             makeDirectChannel: PropTypes.func.isRequired,
             setChannelDisplayName: PropTypes.func.isRequired,
             setChannelLoading: PropTypes.func.isRequired,
+            unselectChannel: PropTypes.func.isRequired,
         }).isRequired,
 
         //blurPostTextBox: PropTypes.func.isRequired,
         children: PropTypes.node,
         currentTeamId: PropTypes.string.isRequired,
         currentUserId: PropTypes.string.isRequired,
+        currentChannelId: PropTypes.string.isRequired,
         deviceWidth: PropTypes.number.isRequired,
         isLandscape: PropTypes.bool.isRequired,
         isTablet: PropTypes.bool.isRequired,
@@ -68,6 +70,24 @@ export default class ChannelSidebar extends Component {
             openDrawerOffset,
             drawerOpened: true,
         };
+
+        this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+    }
+
+    onNavigatorEvent(event) {
+        switch(event.id) {
+            case 'willAppear':
+                break;
+            case 'didAppear':
+                this.props.actions.unselectChannel();
+                break;
+            case 'willDisappear':
+                break;
+            case 'didDisappear':
+                break;
+            case 'willCommitPreview':
+                break;
+        }
     }
 
     componentWillMount() {
@@ -79,9 +99,9 @@ export default class ChannelSidebar extends Component {
             this.props.actions.selectDefaultTeam();
         }
 
-        if (this.props.currentChannelId) {
-            PushNotifications.clearChannelNotifications(this.props.currentChannelId);
-        }
+        // if (this.props.currentChannelId) {
+        //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
+        // }
     }
 
     onRefresh = async () => {
@@ -106,7 +126,7 @@ export default class ChannelSidebar extends Component {
             if (app.startAppFromPushNotification) {
                 app.setStartAppFromPushNotification(false);
             } else {
-                selectInitialChannel(teamId);
+                //selectInitialChannel(teamId);
             }
         });
     };
@@ -398,7 +418,6 @@ export default class ChannelSidebar extends Component {
                 style={style.swiperContent}
                 excludeHeader={true}
             >
-                <NetworkIndicator/>
                 <ChannelsList
                     navigator={navigator}
                     onSelectChannel={this.selectChannel}
@@ -410,6 +429,7 @@ export default class ChannelSidebar extends Component {
                     theme={theme}
                     drawerOpened={this.state.drawerOpened}
                 />
+                <NetworkIndicator/>
             </View>
 
         // </SafeAreaView>

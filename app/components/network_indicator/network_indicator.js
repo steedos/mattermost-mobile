@@ -388,18 +388,21 @@ export default class NetworkIndicator extends PureComponent {
             defaultMessage = 'No internet connection';
         }
 
-        return (
-            <Animated.View style={[styles.container, {top: this.top, backgroundColor: background, opacity: this.state.opacity}]}>
-                <Animated.View style={styles.wrapper}>
-                    <FormattedText
-                        defaultMessage={defaultMessage}
-                        id={i18nId}
-                        style={styles.message}
-                    />
-                    {action}
+        if (this.state.opacity)
+            return (
+                <Animated.View style={[styles.container, {top: this.top, backgroundColor: background, opacity: this.state.opacity}]}>
+                    <Animated.View style={styles.wrapper}>
+                        <FormattedText
+                            defaultMessage={defaultMessage}
+                            id={i18nId}
+                            style={styles.message}
+                        />
+                        {action}
+                    </Animated.View>
                 </Animated.View>
-            </Animated.View>
-        );
+            );
+        else
+            return null;
     }
 }
 
