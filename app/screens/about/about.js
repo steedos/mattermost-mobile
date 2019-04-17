@@ -81,7 +81,7 @@ export default class About extends PureComponent {
 
         let learnMore = (
             <View style={style.learnContainer}>
-                <FormattedText
+                {/* <FormattedText
                     id='about.teamEditionLearn'
                     defaultMessage='Join the Mattermost community at '
                     style={style.learn}
@@ -92,7 +92,7 @@ export default class About extends PureComponent {
                     <Text style={style.learnLink}>
                         {Config.TeamEditionLearnURL}
                     </Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         );
 
@@ -222,11 +222,11 @@ export default class About extends PureComponent {
                     contentContainerStyle={style.scrollViewContent}
                 >
                     <View style={style.logoContainer}>
-                        <AppIcon
+                        {/* <AppIcon
                             color={theme.centerChannelColor}
                             height={120}
                             width={120}
-                        />
+                        /> */}
                     </View>
                     <View style={style.infoContainer}>
                         <View style={style.titleContainer}>
@@ -281,7 +281,7 @@ export default class About extends PureComponent {
                         </View>
                         <View style={style.noticeContainer}>
                             <View style={style.footerGroup}>
-                                <FormattedText
+                                {/* <FormattedText
                                     id='mobile.notice_text'
                                     defaultMessage='Mattermost is made possible by the open source software used in our {platform} and {mobile}.'
                                     style={style.footerText}
@@ -303,7 +303,7 @@ export default class About extends PureComponent {
                                             />
                                         ),
                                     }}
-                                />
+                                /> */}
                             </View>
                         </View>
                         <View style={style.hashContainer}>
