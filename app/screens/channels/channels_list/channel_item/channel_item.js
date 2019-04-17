@@ -262,7 +262,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         text: {
-            color: changeOpacity(theme.centerChannelColor, 0.6),
+            color: changeOpacity(theme.centerChannelColor, 1),
             fontSize: 16,
             paddingRight: 40,
             alignItems: 'center',

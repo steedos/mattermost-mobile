@@ -17,6 +17,7 @@ import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
 import SafeAreaView from 'app/components/safe_area_view';
 import DrawerLayout from 'app/components/sidebars/drawer_layout';
+import StatusBar from 'app/components/status_bar';
 import tracker from 'app/utils/time_tracker';
 import {t} from 'app/utils/i18n';
 import {app} from 'app/mattermost';
@@ -77,9 +78,18 @@ export default class ChannelSidebar extends Component {
     onNavigatorEvent(event) {
         switch(event.id) {
             case 'willAppear':
+                const {theme} = this.props;
+                this.props.navigator.setStyle({
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    navBarTextColor: theme.sidebarHeaderTextColor,
+                    navBarBackgroundColor: theme.sidebarHeaderBg,
+                    navBarButtonColor: theme.sidebarHeaderTextColor,
+                    screenBackgroundColor: theme.centerChannelBg
+                });
+                this.props.actions.unselectChannel();
                 break;
             case 'didAppear':
-                this.props.actions.unselectChannel();
                 break;
             case 'willDisappear':
                 break;
@@ -102,6 +112,7 @@ export default class ChannelSidebar extends Component {
         // if (this.props.currentChannelId) {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
+
     }
 
     onRefresh = async () => {
@@ -418,6 +429,7 @@ export default class ChannelSidebar extends Component {
                 style={style.swiperContent}
                 excludeHeader={true}
             >
+                <StatusBar/>
                 <ChannelsList
                     navigator={navigator}
                     onSelectChannel={this.selectChannel}

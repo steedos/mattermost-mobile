@@ -24,10 +24,11 @@ export default startTabs = () => {
                 navBarHidden: false,
                 statusBarHidden: false,
                 statusBarHideWithNavBar: false,
+                statusBarTextColorScheme: 'light',
                 navBarTextColor: theme.sidebarHeaderTextColor,
                 navBarBackgroundColor: theme.sidebarHeaderBg,
                 navBarButtonColor: theme.sidebarHeaderTextColor,
-                screenBackgroundColor: theme.centerChannelBg,
+                // screenBackgroundColor: theme.centerChannelBg,
             },
         },
 

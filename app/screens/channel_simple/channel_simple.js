@@ -320,7 +320,7 @@ export default class ChannelSimple extends PureComponent {
             //         navigator={navigator}
             //     >
             <SafeAreaView navigator={navigator}>
-                {/* <StatusBar/> */}
+                <StatusBar/>
                 <NetworkIndicator/>
                 <ChannelNavBar
                     navigator={navigator}

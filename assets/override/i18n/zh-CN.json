@@ -172,7 +172,7 @@
   "mobile.channel_list.closeGM": "关闭组消息",
   "mobile.channel_list.members": "成员",
   "mobile.channel_list.not_member": "非成员",
-  "mobile.channel_list.unreads": "未读数",
+  "mobile.channel_list.unreads": "未读",
   "mobile.channel_members.add_members_alert": "您必须至少选择一个成员添加到频道。",
   "mobile.channel.markAsRead": "标为已读",
   "mobile.client_upgrade": "更新应用",
