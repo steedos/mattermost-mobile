@@ -22,6 +22,8 @@ import {SidebarSectionTypes} from 'app/constants/view';
 import {t} from 'app/utils/i18n';
 import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity} from 'app/utils/theme';
+import SearchBar from 'app/components/search_bar';
+
 
 const VIEWABILITY_CONFIG = {
     ...ListTypes.VISIBILITY_CONFIG_DEFAULTS,
@@ -446,7 +448,7 @@ export default class List extends PureComponent {
                     onViewableItemsChanged={this.updateUnreadIndicators}
                     keyboardDismissMode='on-drag'
                     maxToRenderPerBatch={10}
-                    stickySectionHeadersEnabled={false}
+                    stickySectionHeadersEnabled={true}
                     viewabilityConfig={VIEWABILITY_CONFIG}
                     onRefresh={this.onRefresh}
                     refreshing={this.state.refreshing}

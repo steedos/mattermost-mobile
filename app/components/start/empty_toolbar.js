@@ -54,11 +54,11 @@ export default class EmptyToolbar extends PureComponent {
             <View style={[style.header, padding, {height}]}>
                 <View style={style.button_container}>
                     <View style={style.button_wrapper}>
-                        <Icon
+                        {/* <Icon
                             name='md-menu'
                             size={25}
                             color={theme.sidebarHeaderTextColor}
-                        />
+                        /> */}
                     </View>
                 </View>
             </View>

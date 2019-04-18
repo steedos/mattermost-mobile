@@ -182,7 +182,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.sidebarHeaderBg,
         },
         itemContainer: {
-            backgroundColor: theme.centerChannelBg,
+            backgroundColor: '#ffffff',
         },
         headerContainer: {
             alignItems: 'center',
@@ -215,13 +215,15 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            paddingTop: 16,
-            height: 48,
-            marginLeft: 16,
+            //paddingTop: 16,
+            height: 36,
+            paddingLeft: 16,
+            backgroundColor: '#F0F0F0',
+
         },
         title: {
             flex: 1,
-            color: changeOpacity(theme.centerChannelColor, 0.4),
+            color: '#000000',
             opacity: 1,
             fontSize: 13,
             fontWeight: '400',
@@ -241,14 +243,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             }),
         },
         itemDivider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
+            backgroundColor: '#a7a7a7',
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 1,
+            height: 0.5,
             marginLeft: 44,
         },
         divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 1,
+            backgroundColor: '#a7a7a7',
+            height: 0,
         },
         actionContainer: {
             alignItems: 'center',
@@ -257,7 +259,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: changeOpacity(theme.centerChannelColor, 0.4),
+            color: '#000000',
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,

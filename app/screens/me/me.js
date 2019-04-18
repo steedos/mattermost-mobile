@@ -347,21 +347,21 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
-            backgroundColor: theme.centerChannelBg,
+            backgroundColor: '#ECECF2',
         },
         wrapper: {
             flex: 1,
             paddingTop: 0,
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
+            backgroundColor: '#ECECF2',
         },
         block: {
-            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderBottomColor: '#E9E8EB',
             borderBottomWidth: 1,
-            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderTopColor: '#E9E8EB',
             borderTopWidth: 1,
         },
         divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            backgroundColor: '#E9E8EB',
             height: 1,
         },
         separator: {

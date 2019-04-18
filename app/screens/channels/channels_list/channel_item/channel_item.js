@@ -107,11 +107,6 @@ export default class ChannelItem extends PureComponent {
 
         const style = getStyleSheet(theme);
 
-        let divider;
-        if (separator) {
-            divider = (<View style={style.divider}/>);
-        }
-
         const isArchived = channel.delete_at > 0;
 
         // Only ever show an archived channel if it's the currently viewed channel.
@@ -240,7 +235,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             flexDirection: 'row',
             height: 50,
-            backgroundColor: theme.centerChannelBg,
+            backgroundColor: '#FFFFFF',
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
@@ -262,7 +257,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         text: {
-            color: changeOpacity(theme.centerChannelColor, 1),
+            color: '#000000',
             fontSize: 16,
             paddingRight: 40,
             alignItems: 'center',
@@ -279,8 +274,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             fontWeight: '600',
         },
         badge: {
-            backgroundColor: theme.mentionBg,
-            borderColor: theme.centerChannelBg,
+            backgroundColor: '#fb3f38',
+            borderColor: '#fb3f38',
             borderRadius: 10,
             borderWidth: 1,
             padding: 3,
@@ -288,15 +283,12 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             right: 16,
         },
         mention: {
-            color: theme.mentionColor,
+            color: '#ffffff',
             fontSize: 10,
+            fontWeight: '600',
         },
         muted: {
             opacity: 0.5,
-        },
-        divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
-            height: 1,
         },
     };
 });
