@@ -9,6 +9,7 @@ import {
     Platform,
     StyleSheet,
     View,
+    WebView,
 } from 'react-native';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -55,6 +56,7 @@ export default class ChannelSimple extends PureComponent {
             recordLoadTime: PropTypes.func.isRequired,
         }).isRequired,
         channel: PropTypes.object,
+        currentChannel: PropTypes.object,
         currentChannelId: PropTypes.string,
         channelsRequestFailed: PropTypes.bool,
         currentTeamId: PropTypes.string,
@@ -307,50 +309,58 @@ export default class ChannelSimple extends PureComponent {
 
         const loaderDimensions = this.channelLoaderDimensions();
 
-        return (
-
-            // <MainSidebar
-            //     ref={this.channelSidebarRef}
-            //     blurPostTextBox={this.blurPostTextBox}
-            //     navigator={navigator}
-            // >
-            //     <SettingsSidebar
-            //         ref={this.settingsSidebarRef}
-            //         blurPostTextBox={this.blurPostTextBox}
-            //         navigator={navigator}
-            //     >
-            <SafeAreaView navigator={navigator}>
-                <StatusBar/>
-                <NetworkIndicator/>
-                <ChannelNavBar
-                    navigator={navigator}
-                    openChannelDrawer={this.openChannelSidebar}
-                    openSettingsDrawer={this.openSettingsSidebar}
-                    onPress={this.goToChannelInfo}
-                />
-                <KeyboardLayout>
-                    <View style={style.flex}>
-                        <ChannelPostList navigator={navigator}/>
-                    </View>
-                    <PostTextbox
-                        ref={this.attachPostTextBox}
+        if (this.props.currentChannel.purpose && this.props.currentChannel.purpose.startsWith("http")) {
+            return (
+                <SafeAreaView navigator={navigator}>
+                    <StatusBar/>
+                    <NetworkIndicator/>
+                    <ChannelNavBar
                         navigator={navigator}
+                        openChannelDrawer={this.openChannelSidebar}
+                        openSettingsDrawer={this.openSettingsSidebar}
+                        onPress={this.goToChannelInfo}
                     />
-                </KeyboardLayout>
-                <ChannelLoader
-                    style={[style.channelLoader, loaderDimensions]}
-                    maxRows={isLandscape ? 4 : 6}
-                />
-                {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
-            </SafeAreaView>
+                    <WebView
+                        source={{uri: this.props.currentChannel.purpose}}
+                        style={{flex: 1}}
+                    />
+                    <ChannelLoader
+                        style={[style.channelLoader, loaderDimensions]}
+                        maxRows={isLandscape ? 4 : 6}
+                    />
+                    {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
+                </SafeAreaView>
+            );
+        }
+        else
+            return (
 
-        //     </SettingsSidebar>
-        //     <InteractiveDialogController
-        //         navigator={navigator}
-        //         theme={theme}
-        //     />
-        // </MainSidebar>
-        );
+                <SafeAreaView navigator={navigator}>
+                    <StatusBar/>
+                    <NetworkIndicator/>
+                    <ChannelNavBar
+                        navigator={navigator}
+                        openChannelDrawer={this.openChannelSidebar}
+                        openSettingsDrawer={this.openSettingsSidebar}
+                        onPress={this.goToChannelInfo}
+                    />
+                    <KeyboardLayout>
+                        <View style={style.flex}>
+                            <ChannelPostList navigator={navigator}/>
+                        </View>
+                        <PostTextbox
+                            ref={this.attachPostTextBox}
+                            navigator={navigator}
+                        />
+                    </KeyboardLayout>
+                    <ChannelLoader
+                        style={[style.channelLoader, loaderDimensions]}
+                        maxRows={isLandscape ? 4 : 6}
+                    />
+                    {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
+                </SafeAreaView>
+
+            );
     }
 }
 

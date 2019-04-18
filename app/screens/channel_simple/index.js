@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import {startPeriodicStatusUpdates, stopPeriodicStatusUpdates, logout} from 'mattermost-redux/actions/users';
 import {RequestStatus} from 'mattermost-redux/constants';
-import {getCurrentChannelId} from 'mattermost-redux/selectors/entities/channels';
+import {getCurrentChannelId, getCurrentChannel,} from 'mattermost-redux/selectors/entities/channels';
 import {getCurrentTeamId} from 'mattermost-redux/selectors/entities/teams';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {shouldShowTermsOfService} from 'mattermost-redux/selectors/entities/users';
@@ -30,6 +30,7 @@ function mapStateToProps(state) {
         channelsRequestFailed: channelsRequest.status === RequestStatus.FAILURE,
         currentTeamId: getCurrentTeamId(state),
         currentChannelId: getCurrentChannelId(state),
+        currentChannel: getCurrentChannel(state) || {},
         isLandscape: isLandscape(state),
         theme: getTheme(state),
         showTermsOfService: shouldShowTermsOfService(state),
