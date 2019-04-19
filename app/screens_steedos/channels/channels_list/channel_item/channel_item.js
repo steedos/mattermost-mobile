@@ -256,7 +256,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingLeft: 11,
         },
         iconContainer: {
-            width: 60,
+            width: 50,
             alignItems: 'center',
             flexDirection: 'row',
             justifyContent: 'center',

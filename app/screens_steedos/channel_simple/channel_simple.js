@@ -34,7 +34,7 @@ import tracker from 'app/utils/time_tracker';
 import LocalConfig from 'assets/config';
 
 import ChannelNavBar from './channel_nav_bar';
-import ChannelPostList from '../channel/channel_post_list';
+import ChannelPostList from 'app/screens/channel/channel_post_list';
 
 const {
     ANDROID_TOP_LANDSCAPE,

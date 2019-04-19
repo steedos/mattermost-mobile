@@ -135,7 +135,7 @@ export default class ChannelIcon extends React.PureComponent {
                     size={30}
                     status={status}
                     statusBorderWidth={1}
-                    statusSize={16}
+                    statusSize={12}
                 />);
             // switch (status) {
             // case General.AWAY:

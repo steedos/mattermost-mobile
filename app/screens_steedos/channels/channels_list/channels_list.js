@@ -155,7 +155,7 @@ export default class ChannelsList extends PureComponent {
             <View
                 style={styles.container}
             >
-                {/* <View style={styles.statusBar}>
+                <View style={styles.statusBar}>
                     <View style={styles.headerContainer}>
                         <View style={styles.switchContainer}>
                             <SwitchTeamsButton
@@ -165,7 +165,7 @@ export default class ChannelsList extends PureComponent {
                         </View>
                         {title}
                     </View>
-                </View> */}
+                </View>
                 {list}
             </View>
         );
@@ -245,7 +245,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: '#a7a7a7',
             //color: changeOpacity(theme.centerChannelColor, 0.0),
             height: 0.5,
-            marginLeft: 60,
+            marginLeft: 50,
         },
         divider: {
             backgroundColor: '#a7a7a7',
