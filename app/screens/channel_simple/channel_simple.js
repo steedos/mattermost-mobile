@@ -252,7 +252,7 @@ export default class ChannelSimple extends PureComponent {
             if (app.startAppFromPushNotification) {
                 app.setStartAppFromPushNotification(false);
             } else {
-                selectInitialChannel(teamId);
+                //selectInitialChannel(teamId);
             }
         });
     };

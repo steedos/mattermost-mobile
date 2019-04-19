@@ -13,9 +13,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {General} from 'mattermost-redux/constants';
 
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import ProfilePicture from 'app/components/profile_picture';
 
 export default class ChannelIcon extends React.PureComponent {
     static propTypes = {
+        channelId: PropTypes.string,
+        teammateId: PropTypes.string,
         isActive: PropTypes.bool,
         isInfo: PropTypes.bool,
         isUnread: PropTypes.bool,
@@ -49,6 +52,8 @@ export default class ChannelIcon extends React.PureComponent {
             type,
             isArchived,
             isBot,
+            channelId,
+            teammateId,
         } = this.props;
         const style = getStyleSheet(theme);
 
@@ -124,40 +129,48 @@ export default class ChannelIcon extends React.PureComponent {
                 </View>
             );
         } else if (type === General.DM_CHANNEL) {
-            switch (status) {
-            case General.AWAY:
-                icon = (
-                    <Image
-                        source={require('assets/images/status/away_avatar.png')}
-                        style={{width: size, height: size, tintColor: theme.awayIndicator}}
-                    />
-                );
-                break;
-            case General.DND:
-                icon = (
-                    <Image
-                        source={require('assets/images/status/dnd_avatar.png')}
-                        style={{width: size, height: size, tintColor: theme.dndIndicator}}
-                    />
-                );
-                break;
-            case General.ONLINE:
-                icon = (
-                    <Image
-                        source={require('assets/images/status/online_avatar.png')}
-                        style={{width: size, height: size, tintColor: theme.onlineIndicator}}
-                    />
-                );
-                break;
-            default:
-                icon = (
-                    <Image
-                        source={require('assets/images/status/offline_avatar.png')}
-                        style={{width: size, height: size, tintColor: offlineColor}}
-                    />
-                );
-                break;
-            }
+            icon = (
+                <ProfilePicture
+                    userId={teammateId}
+                    size={30}
+                    status={status}
+                    statusBorderWidth={1}
+                    statusSize={16}
+                />);
+            // switch (status) {
+            // case General.AWAY:
+            //     icon = (
+            //         <Image
+            //             source={require('assets/images/status/away_avatar.png')}
+            //             style={{width: size, height: size, tintColor: theme.awayIndicator}}
+            //         />
+            //     );
+            //     break;
+            // case General.DND:
+            //     icon = (
+            //         <Image
+            //             source={require('assets/images/status/dnd_avatar.png')}
+            //             style={{width: size, height: size, tintColor: theme.dndIndicator}}
+            //         />
+            //     );
+            //     break;
+            // case General.ONLINE:
+            //     icon = (
+            //         <Image
+            //             source={require('assets/images/status/online_avatar.png')}
+            //             style={{width: size, height: size, tintColor: theme.onlineIndicator}}
+            //         />
+            //     );
+            //     break;
+            // default:
+            //     icon = (
+            //         <Image
+            //             source={require('assets/images/status/offline_avatar.png')}
+            //             style={{width: size, height: size, tintColor: offlineColor}}
+            //         />
+            //     );
+            //     break;
+            // }
         }
 
         return (
@@ -171,8 +184,9 @@ export default class ChannelIcon extends React.PureComponent {
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
-            marginRight: 12,
+            //marginRight: 12,
             alignItems: 'center',
+            justifyContent: 'center',
         },
         icon: {
             color: changeOpacity(theme.centerChannelColor, 0.4),

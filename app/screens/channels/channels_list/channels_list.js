@@ -219,7 +219,6 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             height: 36,
             paddingLeft: 16,
             backgroundColor: '#F0F0F0',
-
         },
         title: {
             flex: 1,
@@ -246,7 +245,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: '#a7a7a7',
             //color: changeOpacity(theme.centerChannelColor, 0.0),
             height: 0.5,
-            marginLeft: 44,
+            marginLeft: 60,
         },
         divider: {
             backgroundColor: '#a7a7a7',

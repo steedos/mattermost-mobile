@@ -127,12 +127,15 @@ export default class ChannelItem extends PureComponent {
 
         let channelDisplayName = displayName;
         let isCurrenUser = false;
+        let teammateId = null;
 
         if (channel.type === General.DM_CHANNEL) {
             if (isSearchResult) {
                 isCurrenUser = channel.id === currentUserId;
+                teammateId = channel.id
             } else {
                 isCurrenUser = channel.teammate_id === currentUserId;
+                teammateId = channel.teammate_id
             }
         }
         if (isCurrenUser) {
@@ -180,10 +183,11 @@ export default class ChannelItem extends PureComponent {
             <ChannelIcon
                 isActive={isActive}
                 channelId={channelId}
+                teammateId={teammateId}
                 isUnread={isUnread}
                 hasDraft={hasDraft && channelId !== currentChannelId}
                 membersCount={displayName.split(',').length}
-                size={16}
+                size={20}
                 status={channel.status}
                 theme={theme}
                 type={channel.type}
@@ -202,7 +206,7 @@ export default class ChannelItem extends PureComponent {
                     <View style={[style.container, mutedStyle]}>
                         {/* {extraBorder} */}
                         <View style={[style.item, extraItemStyle]}>
-                            <View>
+                            <View style={style.iconContainer}>
                                 {icon}
                             </View>
                             <View style={style.wrapper}>
@@ -245,11 +249,17 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            paddingLeft: 16,
+            //paddingLeft: 16,
         },
         itemActive: {
             //backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             //paddingLeft: 11,
+        },
+        iconContainer: {
+            width: 60,
+            alignItems: 'center',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         labelContainer: {
             alignItems: 'center',
