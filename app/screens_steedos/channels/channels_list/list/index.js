@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import {General} from 'mattermost-redux/constants';
 import {
@@ -16,8 +17,13 @@ import {showCreateOption} from 'mattermost-redux/utils/channel_utils';
 import {memoizeResult} from 'mattermost-redux/utils/helpers';
 import {isAdmin as checkIsAdmin, isSystemAdmin as checkIsSystemAdmin} from 'mattermost-redux/utils/user_utils';
 import {getConfig, getLicense} from 'mattermost-redux/selectors/entities/general';
+import {getMobileTheme} from 'app/selectors/theme';
 
 import {SidebarSectionTypes} from 'app/constants/view';
+
+import {clearSearch} from 'mattermost-redux/actions/search';
+import {showSearchModal} from 'app/actions/views/search';
+
 
 import List from './list';
 
@@ -60,9 +66,18 @@ function mapStateToProps(state) {
             isSystemAdmin
         ),
         favoriteChannelIds,
-        theme: getTheme(state),
+        theme: getMobileTheme(state),
         unreadChannelIds,
         orderedChannelIds,
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators({
+            clearSearch,
+            showSearchModal,
+        }, dispatch),
     };
 }
 
@@ -76,4 +91,4 @@ function areStatesEqual(next, prev) {
     return equalChannels && equalConfig && equalRoles && equalUsers && equalFav;
 }
 
-export default connect(mapStateToProps, null, null, {pure: true, areStatesEqual})(List);
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: true, areStatesEqual})(List);

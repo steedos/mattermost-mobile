@@ -63,12 +63,12 @@ export default class SwitchTeamsButton extends React.PureComponent {
                     underlayColor={changeOpacity(theme.sidebarHeaderBg, 0.5)}
                 >
                     <View style={styles.switcherContainer}>
-                        <AwesomeIcon
+                        {/* <AwesomeIcon
                             name='chevron-left'
                             size={12}
                             style={styles.switcherArrow}
                         />
-                        <View style={styles.switcherDivider}/>
+                        <View style={styles.switcherDivider}/> */}
                         <TeamIcon
                             teamId={currentTeamId}
                             styleContainer={styles.teamIconContainer}

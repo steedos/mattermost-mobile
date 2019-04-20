@@ -2,14 +2,16 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
+import {getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
 
-import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
+import {getMobileTheme} from 'app/selectors/theme';
 
 import ChannelsList from './channels_list';
 
 function mapStateToProps(state) {
     return {
-        theme: getTheme(state),
+        theme: getMobileTheme(state),
+        currentTeam: getCurrentTeam(state),
     };
 }
 

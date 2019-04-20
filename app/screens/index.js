@@ -72,4 +72,6 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('Me', () => wrapWithContextProvider(require('app/screens_steedos/me').default), store, Provider);
     Navigation.registerComponent('Channels', () => wrapWithContextProvider(require('app/screens_steedos/channels').default, false), store, Provider);
     Navigation.registerComponent('ChannelSimple', () => wrapWithContextProvider(require('app/screens_steedos/channel_simple').default), store, Provider);
+    Navigation.registerComponent('SwitchTeam', () => wrapWithContextProvider(require('app/screens_steedos/switch_team').default), store, Provider);
+
 }

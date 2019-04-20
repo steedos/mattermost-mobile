@@ -37,3 +37,19 @@ export const getCustomTheme = createSelector(
         return null;
     }
 );
+
+export const getMobileTheme = createSelector(
+    getConfig,
+    getTheme,
+    (config, activeTheme) => {
+        return {
+            ...activeTheme,
+            screenBg: "#F0F0F0",
+            itemSeperator: "#A7A7A7",
+            itemBg: "#FFFFFF",
+            itemTextColor: "#000000",
+            sectionHeaderBg: "#ECECF2",
+            sectionHeaderTextColor: "#666666",
+        };
+    }
+);

@@ -9,6 +9,7 @@ import {
     Text,
     TouchableHighlight,
     View,
+    Platform,
 } from 'react-native';
 import {intlShape} from 'react-intl';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -327,6 +328,52 @@ export default class List extends PureComponent {
         this.setState({width: width - 40});
     };
 
+    renderSearchBar = () => {
+        const {intl} = this.context;
+        const {styles, theme} = this.props;
+
+        const searchBarInput = {
+            backgroundColor: changeOpacity(theme.sidebarHeaderTextColor, 0.2),
+            color: theme.sidebarHeaderTextColor,
+            fontSize: 15,
+            ...Platform.select({
+                android: {
+                    marginBottom: -5,
+                },
+            }),
+        };
+
+        return (
+            <View style={styles.searchContainer}>
+                <SearchBar
+                    //ref='search_bar'
+                    placeholder={intl.formatMessage({id: 'search_bar.search', defaultMessage: 'Search'})}
+                    cancelTitle={intl.formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
+                    backgroundColor='transparent'
+                    inputHeight={34}
+                    inputStyle={searchBarInput}
+                    placeholderTextColor={changeOpacity(theme.itemTextColor, 0.5)}
+                    tintColorSearch={changeOpacity(theme.itemTextColor, 0.5)}
+                    tintColorDelete={changeOpacity(theme.itemTextColor, 0.5)}
+                    titleCancelColor={theme.itemTextColor}
+                    selectionColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
+                    // onSearchButtonPress={this.onSearch}
+                    // onCancelButtonPress={this.cancelSearch}
+                    // onChangeText={this.onSearch}
+                    onFocus={this.handleSearchBarPress}
+                    // value={term}
+                />
+            </View>
+        )
+    };
+
+    handleSearchBarPress = preventDoubleTap(async () => {
+        const {actions, navigator} = this.props;
+
+        await actions.clearSearch();
+        await actions.showSearchModal(navigator);
+    });
+
     renderSectionAction = (styles, action) => {
         const {theme} = this.props;
         return (
@@ -392,7 +439,7 @@ export default class List extends PureComponent {
                     <Text style={styles.title}>
                         {intl.formatMessage({id, defaultMessage}).toUpperCase()}
                     </Text>
-                    {action && this.renderSectionAction(styles, action)}
+                    {/* {action && this.renderSectionAction(styles, action)} */}
                 </View>
                 {bottomSeparator && this.renderSectionSeparator()}
             </View>
@@ -453,6 +500,7 @@ export default class List extends PureComponent {
                     onRefresh={this.onRefresh}
                     refreshing={this.state.refreshing}
                     ItemSeparatorComponent={this.renderItemSeparator}
+                    //ListHeaderComponent={this.renderSearchBar}
                 />
                 {showIndicator &&
                 <UnreadIndicator

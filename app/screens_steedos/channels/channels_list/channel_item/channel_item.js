@@ -267,7 +267,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         text: {
-            color: '#000000',
+            color: theme.itemTextColor,
             fontSize: 16,
             paddingRight: 40,
             alignItems: 'center',

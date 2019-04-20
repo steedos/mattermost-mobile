@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {intlShape} from 'react-intl';
 
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {General, WebsocketEvents} from 'mattermost-redux/constants';
 import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
@@ -20,6 +21,7 @@ import DrawerLayout from 'app/components/sidebars/drawer_layout';
 import StatusBar from 'app/components/status_bar';
 import tracker from 'app/utils/time_tracker';
 import {t} from 'app/utils/i18n';
+import {preventDoubleTap} from 'app/utils/tap';
 import {app} from 'app/mattermost';
 
 import ChannelsList from './channels_list';
@@ -72,6 +74,25 @@ export default class ChannelSidebar extends Component {
             drawerOpened: true,
         };
 
+        MaterialIcon.getImageSource('close', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
+            this.closeButton = source;
+        });
+
+        MaterialIcon.getImageSource('add', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
+            this.addButton = source;
+
+            this.props.navigator.setButtons({
+                rightButtons: [
+                {
+                    icon: this.addButton, // for a textual button, provide the button title (label)
+                    id: 'buttonAddChannel', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+                    disabled: false, // optional, used to disable the button (appears faded and doesn't interact)
+                }
+                ]
+            });
+        });
+
+
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
@@ -97,6 +118,8 @@ export default class ChannelSidebar extends Component {
                 break;
             case 'willCommitPreview':
                 break;
+            case 'buttonAddChannel':
+                this.showCreateChannelOptions()
         }
     }
 
@@ -124,6 +147,158 @@ export default class ChannelSidebar extends Component {
         return await loadChannelsIfNecessary(this.props.currentTeamId);
     }
 
+    showCreateChannelOptions = () => {
+        const {canCreatePrivateChannels, navigator} = this.props;
+
+        const items = [];
+        const moreChannels = {
+            action: this.goToMoreChannels,
+            text: {
+                id: 'more_channels.title',
+                defaultMessage: 'More Channels',
+            },
+        };
+        const createPublicChannel = {
+            action: this.goToCreatePublicChannel,
+            text: {
+                id: 'mobile.create_channel.public',
+                defaultMessage: 'New Public Channel',
+            },
+        };
+        const createPrivateChannel = {
+            action: this.goToCreatePrivateChannel,
+            text: {
+                id: 'mobile.create_channel.private',
+                defaultMessage: 'New Private Channel',
+            },
+        };
+        const newConversation = {
+            action: this.goToDirectMessages,
+            text: {
+                id: 'mobile.more_dms.title',
+                defaultMessage: 'New Conversation',
+            },
+        };
+
+        items.push(moreChannels, createPublicChannel);
+        if (canCreatePrivateChannels) {
+            items.push(createPrivateChannel);
+        }
+        items.push(newConversation);
+
+        navigator.showModal({
+            screen: 'OptionsModal',
+            title: '',
+            animationType: 'none',
+            passProps: {
+                items,
+                onItemPress: () => navigator.dismissModal({
+                    animationType: 'none',
+                }),
+            },
+            navigatorStyle: {
+                navBarHidden: true,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                screenBackgroundColor: 'transparent',
+                modalPresentationStyle: 'overCurrentContext',
+            },
+        });
+    }
+
+    goToCreatePublicChannel = preventDoubleTap(() => {
+        const {navigator, theme} = this.props;
+        const {intl} = this.context;
+
+        navigator.showModal({
+            screen: 'CreateChannel',
+            animationType: 'slide-up',
+            title: intl.formatMessage({id: 'mobile.create_channel.public', defaultMessage: 'New Public Channel'}),
+            backButtonTitle: '',
+            animated: true,
+            navigatorStyle: {
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+            passProps: {
+                channelType: General.OPEN_CHANNEL,
+                closeButton: this.closeButton,
+            },
+        });
+    });
+
+    goToCreatePrivateChannel = preventDoubleTap(() => {
+        const {navigator, theme} = this.props;
+        const {intl} = this.context;
+
+        navigator.showModal({
+            screen: 'CreateChannel',
+            animationType: 'slide-up',
+            title: intl.formatMessage({id: 'mobile.create_channel.private', defaultMessage: 'New Private Channel'}),
+            backButtonTitle: '',
+            animated: true,
+            navigatorStyle: {
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+            passProps: {
+                channelType: General.PRIVATE_CHANNEL,
+                closeButton: this.closeButton,
+            },
+        });
+    });
+
+    goToDirectMessages = preventDoubleTap(() => {
+        const {navigator, theme} = this.props;
+        const {intl} = this.context;
+
+        navigator.showModal({
+            screen: 'MoreDirectMessages',
+            title: intl.formatMessage({id: 'mobile.more_dms.title', defaultMessage: 'New Conversation'}),
+            animationType: 'slide-up',
+            animated: true,
+            backButtonTitle: '',
+            navigatorStyle: {
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+            navigatorButtons: {
+                leftButtons: [{
+                    id: 'close-dms',
+                    icon: this.closeButton,
+                }],
+            },
+        });
+    });
+
+    goToMoreChannels = preventDoubleTap(() => {
+        const {navigator, theme} = this.props;
+        const {intl} = this.context;
+
+        navigator.showModal({
+            screen: 'MoreChannels',
+            animationType: 'slide-up',
+            title: intl.formatMessage({id: 'more_channels.title', defaultMessage: 'More Channels'}),
+            backButtonTitle: '',
+            animated: true,
+            navigatorStyle: {
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+            passProps: {
+                closeButton: this.closeButton,
+            },
+        });
+    });
+    
     loadChannels = (teamId) => {
         const {
             loadChannelsIfNecessary,
@@ -374,9 +549,23 @@ export default class ChannelSidebar extends Component {
     };
 
     showTeams = () => {
-        if (this.drawerSwiper && this.swiperIndex === 1 && this.props.teamsCount > 1) {
-            this.drawerSwiper.getWrappedInstance().showTeamsPage();
-        }
+        // if (this.drawerSwiper && this.swiperIndex === 1 && this.props.teamsCount > 1) {
+        //     this.drawerSwiper.getWrappedInstance().showTeamsPage();
+        // }
+        const {navigator} = this.props;
+        
+        navigator.showModal({
+            screen: 'SwitchTeam',
+            title: '',
+            animationType: 'none',
+            navigatorStyle: {
+                navBarHidden: true,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                screenBackgroundColor: 'transparent',
+                modalPresentationStyle: 'overCurrentContext',
+            },
+        });
     };
 
     resetDrawer = () => {

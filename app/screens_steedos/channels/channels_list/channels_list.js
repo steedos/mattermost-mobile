@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {
     Platform,
     View,
+    Text,
 } from 'react-native';
 import {intlShape} from 'react-intl';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -128,7 +129,7 @@ export default class ChannelsList extends PureComponent {
             }),
         };
 
-        const title = (
+        const searchbar = (
             <View style={styles.searchContainer}>
                 <SearchBar
                     ref='search_bar'
@@ -151,11 +152,26 @@ export default class ChannelsList extends PureComponent {
             </View>
         );
 
+        let teamName = '华信';
+        if (this.props.currentTeam)
+            teamName = this.props.currentTeam.display_name;
+        const teamTitle = (
+            <View style={styles.headerTitleWrapper}>
+                <Text
+                    ellipsizeMode='tail'
+                    numberOfLines={1}
+                    style={styles.headerTitle}
+                >
+                    {teamName}
+                </Text>
+            </View>
+        );
+
         return (
             <View
                 style={styles.container}
             >
-                <View style={styles.statusBar}>
+                {/* <View style={styles.statusBar}>
                     <View style={styles.headerContainer}>
                         <View style={styles.switchContainer}>
                             <SwitchTeamsButton
@@ -163,9 +179,10 @@ export default class ChannelsList extends PureComponent {
                                 onShowTeams={onShowTeams}
                             />
                         </View>
-                        {title}
+                        {searchbar}
+                        {teamTitle}
                     </View>
-                </View>
+                </View> */}
                 {list}
             </View>
         );
@@ -182,14 +199,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.sidebarHeaderBg,
         },
         itemContainer: {
-            backgroundColor: '#ffffff',
+            backgroundColor: theme.itemBg,
         },
         headerContainer: {
             alignItems: 'center',
-            paddingLeft: 10,
             backgroundColor: theme.sidebarHeaderBg,
             flexDirection: 'row',
             borderBottomWidth: 0,
+            top: 0, 
             borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.10),
             ...Platform.select({
                 android: {
@@ -200,12 +217,17 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
                 },
             }),
         },
-        header: {
+        headerTitleWrapper: {
+            alignItems: 'flex-start',
+            top: -1,
+            flexDirection: 'row',
+            justifyContent: 'flex-start',
+        },
+        headerTitle: {
             color: theme.sidebarHeaderTextColor,
-            flex: 1,
-            fontSize: 17,
-            fontWeight: 'normal',
-            paddingLeft: 16,
+            fontSize: 18,
+            fontWeight: 'bold',
+            textAlign: 'center',
         },
         switchContainer: {
             position: 'relative',
@@ -218,11 +240,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingTop: 16,
             height: 36,
             paddingLeft: 16,
-            backgroundColor: '#F0F0F0',
+            backgroundColor: theme.sectionHeaderBg,
         },
         title: {
             flex: 1,
-            color: '#000000',
+            color: theme.sectionHeaderTextColor,
             opacity: 1,
             fontSize: 13,
             fontWeight: '400',
@@ -242,13 +264,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             }),
         },
         itemDivider: {
-            backgroundColor: '#a7a7a7',
+            backgroundColor: theme.itemSeperator,
             //color: changeOpacity(theme.centerChannelColor, 0.0),
             height: 0.5,
             marginLeft: 50,
         },
         divider: {
-            backgroundColor: '#a7a7a7',
+            backgroundColor: theme.itemSeperator,
             height: 0,
         },
         actionContainer: {
@@ -258,7 +280,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: '#000000',
+            color: theme.sectionHeaderText,
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,
