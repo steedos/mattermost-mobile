@@ -31,7 +31,7 @@ import {t} from 'app/utils/i18n';
 import {setMfaPreflightDone, getMfaPreflightDone} from 'app/utils/security';
 
 import {RequestStatus} from 'mattermost-redux/constants';
-import startTabs from 'app/screens/tabs';
+import startTabs from 'app/screens_steedos/tabs';
 
 const mfaExpectedErrors = ['mfa.validate_token.authenticate.app_error', 'ent.mfa.validate_token.authenticate.app_error'];
 

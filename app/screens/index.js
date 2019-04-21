@@ -5,7 +5,7 @@ import {Navigation} from 'react-native-navigation';
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
 import Channel from 'app/screens/channel';
-import Entry from 'app/screens/entry';
+import Entry from 'app/screens_steedos/entry';
 import SelectServer from 'app/screens/select_server';
 import {wrapWithContextProvider} from 'app/utils/wrap_context_provider';
 

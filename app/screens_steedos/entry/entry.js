@@ -32,7 +32,7 @@ import Loading from 'app/components/loading';
 import SafeAreaView from 'app/components/safe_area_view';
 import StatusBar from 'app/components/status_bar';
 import {t} from 'app/utils/i18n';
-import startTabs from 'app/screens/tabs';
+import startTabs from 'app/screens_steedos/tabs';
 
 const lazyLoadSelectServer = () => {
     return require('app/screens/select_server').default;

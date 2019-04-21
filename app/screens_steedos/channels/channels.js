@@ -78,7 +78,7 @@ export default class ChannelSidebar extends Component {
             this.closeButton = source;
         });
 
-        MaterialIcon.getImageSource('add', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
+        MaterialIcon.getImageSource('add-circle-outline', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
             this.addButton = source;
 
             this.props.navigator.setButtons({
