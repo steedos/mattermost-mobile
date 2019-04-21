@@ -63,9 +63,17 @@ export default class Me extends PureComponent {
     }
 
     onNavigatorEvent(event) {
-        const {navigator, theme} = this.props;
         switch (event.id) {
         case 'willAppear':
+            const {theme} = this.props;
+            this.props.navigator.setStyle({
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.bodyBg
+            });
             break;
         case 'didAppear': {
             break;

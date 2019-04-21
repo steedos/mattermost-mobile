@@ -22,6 +22,7 @@ export default startTabs = () => {
             label: translations[t('mobile.tabs.channels')],
             screen: 'Channels',
             icon: require('assets/images/tabs/chat.png'),
+            selectedIcon: require('assets/images/tabs/chat_selected.png'),
             navigatorStyle: {
                 navBarHidden: false,
                 statusBarHidden: false,
@@ -48,7 +49,8 @@ export default startTabs = () => {
             label: translations[t('mobile.tabs.me')],
             title: translations[t('mobile.tabs.me')],
             screen: 'Me',
-            icon: require('assets/images/tabs/me.png'),
+            icon: require('assets/images/tabs/settings.png'),
+            selectedIcon: require('assets/images/tabs/settings_selected.png'),
             navigatorStyle: {
                 navBarHidden: false,
                 statusBarHidden: false,

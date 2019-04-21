@@ -111,7 +111,68 @@ export default class Entry extends PureComponent {
             this.props.initializeModules();
         }
 
-        startTabs();
+        this.launchTabs();
+    };
+
+
+    launchTabs = () => {
+        const {theme} = this.props;
+        const translations = app.getTranslations();
+
+        Navigation.startTabBasedApp({
+            tabs: [{
+                title: translations[t('mobile.tabs.channels')],
+                label: translations[t('mobile.tabs.channels')],
+                screen: 'Channels',
+                icon: require('assets/images/tabs/chat.png'),
+                selectedIcon: require('assets/images/tabs/chat_selected.png'),
+                navigatorStyle: {
+                    navBarHidden: false,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    statusBarTextColorScheme: 'light',
+                    navBarTextColor: theme.navBarTextColor,
+                    navBarBackgroundColor: theme.navBarBg,
+                    navBarButtonColor: theme.navBarTextColor,
+                    screenBackgroundColor: theme.bodyBg,
+                },
+            },
+            {
+                label: translations[t('mobile.tabs.me')],
+                title: translations[t('mobile.tabs.me')],
+                screen: 'Me',
+                icon: require('assets/images/tabs/settings.png'),
+                selectedIcon: require('assets/images/tabs/settings_selected.png'),
+                navigatorStyle: {
+                    navBarHidden: false,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    navBarTextColor: theme.navBarTextColor,
+                    navBarBackgroundColor: theme.navBarBg,
+                    navBarButtonColor: theme.navBarTextColor,
+                    screenBackgroundColor: theme.bodyBg,
+                },
+            }],
+            tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
+                tabBarButtonColor: theme.tabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+                tabBarSelectedButtonColor: theme.tabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+                tabBarBackgroundColor: theme.tabBg, // optional, change the background color of the tab bar
+                initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+            },
+            appStyle: {
+                orientation: 'auto',
+                tabBarButtonColor: theme.tabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+                tabBarSelectedButtonColor: theme.tabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+                tabBarBackgroundColor: theme.tabBg, // optional, change the background color of the tab bar
+                initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+                forceTitlesDisplay: true,
+                navBarTextColor: theme.navBarTextColor,
+                navBarBackgroundColor: theme.navBarBg,
+                navBarButtonColor: theme.navBarTextColor,
+                screenBackgroundColor: theme.bodyBg,
+            },
+            animationType: 'fade',
+        });
     };
 
     launchSelectServer = () => {

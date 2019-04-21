@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {setDeviceToken} from 'mattermost-redux/actions/general';
 import {autoUpdateTimezone} from 'mattermost-redux/actions/timezone';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
+import {getMobileTheme} from 'app/selectors/theme';
 
 import {isLandscape} from 'app/selectors/device';
 import {getDeviceTimezone, isTimezoneEnabled} from 'app/utils/timezone';
@@ -19,7 +20,7 @@ function mapStateToProps(state) {
     const deviceTimezone = getDeviceTimezone();
 
     return {
-        theme: getTheme(state),
+        theme: getMobileTheme(state),
         isLandscape: isLandscape(state),
         enableTimezone,
         deviceTimezone,

@@ -52,7 +52,7 @@ export const getMobileTheme = createSelector(
             sectionHeaderTextColor: "#666666",
             tabBg: "#FFFFFF",
             tabTextColor: "#353535",
-            tabSelectedTextColor: "#0072FF",
+            tabSelectedTextColor: activeTheme.sidebarHeaderBg,
             navBarBg: activeTheme.sidebarHeaderBg,
             navBarTextColor: "#FFFFFF",
         };
