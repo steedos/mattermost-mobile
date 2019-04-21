@@ -87,43 +87,53 @@ export default class ChannelIcon extends React.PureComponent {
         let icon;
         if (isArchived) {
             icon = (
-                <Icon
-                    name='archive'
-                    style={[style.icon, unreadIcon, activeIcon, {fontSize: size}]}
-                />
+                <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
+                    <Icon
+                        name='archive'
+                        style={[style.icon, unreadIcon, activeIcon, {fontSize: size * 0.618}]}
+                    />
+                </View>
             );
         } else if (isBot) {
             icon = (
-                <Icon
-                    name='robot'
-                    style={[style.icon, unreadIcon, activeIcon, {fontSize: size}, style.iconBot]}
-                />
+                <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
+                    <Icon
+                        name='robot'
+                        style={[style.icon, unreadIcon, activeIcon, {fontSize: size * 0.618}, style.iconBot]}
+                    />
+                </View>
             );
         } else if (hasDraft) {
-            icon = (
-                <Icon
-                    name='pencil'
-                    style={[style.icon, unreadIcon, activeIcon, {fontSize: size}]}
-                />
+            icon = (                
+                <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
+                    <Icon
+                        name='pencil'
+                        style={[style.icon, unreadIcon, activeIcon, {fontSize: size * 0.618}]}
+                    />
+                </View>
             );
         } else if (type === General.OPEN_CHANNEL) {
             icon = (
-                <Icon
-                    name='globe'
-                    style={[style.icon, unreadIcon, activeIcon, {fontSize: size}]}
-                />
+                <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
+                    <Icon
+                        name='globe'
+                        style={[style.icon, unreadIcon, activeIcon, {fontSize: size * 0.618}]}
+                    />
+                </View>
             );
         } else if (type === General.PRIVATE_CHANNEL) {
             icon = (
-                <Icon
-                    name='lock'
-                    style={[style.icon, unreadIcon, activeIcon, {fontSize: size}]}
-                />
+                <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
+                    <Icon
+                        name='lock'
+                        style={[style.icon, unreadIcon, activeIcon, {fontSize: size * 0.618}]}
+                    />
+                </View>
             );
         } else if (type === General.GM_CHANNEL) {
             icon = (
                 <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
-                    <Text style={[style.group, unreadGroup, activeGroup, {fontSize: (size - 6)}]}>
+                    <Text style={[style.group, unreadGroup, activeGroup, {fontSize: (size * 0.618)}]}>
                         {membersCount}
                     </Text>
                 </View>
@@ -132,7 +142,7 @@ export default class ChannelIcon extends React.PureComponent {
             icon = (
                 <ProfilePicture
                     userId={teammateId}
-                    size={30}
+                    size={size}
                     status={status}
                     statusBorderWidth={1}
                     statusSize={12}
@@ -206,9 +216,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         groupBox: {
             alignSelf: 'flex-start',
             alignItems: 'center',
-            borderWidth: 1,
-            borderColor: changeOpacity(theme.centerChannelColor, 0.4),
+            borderWidth: 0,
+            backgroundColor: changeOpacity(theme.itemSeperator, 0.1),
             justifyContent: 'center',
+            borderRadius: 6,
         },
         groupBoxActive: {
             borderColor: theme.centerChannelColor,

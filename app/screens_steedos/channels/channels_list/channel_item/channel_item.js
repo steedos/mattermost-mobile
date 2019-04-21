@@ -187,7 +187,7 @@ export default class ChannelItem extends PureComponent {
                 isUnread={isUnread}
                 hasDraft={hasDraft && channelId !== currentChannelId}
                 membersCount={displayName.split(',').length}
-                size={20}
+                size={30}
                 status={channel.status}
                 theme={theme}
                 type={channel.type}
