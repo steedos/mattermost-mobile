@@ -44,12 +44,17 @@ export const getMobileTheme = createSelector(
     (config, activeTheme) => {
         return {
             ...activeTheme,
-            screenBg: "#F0F0F0",
-            itemSeperator: "#A7A7A7",
+            bodyBg: "#F8F8F8",
+            itemSeperator: "#DDDDDD",
             itemBg: "#FFFFFF",
             itemTextColor: "#000000",
-            sectionHeaderBg: "#ECECF2",
+            sectionHeaderBg: "#F8F8F8",
             sectionHeaderTextColor: "#666666",
+            tabBg: "#FFFFFF",
+            tabTextColor: "#353535",
+            tabSelectedTextColor: "#0072FF",
+            navBarBg: activeTheme.sidebarHeaderBg,
+            navBarTextColor: "#FFFFFF",
         };
     }
 );

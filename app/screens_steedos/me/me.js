@@ -66,12 +66,6 @@ export default class Me extends PureComponent {
         const {navigator, theme} = this.props;
         switch (event.id) {
         case 'willAppear':
-            this.props.navigator.setStyle({
-                navBarTextColor: theme.sidebarHeaderTextColor,
-                navBarBackgroundColor: theme.sidebarHeaderBg,
-                navBarButtonColor: theme.sidebarHeaderTextColor,
-                screenBackgroundColor: theme.centerChannelBg,
-            });
             break;
         case 'didAppear': {
             break;
@@ -250,10 +244,14 @@ export default class Me extends PureComponent {
                 <ScrollView
                     contentContainerStyle={style.wrapper}
                 >
-                    <UserInfo
-                        onPress={this.goToEditProfile}
-                        user={currentUser}
-                    />
+                    <View style={style.separator}/>
+                    <View style={style.block}>
+                        <UserInfo
+                            onPress={this.goToEditProfile}
+                            user={currentUser}
+                        />
+                    </View>
+                    <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem
                             labelComponent={this.renderUserStatusLabel(currentUser.id)}
@@ -347,21 +345,20 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
-            backgroundColor: '#ECECF2',
         },
         wrapper: {
             flex: 1,
             paddingTop: 0,
-            backgroundColor: '#ECECF2',
         },
         block: {
-            borderBottomColor: '#E9E8EB',
+            backgroundColor: theme.itemBg,
+            borderBottomColor: theme.itemSeperator,
             borderBottomWidth: 1,
-            borderTopColor: '#E9E8EB',
+            borderTopColor: theme.itemSeperator,
             borderTopWidth: 1,
         },
         divider: {
-            backgroundColor: '#E9E8EB',
+            backgroundColor: theme.itemSeperator,
             height: 1,
         },
         separator: {

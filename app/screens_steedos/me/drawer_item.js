@@ -108,7 +108,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             alignItems: 'center',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: theme.itemBg,
             flexDirection: 'row',
             height: 50,
         },
@@ -143,7 +143,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             includeFontPadding: false,
         },
         divider: {
-            backgroundColor: '#E9E8EB',
+            backgroundColor: theme.itemSeperator,
             height: 1,
         },
     };

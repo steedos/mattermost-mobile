@@ -192,7 +192,6 @@ export default class ChannelsList extends PureComponent {
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
             flex: 1,
         },
         statusBar: {

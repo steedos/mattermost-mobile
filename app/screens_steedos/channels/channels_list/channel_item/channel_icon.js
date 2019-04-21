@@ -202,13 +202,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             color: changeOpacity(theme.centerChannelColor, 0.4),
         },
         iconActive: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
         iconUnread: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
         iconInfo: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
         iconBot: {
             marginLeft: -5,
@@ -217,32 +217,32 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignSelf: 'flex-start',
             alignItems: 'center',
             borderWidth: 0,
-            backgroundColor: changeOpacity(theme.itemSeperator, 0.1),
+            backgroundColor: changeOpacity(theme.itemSeperator, 0.3),
             justifyContent: 'center',
             borderRadius: 6,
         },
         groupBoxActive: {
-            borderColor: theme.centerChannelColor,
+            borderColor: theme.itemTextColor,
         },
         groupBoxUnread: {
-            borderColor: theme.centerChannelColor,
+            borderColor: theme.itemTextColor,
         },
         groupBoxInfo: {
-            borderColor: theme.centerChannelColor,
+            borderColor: theme.itemTextColor,
         },
         group: {
-            color: changeOpacity(theme.centerChannelColor, 0.4),
+            color: theme.itemTextColor,
             fontSize: 10,
             fontWeight: '600',
         },
         groupActive: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
         groupUnread: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
         groupInfo: {
-            color: theme.centerChannelColor,
+            color: theme.itemTextColor,
         },
     };
 });

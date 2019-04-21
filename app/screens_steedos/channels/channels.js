@@ -99,15 +99,6 @@ export default class ChannelSidebar extends Component {
     onNavigatorEvent(event) {
         switch(event.id) {
             case 'willAppear':
-                const {theme} = this.props;
-                this.props.navigator.setStyle({
-                    statusBarHidden: false,
-                    statusBarHideWithNavBar: false,
-                    navBarTextColor: theme.sidebarHeaderTextColor,
-                    navBarBackgroundColor: theme.sidebarHeaderBg,
-                    navBarButtonColor: theme.sidebarHeaderTextColor,
-                    screenBackgroundColor: theme.centerChannelBg
-                });
                 this.props.actions.unselectChannel();
                 break;
             case 'didAppear':
