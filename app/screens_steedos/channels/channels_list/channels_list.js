@@ -265,12 +265,12 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         itemDivider: {
             backgroundColor: theme.itemSeperator,
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 0.5,
-            marginLeft: 50,
+            height: 0,
+            marginLeft: 60,
         },
         divider: {
             backgroundColor: theme.itemSeperator,
-            height: 0,
+            height: 1,
         },
         actionContainer: {
             alignItems: 'center',

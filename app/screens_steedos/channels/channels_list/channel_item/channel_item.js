@@ -187,7 +187,7 @@ export default class ChannelItem extends PureComponent {
                 isUnread={isUnread}
                 hasDraft={hasDraft && channelId !== currentChannelId}
                 membersCount={displayName.split(',').length}
-                size={30}
+                size={40}
                 status={channel.status}
                 theme={theme}
                 type={channel.type}
@@ -238,7 +238,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            height: 50,
+            height: 60,
             backgroundColor: '#FFFFFF',
         },
         borderActive: {
@@ -256,7 +256,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingLeft: 11,
         },
         iconContainer: {
-            width: 50,
+            width: 70,
             alignItems: 'center',
             flexDirection: 'row',
             justifyContent: 'center',

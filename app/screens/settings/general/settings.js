@@ -215,7 +215,7 @@ class Settings extends PureComponent {
     render() {
         const {config, joinableTeams, theme} = this.props;
         const style = getStyleSheet(theme);
-        const showTeams = true; //joinableTeams.length > 0;
+        const showTeams = joinableTeams.length > 0;
         const showHelp = isValidUrl(config.HelpLink);
         const showArrow = Platform.OS === 'ios';
 
