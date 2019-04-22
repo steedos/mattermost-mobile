@@ -239,7 +239,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             flexDirection: 'row',
             height: 60,
-            backgroundColor: '#FFFFFF',
+            backgroundColor: theme.itemBg,
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),

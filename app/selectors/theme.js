@@ -6,6 +6,8 @@ import {createSelector} from 'reselect';
 import Preferences from 'mattermost-redux/constants/preferences';
 import {getConfig} from 'mattermost-redux/selectors/entities/general';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
+import tinyColor from 'tinycolor2';
+import {changeOpacity} from 'app/utils/theme';
 
 export const getAllowedThemes = createSelector(
     getConfig,
@@ -42,19 +44,36 @@ export const getMobileTheme = createSelector(
     getConfig,
     getTheme,
     (config, activeTheme) => {
-        return {
-            ...activeTheme,
-            bodyBg: "#F8F8F8",
-            itemSeperator: "#DDDDDD",
-            itemBg: "#FFFFFF",
-            itemTextColor: "#000000",
-            sectionHeaderBg: "#F8F8F8",
-            sectionHeaderTextColor: "#666666",
-            tabBg: "#FFFFFF",
-            tabTextColor: "#353535",
-            tabSelectedTextColor: activeTheme.sidebarHeaderBg,
-            navBarBg: activeTheme.sidebarHeaderBg,
-            navBarTextColor: "#FFFFFF",
-        };
+        let headerColor = tinyColor(activeTheme.centerChannelBg);
+        if (headerColor.isLight())
+            return {
+                ...activeTheme,
+                bodyBg: "#F8F8F8",
+                itemSeperator: "#DDDDDD",
+                itemBg: "#FFFFFF",
+                itemTextColor: "#000000",
+                sectionHeaderBg: "#F8F8F8",
+                sectionHeaderTextColor: "#666666",
+                tabBg: "#FFFFFF",
+                tabTextColor: "#353535",
+                tabSelectedTextColor: activeTheme.sidebarHeaderBg,
+                navBarBg: activeTheme.sidebarHeaderBg,
+                navBarTextColor: "#FFFFFF",
+            };
+        else
+            return {
+                ...activeTheme,
+                bodyBg: activeTheme.centerChannelBg,
+                itemSeperator: changeOpacity("#FFFFFF", 0.3),
+                itemBg: changeOpacity("#FFFFFF", 0.2),
+                itemTextColor: activeTheme.centerChannelColor,
+                sectionHeaderBg: activeTheme.centerChannelBg,
+                sectionHeaderTextColor: "#666666",
+                tabBg: "#FFFFFF",
+                tabTextColor: "#353535",
+                tabSelectedTextColor: activeTheme.sidebarHeaderBg,
+                navBarBg: activeTheme.sidebarHeaderBg,
+                navBarTextColor: "#FFFFFF",
+            };
     }
 );
