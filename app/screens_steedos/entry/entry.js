@@ -138,6 +138,23 @@ export default class Entry extends PureComponent {
                 },
             },
             {
+                title: translations[t('mobile.channel_list.members')],
+                label: translations[t('mobile.channel_list.members')],
+                screen: 'Contacts',
+                icon: require('assets/images/tabs/contacts.png'),
+                selectedIcon: require('assets/images/tabs/contacts_selected.png'),
+                navigatorStyle: {
+                    navBarHidden: false,
+                    statusBarHidden: false,
+                    statusBarHideWithNavBar: false,
+                    statusBarTextColorScheme: 'light',
+                    navBarTextColor: theme.navBarTextColor,
+                    navBarBackgroundColor: theme.navBarBg,
+                    navBarButtonColor: theme.navBarTextColor,
+                    screenBackgroundColor: theme.bodyBg,
+                },
+            },
+            {
                 label: translations[t('mobile.tabs.me')],
                 title: translations[t('mobile.tabs.me')],
                 screen: 'Me',

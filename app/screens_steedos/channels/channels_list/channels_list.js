@@ -265,8 +265,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         itemDivider: {
             backgroundColor: theme.itemSeperator,
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 0,
-            marginLeft: 60,
+            height: 0.5,
+            marginLeft: 70,
         },
         divider: {
             backgroundColor: theme.itemSeperator,
