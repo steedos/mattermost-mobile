@@ -164,7 +164,7 @@ export default class Me extends PureComponent {
         const {intl} = this.context;
 
         this.navigateTo(
-            'Settings',
+            'SteedosSettings',
             intl.formatMessage({id: 'mobile.routes.settings', defaultMessage: 'Settings'}),
         );
     });
@@ -298,18 +298,6 @@ export default class Me extends PureComponent {
                             iconName='ios-options'
                             iconType='ion'
                             onPress={this.goToSettings}
-                            separator={false}
-                            theme={theme}
-                        />
-                    </View>
-                    <View style={style.separator}/>
-                    <View style={style.block}>
-                        <DrawerItem
-                            centered={true}
-                            defaultMessage='Logout'
-                            i18nId='sidebar_right_menu.logout'
-                            isDestructor={true}
-                            onPress={this.logout}
                             separator={false}
                             theme={theme}
                         />
