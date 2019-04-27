@@ -138,13 +138,13 @@ export default class ChannelSidebar extends Component {
 
     }
 
-    onRefresh = async () => {
+    onRefresh = () => {
         const {
             loadChannelsIfNecessary,
             loadProfilesAndTeamMembersForDMSidebar,
             selectInitialChannel,
         } = this.props.actions;
-        return await loadChannelsIfNecessary(this.props.currentTeamId);
+        return loadChannelsIfNecessary(this.props.currentTeamId);
     }
 
     showCreateChannelOptions = () => {
