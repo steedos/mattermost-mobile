@@ -317,7 +317,9 @@ export default class List extends PureComponent {
 
     onRefresh = () => {
         const {onRefresh} = this.props;
-        this.state.refreshing = true;
+        this.setState((state) => ({
+            refreshing: true,
+        }));
         onRefresh().then( ()=> {
             this.setState((state) => ({
                 refreshing: false,
