@@ -57,7 +57,7 @@ export default class List extends PureComponent {
             sections: this.buildSections(props),
             showIndicator: false,
             width: 0,
-            refreshing: false
+            refreshing: false,
         };
 
         MaterialIcon.getImageSource('close', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
@@ -315,11 +315,13 @@ export default class List extends PureComponent {
         onSelectChannel(channel, currentChannelId);
     };
 
-    onRefresh = () =>{
+    onRefresh = () => {
         const {onRefresh} = this.props;
         this.state.refreshing = true;
         onRefresh().then( ()=> {
-            this.state.refreshing = false;
+            this.setState((state) => ({
+                refreshing: false,
+            }));
         })
     }
 
