@@ -35,6 +35,8 @@ export default makeStyleSheetFromTheme((theme) => {
         labelContainer: {
             flex: 1,
             flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
         },
         label: {
             color: theme.centerChannelColor,

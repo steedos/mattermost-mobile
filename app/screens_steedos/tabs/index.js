@@ -34,17 +34,23 @@ export default startTabs = () => {
                 screenBackgroundColor: theme.bodyBg,
             },
         },
-
-        // {
-        //     label: translations[t('mobile.tabs.channels')],
-        //     screen: 'Channel',
-        //     icon: require('assets/images/tabs/chat.png'),
-        //     navigatorStyle: {
-        //         navBarHidden: true,
-        //         statusBarHidden: false,
-        //         statusBarHideWithNavBar: false,
-        //     },
-        // },
+        {
+            title: translations[t('mobile.channel_list.members')],
+            label: translations[t('mobile.channel_list.members')],
+            screen: 'Contacts',
+            icon: require('assets/images/tabs/contacts.png'),
+            selectedIcon: require('assets/images/tabs/contacts_selected.png'),
+            navigatorStyle: {
+                navBarHidden: false,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                statusBarTextColorScheme: 'light',
+                navBarTextColor: theme.navBarTextColor,
+                navBarBackgroundColor: theme.navBarBg,
+                navBarButtonColor: theme.navBarTextColor,
+                screenBackgroundColor: theme.bodyBg,
+            },
+        },
         {
             label: translations[t('mobile.tabs.me')],
             title: translations[t('mobile.tabs.me')],
