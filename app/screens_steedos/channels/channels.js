@@ -53,6 +53,7 @@ export default class ChannelSidebar extends Component {
         isTablet: PropTypes.bool.isRequired,
         navigator: PropTypes.object,
         teamsCount: PropTypes.number.isRequired,
+        badgeCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
     };
 
@@ -140,10 +141,17 @@ export default class ChannelSidebar extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const {navigator, theme} = this.props;
+        const {navigator, theme, badgeCount} = this.props;
 
         if (theme !== prevProps.theme) {
             setNavigatorStyles(navigator, theme);
+        }
+
+        if (badgeCount !== prevProps.badgeCount) {
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: badgeCount,
+            });
         }
     }
 
@@ -593,6 +601,7 @@ export default class ChannelSidebar extends Component {
             navigator,
             teamsCount,
             theme,
+            badgeCount,
         } = this.props;
 
         const {
