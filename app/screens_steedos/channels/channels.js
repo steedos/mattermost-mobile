@@ -53,7 +53,7 @@ export default class ChannelSidebar extends Component {
         isTablet: PropTypes.bool.isRequired,
         navigator: PropTypes.object,
         teamsCount: PropTypes.number.isRequired,
-        badgeCount: PropTypes.number.isRequired,
+        mentionCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
     };
 
@@ -137,22 +137,32 @@ export default class ChannelSidebar extends Component {
         // if (this.props.currentChannelId) {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
+        this.props.navigator.setTabBadge({
+            tabIndex: 0,
+            badge: this.props.mentionCount.toString(),
+        });
 
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        console.log(this.props)
+        
     }
 
     componentDidUpdate(prevProps) {
-        const {navigator, theme, badgeCount} = this.props;
+        const {navigator, theme, mentionCount} = this.props;
 
         if (theme !== prevProps.theme) {
             setNavigatorStyles(navigator, theme);
         }
 
-        if (badgeCount !== prevProps.badgeCount) {
-            this.props.navigator.setTabBadge({
-                tabIndex: 0,
-                badge: badgeCount,
-            });
-        }
+        // if (mentionCount !== prevProps.mentionCount) {
+            
+        // }
+        this.props.navigator.setTabBadge({
+            tabIndex: 0,
+            badge: mentionCount.toString(),
+        });
     }
 
     onRefresh = () => {

@@ -31,9 +31,11 @@ import {getConfig, getLicense} from 'mattermost-redux/selectors/entities/general
 import {connection} from 'app/actions/device';
 import {recordLoadTime} from 'app/actions/views/root';
 import {selectDefaultTeam} from 'app/actions/views/select_team';
-import {getChannelDrawerBadgeCount} from 'mattermost-redux/selectors/entities/teams';
+import {makeGetBadgeCountForTeamId} from 'mattermost-redux/selectors/entities/teams';
 
 import Channels from './channels';
+
+const getBadgeCountForTeamId = makeGetBadgeCountForTeamId();
 
 function mapStateToProps(state) {
     const config = getConfig(state);
@@ -63,7 +65,7 @@ function mapStateToProps(state) {
         isLandscape: isLandscape(state),
         isTablet: isTablet(state),
         teamsCount: getMyTeamsCount(state),
-        badgeCount: getChannelDrawerBadgeCount(state),
+        mentionCount: getBadgeCountForTeamId(state, currentTeamId),
         theme: getTheme(state),
     };
 }

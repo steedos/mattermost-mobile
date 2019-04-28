@@ -187,6 +187,8 @@ export default class Entry extends PureComponent {
             },
             animationType: 'fade',
         });
+
+        return null;
     };
 
     renderLogin = () => {
@@ -208,6 +210,8 @@ export default class Entry extends PureComponent {
             },
             animationType: 'fade',
         });
+
+        return null;
     };
 
     listenForHydration = () => {
