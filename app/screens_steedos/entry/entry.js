@@ -77,6 +77,7 @@ export default class Entry extends PureComponent {
         this.state = {
             launchLogin: false,
             launchChannel: false,
+            badge: 0,
         };
     }
 
@@ -99,8 +100,6 @@ export default class Entry extends PureComponent {
         if (initializeModules) {
             this.props.initializeModules();
         }
-
-        this.launchSelectServer();
     };
 
     handleLaunchChannel = (initializeModules) => {
@@ -109,12 +108,9 @@ export default class Entry extends PureComponent {
         if (initializeModules) {
             this.props.initializeModules();
         }
-
-        this.launchTabs();
     };
 
-
-    launchTabs = () => {
+    renderTabs = () => {
         const {theme} = this.props;
         const translations = app.getTranslations();
 
@@ -191,7 +187,7 @@ export default class Entry extends PureComponent {
         });
     };
 
-    launchSelectServer = () => {
+    renderLogin = () => {
         Navigation.startSingleScreenApp({
             screen: {
                 screen: 'SelectServer',
@@ -339,6 +335,14 @@ export default class Entry extends PureComponent {
             navigator,
             isLandscape,
         } = this.props;
+
+        if (this.state.launchLogin) {
+            return this.renderLogin();
+        }
+
+        if (this.state.launchChannel) {
+            return this.renderTabs();
+        }
 
         let toolbar = null;
         let loading = null;
