@@ -177,6 +177,8 @@ export default class Entry extends PureComponent {
                 tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
                 tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
                 initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+                tabFontSize: 10,
+                selectedTabFontSize: 10,
                 forceTitlesDisplay: true,
                 navBarTextColor: theme.mobileNavBarTextColor,
                 navBarBackgroundColor: theme.mobileNavBarBg,
