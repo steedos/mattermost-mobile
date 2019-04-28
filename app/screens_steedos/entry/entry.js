@@ -31,7 +31,7 @@ import Loading from 'app/components/loading';
 import SafeAreaView from 'app/components/safe_area_view';
 import StatusBar from 'app/components/status_bar';
 import {t} from 'app/utils/i18n';
-import startTabs from 'app/screens_steedos/tabs';
+import Tabs from 'app/screens_steedos/tabs';
 
 const lazyLoadSelectServer = () => {
     return require('app/screens/select_server').default;
@@ -111,84 +111,9 @@ export default class Entry extends PureComponent {
     };
 
     renderTabs = () => {
-        const {theme} = this.props;
-        const translations = app.getTranslations();
-
-        Navigation.startTabBasedApp({
-            tabs: [{
-                title: translations[t('mobile.tabs.channels')],
-                label: translations[t('mobile.tabs.channels')],
-                screen: 'Channels',
-                icon: require('assets/images/tabs/chat.png'),
-                selectedIcon: require('assets/images/tabs/chat_selected.png'),
-                navigatorStyle: {
-                    navBarHidden: false,
-                    statusBarHidden: false,
-                    statusBarHideWithNavBar: false,
-                    statusBarTextColorScheme: 'light',
-                    navBarTextColor: theme.mobileNavBarTextColor,
-                    navBarBackgroundColor: theme.mobileNavBarBg,
-                    navBarButtonColor: theme.mobileNavBarTextColor,
-                    screenBackgroundColor: theme.mobileBg,
-                },
-            },
-            {
-                title: translations[t('mobile.channel_list.members')],
-                label: translations[t('mobile.channel_list.members')],
-                screen: 'Contacts',
-                icon: require('assets/images/tabs/contacts.png'),
-                selectedIcon: require('assets/images/tabs/contacts_selected.png'),
-                navigatorStyle: {
-                    navBarHidden: false,
-                    statusBarHidden: false,
-                    statusBarHideWithNavBar: false,
-                    statusBarTextColorScheme: 'light',
-                    navBarTextColor: theme.mobileNavBarTextColor,
-                    navBarBackgroundColor: theme.mobileNavBarBg,
-                    navBarButtonColor: theme.mobileNavBarTextColor,
-                    screenBackgroundColor: theme.mobileBg,
-                },
-            },
-            {
-                label: translations[t('mobile.tabs.me')],
-                title: translations[t('mobile.tabs.me')],
-                screen: 'Me',
-                icon: require('assets/images/tabs/settings.png'),
-                selectedIcon: require('assets/images/tabs/settings_selected.png'),
-                navigatorStyle: {
-                    navBarHidden: false,
-                    statusBarHidden: false,
-                    statusBarHideWithNavBar: false,
-                    navBarTextColor: theme.mobileNavBarTextColor,
-                    navBarBackgroundColor: theme.mobileNavBarBg,
-                    navBarButtonColor: theme.mobileNavBarTextColor,
-                    screenBackgroundColor: theme.mobileBg,
-                },
-            }],
-            tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
-                tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-                tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-                tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
-                initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
-            },
-            appStyle: {
-                orientation: 'auto',
-                tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-                tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-                tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
-                initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
-                tabFontSize: 10,
-                selectedTabFontSize: 10,
-                forceTitlesDisplay: true,
-                navBarTextColor: theme.mobileNavBarTextColor,
-                navBarBackgroundColor: theme.mobileNavBarBg,
-                navBarButtonColor: theme.mobileNavBarTextColor,
-                screenBackgroundColor: theme.mobileBg,
-            },
-            animationType: 'fade',
-        });
-
-        return null;
+        return (
+            <Tabs/>
+        );
     };
 
     renderLogin = () => {

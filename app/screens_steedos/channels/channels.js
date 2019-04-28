@@ -29,9 +29,14 @@ import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
 import TeamsList from 'app/components/sidebars/main/teams_list';
 import NetworkIndicator from 'app/components/network_indicator';
 import {setNavigatorStyles} from 'app/utils/theme';
+import TabBadge from './badge';
 
 const DRAWER_INITIAL_OFFSET = 0;
 const DRAWER_LANDSCAPE_OFFSET = 0;
+
+import {Navigation} from 'react-native-navigation';
+import SwitchTeamsButton from './channels_list/switch_teams_button';
+Navigation.registerComponent('SwitchTeamsButton', () => SwitchTeamsButton);
 
 export default class ChannelSidebar extends Component {
     static propTypes = {
@@ -53,7 +58,6 @@ export default class ChannelSidebar extends Component {
         isTablet: PropTypes.bool.isRequired,
         navigator: PropTypes.object,
         teamsCount: PropTypes.number.isRequired,
-        mentionCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
     };
 
@@ -76,52 +80,54 @@ export default class ChannelSidebar extends Component {
             drawerOpened: true,
         };
 
-        MaterialIcon.getImageSource('close', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
-            this.closeButton = source;
-        });
-
-        MaterialIcon.getImageSource('add-circle-outline', 20, this.props.theme.sidebarHeaderTextColor).then((source) => {
-            this.addButton = source;
+        Promise.all([
+            MaterialIcon.getImageSource('close', 25),
+            MaterialIcon.getImageSource('add-circle-outline', 25),
+            MaterialIcon.getImageSource('business', 25),
+        ]).then((sources) => {
+            this.closeButton = sources[0];
+            this.addButton = sources[1];
+            this.teamsButton = sources[2];
 
             this.props.navigator.setButtons({
+                leftButtons: [
+                    {
+                        icon: this.teamsButton, // for a textual button, provide the button title (label)
+                        id: 'buttonTeams', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+                        component: 'SwitchTeamsButton',
+                    },
+                ],
                 rightButtons: [
-                {
-                    icon: this.addButton, // for a textual button, provide the button title (label)
-                    id: 'buttonAddChannel', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
-                    disabled: false, // optional, used to disable the button (appears faded and doesn't interact)
-                }
-                ]
+                    {
+                        icon: this.addButton, // for a textual button, provide the button title (label)
+                        id: 'buttonAddChannel', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+                    },
+                ],
             });
         });
-
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
     onNavigatorEvent(event) {
-        switch(event.id) {
-            case 'willAppear':
-                // const {theme} = this.props;
-                // this.props.navigator.setStyle({
-                //     statusBarHidden: false,
-                //     statusBarHideWithNavBar: false,
-                //     navBarTextColor: theme.sidebarHeaderTextColor,
-                //     navBarBackgroundColor: theme.sidebarHeaderBg,
-                //     navBarButtonColor: theme.sidebarHeaderTextColor,
-                //     screenBackgroundColor: theme.bodyBg
-                // });
-                this.props.actions.unselectChannel();
-                break;
-            case 'didAppear':
-                break;
-            case 'willDisappear':
-                break;
-            case 'didDisappear':
-                break;
-            case 'willCommitPreview':
-                break;
-            case 'buttonAddChannel':
-                this.showCreateChannelOptions()
+        switch (event.id) {
+        case 'willAppear':
+            this.props.actions.unselectChannel();
+            break;
+        case 'didAppear':
+            break;
+        case 'willDisappear':
+            break;
+        case 'didDisappear':
+            break;
+        case 'willCommitPreview':
+            break;
+        case 'buttonAddChannel':
+            this.showCreateChannelOptions();
+            break;
+        case 'buttonTeams':
+            this.showTeams();
+            break;
         }
     }
 
@@ -137,32 +143,14 @@ export default class ChannelSidebar extends Component {
         // if (this.props.currentChannelId) {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
-        this.props.navigator.setTabBadge({
-            tabIndex: 0,
-            badge: this.props.mentionCount.toString(),
-        });
-
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        console.log(this.props)
-        
     }
 
     componentDidUpdate(prevProps) {
-        const {navigator, theme, mentionCount} = this.props;
+        const {navigator, theme} = this.props;
 
         if (theme !== prevProps.theme) {
             setNavigatorStyles(navigator, theme);
         }
-
-        // if (mentionCount !== prevProps.mentionCount) {
-            
-        // }
-        this.props.navigator.setTabBadge({
-            tabIndex: 0,
-            badge: mentionCount.toString(),
-        });
     }
 
     onRefresh = () => {
@@ -207,11 +195,11 @@ export default class ChannelSidebar extends Component {
             },
         };
 
+        items.push(newConversation);
         items.push(moreChannels, createPublicChannel);
         if (canCreatePrivateChannels) {
             items.push(createPrivateChannel);
         }
-        items.push(newConversation);
 
         navigator.showModal({
             screen: 'OptionsModal',
@@ -611,7 +599,6 @@ export default class ChannelSidebar extends Component {
             navigator,
             teamsCount,
             theme,
-            badgeCount,
         } = this.props;
 
         const {
@@ -659,6 +646,9 @@ export default class ChannelSidebar extends Component {
                     drawerOpened={this.state.drawerOpened}
                 />
                 <NetworkIndicator/>
+                <TabBadge
+                    navigator={navigator}
+                />
             </View>
 
         // </SafeAreaView>
