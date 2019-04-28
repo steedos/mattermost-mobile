@@ -341,20 +341,21 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
+            backgroundColor: theme.mobileBg,
         },
         wrapper: {
             flex: 1,
             paddingTop: 0,
         },
         block: {
-            backgroundColor: theme.itemBg,
-            borderBottomColor: theme.itemSeperator,
+            backgroundColor: theme.mobileSectionItemBg,
+            borderBottomColor: theme.mobileSectionSeperator,
             borderBottomWidth: 1,
-            borderTopColor: theme.itemSeperator,
+            borderTopColor: theme.mobileSectionSeperator,
             borderTopWidth: 1,
         },
         divider: {
-            backgroundColor: theme.itemSeperator,
+            backgroundColor: theme.mobileSectionSeperator,
             height: 1,
         },
         separator: {

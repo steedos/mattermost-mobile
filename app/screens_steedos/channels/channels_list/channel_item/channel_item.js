@@ -239,7 +239,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             flexDirection: 'row',
             height: 60,
-            backgroundColor: theme.itemBg,
+            backgroundColor: theme.mobileSectionItemBg,
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
@@ -267,7 +267,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         text: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
             fontSize: 16,
             paddingRight: 40,
             alignItems: 'center',

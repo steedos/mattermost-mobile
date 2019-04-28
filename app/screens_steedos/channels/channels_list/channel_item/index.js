@@ -16,7 +16,6 @@ import {getUserIdFromChannelName, isChannelMuted} from 'mattermost-redux/utils/c
 import {displayUsername} from 'mattermost-redux/utils/user_utils';
 
 import {getDraftForChannel} from 'app/selectors/views';
-import {getMobileTheme} from 'app/selectors/theme';
 
 import ChannelItem from './channel_item';
 
@@ -79,7 +78,7 @@ function makeMapStateToProps() {
             mentions: member ? member.mention_count : 0,
             shouldHideChannel,
             showUnreadForMsgs,
-            theme: getMobileTheme(state),
+            theme: getTheme(state),
             unreadMsgs,
             isBot,
         };

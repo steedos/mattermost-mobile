@@ -64,7 +64,7 @@ export default class ChannelIcon extends React.PureComponent {
         let unreadGroupBox;
         let activeGroup;
         let unreadGroup;
-        let offlineColor = changeOpacity(theme.itemTextColor, 0.5);
+        let offlineColor = changeOpacity(theme.mobileSectionItemTextColor, 0.5);
 
         if (isUnread) {
             unreadIcon = style.iconUnread;
@@ -82,7 +82,7 @@ export default class ChannelIcon extends React.PureComponent {
             activeIcon = style.iconInfo;
             activeGroupBox = style.groupBoxInfo;
             activeGroup = style.groupInfo;
-            offlineColor = changeOpacity(theme.itemTextColor, 0.5);
+            offlineColor = changeOpacity(theme.mobileSectionItemTextColor, 0.5);
         }
 
         let icon;
@@ -169,16 +169,16 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             justifyContent: 'center',
         },
         icon: {
-            color: changeOpacity(theme.itemTextColor, 0.5),
+            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
         },
         iconActive: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
         iconUnread: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
         iconInfo: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
         iconBot: {
             marginLeft: -5,
@@ -187,32 +187,32 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignSelf: 'flex-start',
             alignItems: 'center',
             borderWidth: 0,
-            backgroundColor: changeOpacity(theme.itemSeperator, 0.3),
+            backgroundColor: changeOpacity(theme.mobileSectionSeperator, 0.3),
             justifyContent: 'center',
             borderRadius: 6,
         },
         groupBoxActive: {
-            borderColor: theme.itemTextColor,
+            borderColor: theme.mobileSectionItemTextColor,
         },
         groupBoxUnread: {
-            borderColor: theme.itemTextColor,
+            borderColor: theme.mobileSectionItemTextColor,
         },
         groupBoxInfo: {
-            borderColor: theme.itemTextColor,
+            borderColor: theme.mobileSectionItemTextColor,
         },
         group: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
             fontSize: 10,
             fontWeight: '600',
         },
         groupActive: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
         groupUnread: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
         groupInfo: {
-            color: theme.itemTextColor,
+            color: theme.mobileSectionItemTextColor,
         },
     };
 });

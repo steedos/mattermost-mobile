@@ -108,7 +108,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             alignItems: 'center',
-            backgroundColor: theme.itemBg,
+            backgroundColor: theme.mobileSectionItemBg,
             flexDirection: 'row',
             height: 50,
         },
@@ -136,14 +136,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             textAlignVertical: 'center',
         },
         label: {
-            color: theme.centerChannelColor,
+            color: theme.mobileSectionItemTextColor,
             flex: 1,
             fontSize: 17,
             textAlignVertical: 'center',
             includeFontPadding: false,
         },
         divider: {
-            backgroundColor: theme.itemSeperator,
+            backgroundColor: theme.mobileSectionSeperator,
             height: 1,
         },
     };

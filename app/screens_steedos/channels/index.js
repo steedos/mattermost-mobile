@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {General} from 'mattermost-redux/constants';
 import {joinChannel} from 'mattermost-redux/actions/channels';
 import {getTeams} from 'mattermost-redux/actions/teams';
-import {getMobileTheme} from 'app/selectors/theme';
+import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {getCurrentUserId, getCurrentUserRoles} from 'mattermost-redux/selectors/entities/users';
 import {getCurrentTeamId, getMyTeamsCount} from 'mattermost-redux/selectors/entities/teams';
 import {getCurrentChannelId} from 'mattermost-redux/selectors/entities/channels';
@@ -62,7 +62,7 @@ function mapStateToProps(state) {
         isLandscape: isLandscape(state),
         isTablet: isTablet(state),
         teamsCount: getMyTeamsCount(state),
-        theme: getMobileTheme(state),
+        theme: getTheme(state),
     };
 }
 

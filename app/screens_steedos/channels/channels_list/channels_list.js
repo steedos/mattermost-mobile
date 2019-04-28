@@ -239,11 +239,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingTop: 16,
             height: 36,
             paddingLeft: 16,
-            backgroundColor: theme.sectionHeaderBg,
+            backgroundColor: theme.mobileBg,
         },
         title: {
             flex: 1,
-            color: theme.sectionHeaderTextColor,
+            color: theme.mobileSectionHeaderTextColor,
             opacity: 1,
             fontSize: 13,
             fontWeight: '400',
@@ -263,13 +263,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             }),
         },
         itemDivider: {
-            backgroundColor: theme.itemSeperator,
+            color: theme.mobileSectionSeperator,
             //color: changeOpacity(theme.centerChannelColor, 0.0),
             height: 0.5,
             marginLeft: 70,
         },
         divider: {
-            backgroundColor: theme.itemSeperator,
+            backgroundColor: theme.mobileSectionSeperator,
             height: 1,
         },
         actionContainer: {
@@ -279,7 +279,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: theme.sectionHeaderText,
+            color: theme.mobileSectionHeaderTextColor,
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,

@@ -1,7 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {getMobileTheme} from 'app/selectors/theme';
 
 import {Navigation, NativeEventsReceiver} from 'react-native-navigation';
 
@@ -13,7 +12,7 @@ import {t} from 'app/utils/i18n';
 
 export default startTabs = () => {
     const {dispatch, getState} = store;
-    const theme = getMobileTheme(getState());
+    const theme = getTheme(getState());
     const translations = app.getTranslations();
 
     Navigation.startTabBasedApp({
@@ -68,16 +67,16 @@ export default startTabs = () => {
             },
         }],
         tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
-            tabBarButtonColor: theme.tabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-            tabBarSelectedButtonColor: theme.tabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-            tabBarBackgroundColor: theme.tabBg, // optional, change the background color of the tab bar
+            tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+            tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+            tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
         },
         appStyle: {
             orientation: 'auto',
-            tabBarButtonColor: theme.tabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-            tabBarSelectedButtonColor: theme.tabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-            tabBarBackgroundColor: theme.tabBg, // optional, change the background color of the tab bar
+            tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+            tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+            tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
             forceTitlesDisplay: true,
             navBarTextColor: theme.navBarTextColor,

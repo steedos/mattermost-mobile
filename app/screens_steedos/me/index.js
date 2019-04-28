@@ -7,7 +7,6 @@ import {connect} from 'react-redux';
 
 import {logout, setStatus} from 'mattermost-redux/actions/users';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {getMobileTheme} from 'app/selectors/theme';
 
 import {getCurrentUser, getStatusForUserId} from 'mattermost-redux/selectors/entities/users';
 
@@ -19,7 +18,7 @@ function mapStateToProps(state) {
 
     return {
         ...getDimensions(state),
-        theme: getMobileTheme(state),
+        theme: getTheme(state),
         currentUser,
         status,
     };

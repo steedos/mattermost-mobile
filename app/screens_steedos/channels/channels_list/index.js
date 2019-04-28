@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
 
-import {getMobileTheme} from 'app/selectors/theme';
+import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 
 import ChannelsList from './channels_list';
 
 function mapStateToProps(state) {
     return {
-        theme: getMobileTheme(state),
+        theme: getTheme(state),
         currentTeam: getCurrentTeam(state),
     };
 }

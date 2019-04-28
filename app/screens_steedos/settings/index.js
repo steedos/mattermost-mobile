@@ -11,7 +11,6 @@ import {getJoinableTeams} from 'mattermost-redux/selectors/entities/teams';
 
 import {purgeOfflineStore} from 'app/actions/views/root';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {getMobileTheme} from 'app/selectors/theme';
 import {removeProtocol} from 'app/utils/url';
 
 import Settings from './settings';
@@ -21,7 +20,7 @@ function mapStateToProps(state) {
 
     return {
         config,
-        theme: getMobileTheme(state),
+        theme: getTheme(state),
         errors: state.errors,
         currentUserId: state.entities.users.currentUserId,
         currentTeamId: state.entities.teams.currentTeamId,
