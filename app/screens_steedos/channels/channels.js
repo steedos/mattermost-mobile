@@ -28,6 +28,7 @@ import ChannelsList from './channels_list';
 import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
 import TeamsList from 'app/components/sidebars/main/teams_list';
 import NetworkIndicator from 'app/components/network_indicator';
+import {setNavigatorStyles} from 'app/utils/theme';
 
 const DRAWER_INITIAL_OFFSET = 0;
 const DRAWER_LANDSCAPE_OFFSET = 0;
@@ -99,15 +100,15 @@ export default class ChannelSidebar extends Component {
     onNavigatorEvent(event) {
         switch(event.id) {
             case 'willAppear':
-                const {theme} = this.props;
-                this.props.navigator.setStyle({
-                    statusBarHidden: false,
-                    statusBarHideWithNavBar: false,
-                    navBarTextColor: theme.sidebarHeaderTextColor,
-                    navBarBackgroundColor: theme.sidebarHeaderBg,
-                    navBarButtonColor: theme.sidebarHeaderTextColor,
-                    screenBackgroundColor: theme.bodyBg
-                });
+                // const {theme} = this.props;
+                // this.props.navigator.setStyle({
+                //     statusBarHidden: false,
+                //     statusBarHideWithNavBar: false,
+                //     navBarTextColor: theme.sidebarHeaderTextColor,
+                //     navBarBackgroundColor: theme.sidebarHeaderBg,
+                //     navBarButtonColor: theme.sidebarHeaderTextColor,
+                //     screenBackgroundColor: theme.bodyBg
+                // });
                 this.props.actions.unselectChannel();
                 break;
             case 'didAppear':
@@ -136,6 +137,14 @@ export default class ChannelSidebar extends Component {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
 
+    }
+
+    componentDidUpdate(prevProps) {
+        const {navigator, theme} = this.props;
+
+        if (theme !== prevProps.theme) {
+            setNavigatorStyles(navigator, theme);
+        }
     }
 
     onRefresh = () => {

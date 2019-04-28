@@ -28,6 +28,7 @@ import {t} from 'app/utils/i18n';
 import DrawerItem from './drawer_item';
 import UserInfo from 'app/components/sidebars/settings/user_info';
 import StatusLabel from 'app/components/sidebars/settings/status_label';
+import {setNavigatorStyles} from 'app/utils/theme';
 
 const DRAWER_INITIAL_OFFSET = 80;
 
@@ -62,18 +63,26 @@ export default class Me extends PureComponent {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
+    componentDidUpdate(prevProps) {
+        const {navigator, theme} = this.props;
+
+        if (theme !== prevProps.theme) {
+            setNavigatorStyles(navigator, theme);
+        }
+    }
+    
     onNavigatorEvent(event) {
         switch (event.id) {
         case 'willAppear':
-            const {theme} = this.props;
-            this.props.navigator.setStyle({
-                statusBarHidden: false,
-                statusBarHideWithNavBar: false,
-                navBarTextColor: theme.sidebarHeaderTextColor,
-                navBarBackgroundColor: theme.sidebarHeaderBg,
-                navBarButtonColor: theme.sidebarHeaderTextColor,
-                screenBackgroundColor: theme.bodyBg
-            });
+            // const {theme} = this.props;
+            // this.props.navigator.setStyle({
+            //     statusBarHidden: false,
+            //     statusBarHideWithNavBar: false,
+            //     navBarTextColor: theme.sidebarHeaderTextColor,
+            //     navBarBackgroundColor: theme.sidebarHeaderBg,
+            //     navBarButtonColor: theme.sidebarHeaderTextColor,
+            //     screenBackgroundColor: theme.bodyBg
+            // });
             break;
         case 'didAppear': {
             break;

@@ -79,10 +79,10 @@ export default startTabs = () => {
             tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
             forceTitlesDisplay: true,
-            navBarTextColor: theme.navBarTextColor,
-            navBarBackgroundColor: theme.navBarBg,
-            navBarButtonColor: theme.navBarTextColor,
-            screenBackgroundColor: theme.bodyBg,
+            navBarTextColor: theme.mobileNavBarTextColor,
+            navBarBackgroundColor: theme.mobileNavBarBg,
+            navBarButtonColor: theme.mobileNavBarTextColor,
+            screenBackgroundColor: theme.mobileBg,
         },
         animationType: 'fade',
     });
