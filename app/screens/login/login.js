@@ -83,12 +83,11 @@ export default class Login extends PureComponent {
     }
 
     goToChannel = () => {
-        const {navigator} = this.props;
         tracker.initialLoad = Date.now();
 
         this.scheduleSessionExpiredNotification();
 
-        startTabs();
+        return startTabs(this.props.theme);
     };
 
     goToMfa = () => {
