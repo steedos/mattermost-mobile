@@ -100,7 +100,7 @@ export default class ChannelItem extends PureComponent {
             shouldHideChannel,
             theme,
             isSearchResult,
-            separator,
+            unreadMsgs,
             channel,
             isBot,
         } = this.props;
@@ -170,6 +170,15 @@ export default class ChannelItem extends PureComponent {
                     style={style.badge}
                     countStyle={style.mention}
                     count={mentions}
+                    onPress={this.onPress}
+                />
+            );
+        } else if (unreadMsgs) {
+            badge = (
+                <Badge
+                    style={style.messageBg}
+                    countStyle={style.mention}
+                    count={unreadMsgs}
                     onPress={this.onPress}
                 />
             );
@@ -296,6 +305,12 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             color: '#ffffff',
             fontSize: 10,
             fontWeight: '600',
+        },
+        messageBg: {
+            backgroundColor: theme.mobileSectionSeperator,
+            padding: 3,
+            position: 'relative',
+            right: 16,
         },
         muted: {
             opacity: 0.5,

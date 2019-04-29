@@ -25,6 +25,7 @@ import {
     loadProfilesAndTeamMembersForDMSidebar,
     selectInitialChannel,
     unselectChannel,
+    setChannelLoading,
 } from 'app/actions/views/channel';
 import {getConfig, getLicense} from 'mattermost-redux/selectors/entities/general';
 import {connection} from 'app/actions/device';
@@ -82,6 +83,7 @@ function mapDispatchToProps(dispatch) {
             getTeams,
             joinChannel,
             makeDirectChannel,
+            setChannelLoading,
         }, dispatch),
     };
 }

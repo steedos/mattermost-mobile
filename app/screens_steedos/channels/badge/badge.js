@@ -25,6 +25,7 @@ export default class Badge extends PureComponent {
             mentionCount,
             messageCount,
             myTeamMembers,
+            theme,
         } = this.props;
 
         let mentions = mentionCount;
@@ -36,17 +37,24 @@ export default class Badge extends PureComponent {
             messages += (m.msg_count || 0);
         });
 
-        let badgeCount = '';
         if (mentions) {
-            badgeCount = mentions.toString();
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: mentions.toString(),
+                badgeColor: theme.mentionBg,
+            });
         } else if (messages) {
-            badgeCount = ' ';
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: messages.toString(),
+                badgeColor: theme.mobileSectionSeperator,
+            });
+        } else {
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: null,
+            });
         }
-
-        this.props.navigator.setTabBadge({
-            tabIndex: 0,
-            badge: badgeCount,
-        });
 
         return null;
     }

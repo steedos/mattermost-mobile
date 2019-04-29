@@ -506,14 +506,14 @@ export default class List extends PureComponent {
                     ItemSeparatorComponent={this.renderItemSeparator}
                     //ListHeaderComponent={this.renderSearchBar}
                 />
-                {showIndicator &&
+                {/* {showIndicator &&
                 <UnreadIndicator
                     show={showIndicator}
                     style={[styles.above, {width}]}
                     onPress={this.scrollToTop}
                     theme={theme}
                 />
-                }
+                } */}
             </View>
         );
     }

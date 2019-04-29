@@ -43,7 +43,6 @@ export default class ChannelSidebar extends Component {
         actions: PropTypes.shape({
             getTeams: PropTypes.func.isRequired,
             makeDirectChannel: PropTypes.func.isRequired,
-            setChannelDisplayName: PropTypes.func.isRequired,
             setChannelLoading: PropTypes.func.isRequired,
             unselectChannel: PropTypes.func.isRequired,
             selectDefaultTeam: PropTypes.func.isRequired,
@@ -417,14 +416,6 @@ export default class ChannelSidebar extends Component {
         });
     };
 
-    handleUpdateTitle = (channel) => {
-        let channelName = '';
-        if (channel.display_name) {
-            channelName = channel.display_name;
-        }
-        this.props.actions.setChannelDisplayName(channelName);
-    };
-
     openChannelSidebar = () => {
         //this.props.blurPostTextBox();
 
@@ -435,7 +426,6 @@ export default class ChannelSidebar extends Component {
 
     selectChannel = (channel, currentChannelId, closeDrawer = true) => {
         const {setChannelLoading} = this.props.actions;
-        this.handleUpdateTitle(channel);
 
         tracker.channelSwitch = Date.now();
 
