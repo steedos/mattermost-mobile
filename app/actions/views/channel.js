@@ -348,7 +348,7 @@ export function selectDefaultChannel(teamId) {
 export function unselectChannel() {
     return async (dispatch, getState) => {
         dispatch(selectChannel(''));
-    }
+    };
 }
 
 export function handleSelectChannel(channelId, fromPushNotification = false) {

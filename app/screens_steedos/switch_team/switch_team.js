@@ -63,7 +63,7 @@ export default class SwitchTeam extends PureComponent {
             }
 
             this.props.navigator.dismissModal({
-                animationType: 'slide-down' // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
+                animationType: 'slide-down', // 'none' / 'slide-down' , dismiss animation for the modal (optional, default 'slide-down')
             });
         });
     };

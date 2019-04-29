@@ -388,7 +388,7 @@ export default class NetworkIndicator extends PureComponent {
             defaultMessage = 'No internet connection';
         }
 
-        if (this.state.opacity)
+        if (this.state.opacity) {
             return (
                 <Animated.View style={[styles.container, {top: this.top, backgroundColor: background, opacity: this.state.opacity}]}>
                     <Animated.View style={styles.wrapper}>
@@ -401,8 +401,8 @@ export default class NetworkIndicator extends PureComponent {
                     </Animated.View>
                 </Animated.View>
             );
-        else
-            return null;
+        }
+        return null;
     }
 }
 

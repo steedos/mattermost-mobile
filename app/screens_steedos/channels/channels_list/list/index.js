@@ -23,7 +23,6 @@ import {SidebarSectionTypes} from 'app/constants/view';
 import {clearSearch} from 'mattermost-redux/actions/search';
 import {showSearchModal} from 'app/actions/views/search';
 
-
 import List from './list';
 
 const filterZeroUnreads = memoizeResult((sections) => {

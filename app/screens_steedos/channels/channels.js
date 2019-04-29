@@ -319,7 +319,7 @@ export default class ChannelSidebar extends Component {
             },
         });
     });
-    
+
     loadChannels = (teamId) => {
         const {
             loadChannelsIfNecessary,

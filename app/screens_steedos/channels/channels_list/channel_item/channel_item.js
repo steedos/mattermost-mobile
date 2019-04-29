@@ -132,10 +132,10 @@ export default class ChannelItem extends PureComponent {
         if (channel.type === General.DM_CHANNEL) {
             if (isSearchResult) {
                 isCurrenUser = channel.id === currentUserId;
-                teammateId = channel.id
+                teammateId = channel.id;
             } else {
                 isCurrenUser = channel.teammate_id === currentUserId;
-                teammateId = channel.teammate_id
+                teammateId = channel.teammate_id;
             }
         }
         if (isCurrenUser) {
@@ -258,9 +258,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
+
             //paddingLeft: 16,
         },
         itemActive: {
+
             //backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             //paddingLeft: 11,
         },

@@ -309,7 +309,7 @@ export default class ChannelSimple extends PureComponent {
 
         const loaderDimensions = this.channelLoaderDimensions();
 
-        if (this.props.currentChannel.purpose && this.props.currentChannel.purpose.startsWith("http")) {
+        if (this.props.currentChannel.purpose && this.props.currentChannel.purpose.startsWith('http')) {
             return (
                 <SafeAreaView navigator={navigator}>
                     <StatusBar/>
@@ -332,35 +332,34 @@ export default class ChannelSimple extends PureComponent {
                 </SafeAreaView>
             );
         }
-        else
-            return (
+        return (
 
-                <SafeAreaView navigator={navigator}>
-                    <StatusBar/>
-                    <NetworkIndicator/>
-                    <ChannelNavBar
+            <SafeAreaView navigator={navigator}>
+                <StatusBar/>
+                <NetworkIndicator/>
+                <ChannelNavBar
+                    navigator={navigator}
+                    openChannelDrawer={this.openChannelSidebar}
+                    openSettingsDrawer={this.openSettingsSidebar}
+                    onPress={this.goToChannelInfo}
+                />
+                <KeyboardLayout>
+                    <View style={style.flex}>
+                        <ChannelPostList navigator={navigator}/>
+                    </View>
+                    <PostTextbox
+                        ref={this.attachPostTextBox}
                         navigator={navigator}
-                        openChannelDrawer={this.openChannelSidebar}
-                        openSettingsDrawer={this.openSettingsSidebar}
-                        onPress={this.goToChannelInfo}
                     />
-                    <KeyboardLayout>
-                        <View style={style.flex}>
-                            <ChannelPostList navigator={navigator}/>
-                        </View>
-                        <PostTextbox
-                            ref={this.attachPostTextBox}
-                            navigator={navigator}
-                        />
-                    </KeyboardLayout>
-                    <ChannelLoader
-                        style={[style.channelLoader, loaderDimensions]}
-                        maxRows={isLandscape ? 4 : 6}
-                    />
-                    {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
-                </SafeAreaView>
+                </KeyboardLayout>
+                <ChannelLoader
+                    style={[style.channelLoader, loaderDimensions]}
+                    maxRows={isLandscape ? 4 : 6}
+                />
+                {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
+            </SafeAreaView>
 
-            );
+        );
     }
 }
 

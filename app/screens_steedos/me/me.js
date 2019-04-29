@@ -70,7 +70,7 @@ export default class Me extends PureComponent {
             setNavigatorStyles(navigator, theme);
         }
     }
-    
+
     onNavigatorEvent(event) {
         switch (event.id) {
         case 'willAppear':

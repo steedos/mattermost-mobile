@@ -105,7 +105,7 @@ export default class ChannelIcon extends React.PureComponent {
                 </View>
             );
         } else if (hasDraft) {
-            icon = (                
+            icon = (
                 <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
                     <Icon
                         name='pencil'
@@ -164,6 +164,7 @@ export default class ChannelIcon extends React.PureComponent {
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
+
             //marginRight: 12,
             alignItems: 'center',
             justifyContent: 'center',

@@ -25,7 +25,6 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity} from 'app/utils/theme';
 import SearchBar from 'app/components/search_bar';
 
-
 const VIEWABILITY_CONFIG = {
     ...ListTypes.VISIBILITY_CONFIG_DEFAULTS,
     waitForInteraction: true,
@@ -320,11 +319,11 @@ export default class List extends PureComponent {
         this.setState((state) => ({
             refreshing: true,
         }));
-        onRefresh().then( ()=> {
+        onRefresh().then(() => {
             this.setState((state) => ({
                 refreshing: false,
             }));
-        })
+        });
     }
 
     onLayout = (event) => {
@@ -350,6 +349,7 @@ export default class List extends PureComponent {
         return (
             <View style={styles.searchContainer}>
                 <SearchBar
+
                     //ref='search_bar'
                     placeholder={intl.formatMessage({id: 'search_bar.search', defaultMessage: 'Search'})}
                     cancelTitle={intl.formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
@@ -361,14 +361,16 @@ export default class List extends PureComponent {
                     tintColorDelete={changeOpacity(theme.itemTextColor, 0.5)}
                     titleCancelColor={theme.itemTextColor}
                     selectionColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
+
                     // onSearchButtonPress={this.onSearch}
                     // onCancelButtonPress={this.cancelSearch}
                     // onChangeText={this.onSearch}
                     onFocus={this.handleSearchBarPress}
+
                     // value={term}
                 />
             </View>
-        )
+        );
     };
 
     handleSearchBarPress = preventDoubleTap(async () => {
@@ -504,6 +506,7 @@ export default class List extends PureComponent {
                     onRefresh={this.onRefresh}
                     refreshing={this.state.refreshing}
                     ItemSeparatorComponent={this.renderItemSeparator}
+
                     //ListHeaderComponent={this.renderSearchBar}
                 />
                 {/* {showIndicator &&

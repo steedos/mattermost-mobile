@@ -326,7 +326,7 @@ export default class Contacts extends PureComponent {
         }
 
         return (
-            <View style={{flex:1}}>
+            <View style={{flex: 1}}>
                 <StatusBar/>
                 {/* <View style={style.searchBar}>
                     <SearchBar

@@ -308,7 +308,7 @@ class Settings extends PureComponent {
                             theme={theme}
                         />
                     </View>
-                    
+
                     <View style={style.separator}/>
                     <View style={style.block}>
                         {LocalConfig.EnableMobileClientUpgrade && LocalConfig.EnableMobileClientUpgradeUserSetting &&
@@ -333,7 +333,7 @@ class Settings extends PureComponent {
                             theme={theme}
                         />
                     </View>
-                    
+
                     <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem

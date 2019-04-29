@@ -153,8 +153,9 @@ export default class ChannelsList extends PureComponent {
         );
 
         let teamName = '华信';
-        if (this.props.currentTeam)
+        if (this.props.currentTeam) {
             teamName = this.props.currentTeam.display_name;
+        }
         const teamTitle = (
             <View style={styles.headerTitleWrapper}>
                 <Text
@@ -205,7 +206,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.sidebarHeaderBg,
             flexDirection: 'row',
             borderBottomWidth: 0,
-            top: 0, 
+            top: 0,
             borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.10),
             ...Platform.select({
                 android: {
@@ -236,6 +237,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
+
             //paddingTop: 16,
             height: 36,
             paddingLeft: 16,
@@ -264,6 +266,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         itemDivider: {
             color: theme.mobileSectionSeperator,
+
             //color: changeOpacity(theme.centerChannelColor, 0.0),
             height: 0.5,
             marginLeft: 70,

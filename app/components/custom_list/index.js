@@ -263,6 +263,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.mobileSectionItemBg,
         },
         sectionText: {
+
             //fontWeight: '600',
             color: theme.mobileSectionHeaderTextColor,
         },
