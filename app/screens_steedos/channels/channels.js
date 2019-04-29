@@ -89,21 +89,26 @@ export default class ChannelSidebar extends Component {
             this.closeButton = sources[0];
             this.addButton = sources[1];
             this.teamsButton = sources[2];
-
-            this.props.navigator.setButtons({
-                leftButtons: [
+            this.leftButtons = null;
+            if (this.props.teamsCount > 1) {
+                this.leftButtons = [
                     {
                         icon: this.teamsButton, // for a textual button, provide the button title (label)
                         id: 'buttonTeams', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
                         component: 'SwitchTeamsButton',
                     },
-                ],
-                rightButtons: [
-                    {
-                        icon: this.addButton, // for a textual button, provide the button title (label)
-                        id: 'buttonAddChannel', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
-                    },
-                ],
+                ];
+            }
+            this.rightButtons = [
+                {
+                    icon: this.addButton, // for a textual button, provide the button title (label)
+                    id: 'buttonAddChannel', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+                },
+            ];
+
+            this.props.navigator.setButtons({
+                leftButtons: this.leftButtons,
+                rightButtons: this.rightButtons,
             });
         });
 
