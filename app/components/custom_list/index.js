@@ -227,9 +227,10 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             flexGrow: 1,
         },
         separator: {
-            height: 1,
+            height: 0.5,
             flex: 1,
             backgroundColor: theme.mobileSectionSeperator,
+            marginLeft: 10,
         },
         listView: {
             flex: 1,
@@ -253,12 +254,16 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.mobileBg,
             paddingLeft: 10,
             paddingVertical: 2,
+            height: 30,
+            alignItems: 'center',
+            flex: 1,
+            flexDirection: 'row',
         },
         sectionWrapper: {
             backgroundColor: theme.mobileSectionItemBg,
         },
         sectionText: {
-            fontWeight: '600',
+            //fontWeight: '600',
             color: theme.mobileSectionHeaderTextColor,
         },
         noResultContainer: {

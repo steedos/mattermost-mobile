@@ -46,7 +46,7 @@ export default class Badge extends PureComponent {
         } else if (messages) {
             this.props.navigator.setTabBadge({
                 tabIndex: 0,
-                badge: messages.toString(),
+                badge: '#',
                 badgeColor: theme.mobileSectionSeperator,
             });
         } else {

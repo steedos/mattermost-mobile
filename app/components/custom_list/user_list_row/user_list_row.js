@@ -85,7 +85,7 @@ export default class UserListRow extends React.PureComponent {
                                     ellipsizeMode='tail'
                                     numberOfLines={1}
                                 >
-                                    {usernameDisplay}
+                                    {teammateDisplay}
                                 </Text>
                                 <BotTag
                                     show={Boolean(user.is_bot)}
@@ -100,7 +100,7 @@ export default class UserListRow extends React.PureComponent {
                                 ellipsizeMode='tail'
                                 numberOfLines={1}
                             >
-                                {teammateDisplay}
+                                {usernameDisplay}
                             </Text>
                         </View>
                         }
@@ -131,7 +131,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
         profileContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            color: theme.centerChannelColor,
+            color: theme.mobileSectionItemTextColor,
         },
         textContainer: {
             marginLeft: 10,
@@ -140,12 +140,12 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             flex: 1,
         },
         displayName: {
-            fontSize: 15,
-            color: changeOpacity(theme.centerChannelColor, 0.5),
+            fontSize: 14,
+            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
         },
         username: {
-            fontSize: 15,
-            color: theme.centerChannelColor,
+            fontSize: 16,
+            color: theme.mobileSectionItemTextColor,
         },
         indicatorContainer: {
             flexDirection: 'row',
@@ -153,7 +153,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
         deactivated: {
             marginTop: 2,
             fontSize: 12,
-            color: changeOpacity(theme.centerChannelColor, 0.5),
+            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
         },
     };
 });
