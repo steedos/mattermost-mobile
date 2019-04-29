@@ -560,7 +560,7 @@ export default class ChannelSidebar extends Component {
         //     this.drawerSwiper.getWrappedInstance().showTeamsPage();
         // }
         const {navigator} = this.props;
-        
+
         navigator.showModal({
             screen: 'SwitchTeam',
             title: '',
@@ -573,6 +573,12 @@ export default class ChannelSidebar extends Component {
                 modalPresentationStyle: 'overCurrentContext',
             },
         });
+
+        // navigator.toggleDrawer({
+        //     side: 'left', // the side of the drawer since you can have two, 'left' / 'right'
+        //     animated: true, // does the toggle have transition animation or does it happen immediately (optional)
+        //     to: 'open', // optional, 'open' = open the drawer, 'closed' = close it, missing = the opposite of current state
+        // });
     };
 
     resetDrawer = () => {
@@ -582,7 +588,6 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
-
         const {currentTeam} = this.props;
         if (currentTeam) {
             this.props.navigator.setTitle({
@@ -590,35 +595,10 @@ export default class ChannelSidebar extends Component {
             });
         }
 
-        if (!this.props.currentUserId) {
-            return (
-                <View/>
-            );
-        }
         const {
             navigator,
-            teamsCount,
             theme,
         } = this.props;
-
-        const {
-            show,
-            openDrawerOffset,
-        } = this.state;
-
-        if (!show) {
-            return null;
-        }
-
-        const multipleTeams = teamsCount > 1;
-        const showTeams = openDrawerOffset !== 0 && multipleTeams;
-        if (this.drawerSwiper) {
-            if (multipleTeams) {
-                this.drawerSwiper.getWrappedInstance().runOnLayout();
-            } else if (!openDrawerOffset) {
-                this.drawerSwiper.getWrappedInstance().scrollToStart();
-            }
-        }
 
         return (
 
