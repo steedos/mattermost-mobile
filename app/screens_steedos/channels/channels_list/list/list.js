@@ -374,10 +374,10 @@ export default class List extends PureComponent {
     };
 
     handleSearchBarPress = preventDoubleTap(async () => {
-        const {actions, navigator} = this.props;
+        // const {actions, navigator} = this.props;
 
-        await actions.clearSearch();
-        await actions.showSearchModal(navigator);
+        // await actions.clearSearch();
+        // await actions.showSearchModal(navigator);
     });
 
     renderSectionAction = (styles, action) => {

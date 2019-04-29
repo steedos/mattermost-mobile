@@ -46,6 +46,9 @@ export default class ChannelSidebar extends Component {
             setChannelLoading: PropTypes.func.isRequired,
             unselectChannel: PropTypes.func.isRequired,
             selectDefaultTeam: PropTypes.func.isRequired,
+            loadChannelsIfNecessary: PropTypes.func.isRequired,
+            loadProfilesAndTeamMembersForDMSidebar: PropTypes.func.isRequired,
+            selectInitialChannel: PropTypes.func.isRequired,
         }).isRequired,
 
         //blurPostTextBox: PropTypes.func.isRequired,
@@ -60,6 +63,7 @@ export default class ChannelSidebar extends Component {
         navigator: PropTypes.object,
         teamsCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
+        canCreatePrivateChannels: PropTypes.bool.isRequired,
     };
 
     static contextTypes = {
@@ -162,8 +166,6 @@ export default class ChannelSidebar extends Component {
     onRefresh = () => {
         const {
             loadChannelsIfNecessary,
-            loadProfilesAndTeamMembersForDMSidebar,
-            selectInitialChannel,
         } = this.props.actions;
         return loadChannelsIfNecessary(this.props.currentTeamId);
     }

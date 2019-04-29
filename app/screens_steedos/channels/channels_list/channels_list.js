@@ -152,22 +152,6 @@ export default class ChannelsList extends PureComponent {
             </View>
         );
 
-        let teamName = '华信';
-        if (this.props.currentTeam) {
-            teamName = this.props.currentTeam.display_name;
-        }
-        const teamTitle = (
-            <View style={styles.headerTitleWrapper}>
-                <Text
-                    ellipsizeMode='tail'
-                    numberOfLines={1}
-                    style={styles.headerTitle}
-                >
-                    {teamName}
-                </Text>
-            </View>
-        );
-
         return (
             <View
                 style={styles.container}
@@ -181,7 +165,6 @@ export default class ChannelsList extends PureComponent {
                             />
                         </View>
                         {searchbar}
-                        {teamTitle}
                     </View>
                 </View> */}
                 {list}

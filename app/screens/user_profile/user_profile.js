@@ -173,7 +173,6 @@ export default class UserProfile extends PureComponent {
         actions.setChannelDisplayName(userDisplayName);
 
         const result = await actions.makeDirectChannel(user.id);
-        console.log(result);
         if (result.error) {
             actions.setChannelDisplayName(currentChannelDisplayName);
             alertErrorWithFallback(
