@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 import {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import PushNotifications from 'app/push_notifications';
 
 export default class Badge extends PureComponent {
     static propTypes = {
@@ -43,17 +44,20 @@ export default class Badge extends PureComponent {
                 badge: mentions.toString(),
                 badgeColor: theme.mentionBg,
             });
+            PushNotifications.setApplicationIconBadgeNumber(mentions);
         } else if (messages) {
             this.props.navigator.setTabBadge({
                 tabIndex: 0,
                 badge: '#',
                 badgeColor: theme.mobileSectionSeperator,
             });
+            PushNotifications.setApplicationIconBadgeNumber(0);
         } else {
             this.props.navigator.setTabBadge({
                 tabIndex: 0,
                 badge: null,
             });
+            PushNotifications.setApplicationIconBadgeNumber(0);
         }
 
         return null;
