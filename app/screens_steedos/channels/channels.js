@@ -46,11 +46,13 @@ export default class ChannelSidebar extends Component {
             setChannelDisplayName: PropTypes.func.isRequired,
             setChannelLoading: PropTypes.func.isRequired,
             unselectChannel: PropTypes.func.isRequired,
+            selectDefaultTeam: PropTypes.func.isRequired,
         }).isRequired,
 
         //blurPostTextBox: PropTypes.func.isRequired,
         children: PropTypes.node,
         currentTeamId: PropTypes.string.isRequired,
+        currentTeam: PropTypes.object,
         currentUserId: PropTypes.string.isRequired,
         currentChannelId: PropTypes.string.isRequired,
         deviceWidth: PropTypes.number.isRequired,
@@ -457,7 +459,7 @@ export default class ChannelSidebar extends Component {
             return;
         }
 
-        const {navigator, theme, currentTeamId} = this.props;
+        const {navigator} = this.props;
 
         InteractionManager.runAfterInteractions(() => {
             navigator.push({
@@ -590,6 +592,14 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
+
+        const {currentTeam} = this.props;
+        if (currentTeam) {
+            this.props.navigator.setTitle({
+                title: currentTeam.display_name,
+            });
+        }
+
         if (!this.props.currentUserId) {
             return (
                 <View/>
