@@ -1,7 +1,7 @@
 package com.steedos.messenger;
 
-import com.mattermost.share.SharePackage;
-import com.mattermost.share.RealPathUtil;
+import com.steedos.messenger.share.SharePackage;
+import com.steedos.messenger.share.RealPathUtil;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

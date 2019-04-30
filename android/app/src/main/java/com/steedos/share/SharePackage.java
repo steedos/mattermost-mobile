@@ -1,4 +1,4 @@
-package com.mattermost.share;
+package com.steedos.messenger.share;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.JavaScriptModule;
