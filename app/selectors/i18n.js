@@ -9,16 +9,14 @@ import {getCurrentUserLocale} from 'mattermost-redux/selectors/entities/i18n';
 // Not a proper selector since the device locale isn't in the redux store
 export function getCurrentLocale(state) {
     let deviceLocale = DeviceInfo.getDeviceLocale();
-    switch (deviceLocale) {
-    case 'zh-Hans-CN':
+    
+    if (deviceLocale.indexOf("Hans") > 0) 
         deviceLocale = 'zh-CN';
-        break;
-    case 'zh-Hans-TW':
+    else if (deviceLocale.indexOf("Hans") > 0) 
         deviceLocale = 'zh-TW';
-        break;
-    default:
+    else
         deviceLocale = deviceLocale.split('-')[0];
-    }
+
     const defaultLocale = deviceLocale || DEFAULT_LOCALE;
 
     return getCurrentUserLocale(state, defaultLocale);
