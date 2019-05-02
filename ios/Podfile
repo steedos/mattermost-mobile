@@ -7,6 +7,7 @@ target 'Mattermost' do
 
   # Pods for Mattermost
   pod 'XCDYouTubeKit', '2.7.1'
+  pod 'RNInAppBrowser', :path => '../node_modules/react-native-inappbrowser-reborn'
 
   target 'MattermostTests' do
     inherit! :search_paths

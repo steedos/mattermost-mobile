@@ -547,8 +547,8 @@
   "user.settings.push_notification.offline": "离线",
   "user.settings.push_notification.online": "在线，离开或离线",
   "web.root.signup_info": "所有团队的通讯一站式解决，随时随地可访问和搜索",
-  "mobile.tabs.channels": "华信",
+  "mobile.tabs.channels": "信息",
   "mobile.tabs.contacts": "通讯录",
-  "mobile.tabs.apps": "工作台",
+  "mobile.tabs.apps": "应用",
   "mobile.tabs.me": "设置"
 }

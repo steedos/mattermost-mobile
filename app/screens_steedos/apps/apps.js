@@ -9,6 +9,7 @@ import {
     Platform,
     ScrollView,
     View,
+    Alert,
 } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
@@ -19,6 +20,7 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme, setNavigatorStyles} from 'app/utils/theme';
 import {isValidUrl} from 'app/utils/url';
 import {t} from 'app/utils/i18n';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
 
 import DrawerItem from '../me/drawer_item';
 
@@ -41,7 +43,7 @@ export default class Apps extends PureComponent {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
     }
 
-    gotoContacts = preventDoubleTap((url) => {
+    gotoContacts = preventDoubleTap(() => {
         const {navigator, theme} = this.props;
         const {intl} = this.context;
         navigator.push({
@@ -58,21 +60,42 @@ export default class Apps extends PureComponent {
         });
     });
 
-    gotoApp = preventDoubleTap((url) => {
+    gotoApp = preventDoubleTap( async () => {
         const {navigator, theme} = this.props;
-        const {intl} = this.context;
-        navigator.push({
-            screen: 'NotificationSettings',
-            backButtonTitle: '',
-            title: intl.formatMessage({id: 'user.settings.modal.notifications', defaultMessage: 'Notifications'}),
-            animated: true,
-            navigatorStyle: {
-                navBarTextColor: theme.sidebarHeaderTextColor,
-                navBarBackgroundColor: theme.sidebarHeaderBg,
-                navBarButtonColor: theme.sidebarHeaderTextColor,
-                screenBackgroundColor: theme.centerChannelBg,
-            },
-        });
+        const url = 'https://cn.steedos.com/workflow/';
+
+        try {
+            if (InAppBrowser && await InAppBrowser.isAvailable()) {
+                const result = await InAppBrowser.open(url, {
+                    // iOS Properties
+                    dismissButtonStyle: 'close',
+                    preferredBarTintColor: theme.mobileBg,
+                    preferredControlTintColor: theme.linkColor,
+                    readerMode: false,
+                    // Android Properties
+                    showTitle: true,
+                    toolbarColor: '#6200EE',
+                    secondaryToolbarColor: 'black',
+                    enableUrlBarHiding: true,
+                    enableDefaultShare: true,
+                    forceCloseOnRedirection: false,
+                    // Specify full animation resource identifier(package:anim/name)
+                    // or only resource name(in case of animation bundled with app).
+                    animations: {
+                    startEnter: 'slide_in_right',
+                    startExit: 'slide_out_left',
+                    endEnter: 'slide_in_right',
+                    endExit: 'slide_out_left',
+                    },
+                    headers: {
+                    //'my-custom-header': 'my custom header value'
+                    },
+                })
+            }
+        } catch (e) {
+            Alert.alert(e.message)
+        }
+        
     });
 
     onNavigatorEvent = (event) => {
@@ -112,7 +135,6 @@ export default class Apps extends PureComponent {
                     <View style={style.block}>
                         <DrawerItem
                             defaultMessage='审批'
-                            i18nId='审批'
                             iconName='ios-list'
                             iconType='ion'
                             onPress={this.gotoApp}

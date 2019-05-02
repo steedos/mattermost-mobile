@@ -3,7 +3,7 @@
 
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, Text} from 'react-native';
 
 import FormattedText from 'app/components/formatted_text';
 import VectorIcon from 'app/components/vector_icon.js';
@@ -80,6 +80,13 @@ export default class DrawerItem extends PureComponent {
                     style={[style.label, destructor, centered ? style.centerLabel : {}]}
                 />
             );
+        } else if (defaultMessage) {
+            label = (
+                <Text 
+                    style={[style.label, destructor, centered ? style.centerLabel : {}]}>
+                    {defaultMessage}
+                </Text>
+            )
         }
 
         return (
