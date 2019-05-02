@@ -556,5 +556,7 @@
   "user.settings.push_notification.online": "Online, away or offline",
   "web.root.signup_info": "All team communication in one place, searchable and accessible anywhere",
   "mobile.tabs.channels": "Channels",
+  "mobile.tabs.contacts": "Contacts",
+  "mobile.tabs.apps": "Apps",
   "mobile.tabs.me": "Me"
 }

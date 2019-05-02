@@ -42,5 +42,7 @@
 
     "ShowSentryDebugOptions": false,
 
-    "CustomRequestHeaders": {}
+    "CustomRequestHeaders": {},
+    
+    "SteedosDesktopUrl": "https://cn.steedos.com/"
 }
