@@ -60,16 +60,23 @@ export default class Apps extends PureComponent {
         });
     });
 
-    gotoApp = preventDoubleTap( async () => {
+    gotoApp = () => {
+        return this.gotoWeb('https://cn.steedos.com/workflow/');
+    };
+
+    gotoAbout = () => {
+        return this.gotoWeb('https://www.steedos.com/cn/workflow/');
+    };
+    
+    gotoWeb = preventDoubleTap( async (url) => {
         const {navigator, theme} = this.props;
-        const url = 'https://cn.steedos.com/workflow/';
 
         try {
             if (InAppBrowser && await InAppBrowser.isAvailable()) {
                 const result = await InAppBrowser.open(url, {
                     // iOS Properties
                     dismissButtonStyle: 'close',
-                    preferredBarTintColor: theme.mobileBg,
+                    preferredBarTintColor: "#FFFFFF",
                     preferredControlTintColor: theme.linkColor,
                     readerMode: false,
                     // Android Properties
@@ -111,7 +118,6 @@ export default class Apps extends PureComponent {
 
         return (
             <View style={style.container}>
-                <StatusBar/>
                 <ScrollView
                     contentContainerStyle={style.wrapper}
                     alwaysBounceVertical={false}
@@ -120,12 +126,21 @@ export default class Apps extends PureComponent {
                     <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem
+                            defaultMessage='审批'
+                            iconName='ios-list'
+                            iconType='ion'
+                            onPress={this.gotoApp}
+                            separator={true}
+                            showArrow={showArrow}
+                            theme={theme}
+                        />
+                        <DrawerItem
                             defaultMessage='Contacts'
                             i18nId='mobile.tabs.contacts'
                             iconName='ios-people'
                             iconType='ion'
                             onPress={this.gotoContacts}
-                            separator={true}
+                            separator={false}
                             showArrow={showArrow}
                             theme={theme}
                         />
@@ -134,11 +149,12 @@ export default class Apps extends PureComponent {
                     <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem
-                            defaultMessage='审批'
-                            iconName='ios-list'
+                            defaultMessage='关于'
+                            iconName='ios-information-circle-outline'
                             iconType='ion'
-                            onPress={this.gotoApp}
+                            onPress={this.gotoAbout}
                             separator={false}
+                            showArrow={showArrow}
                             theme={theme}
                         />
                     </View>

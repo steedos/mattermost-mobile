@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {intlShape} from 'react-intl';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/Ionicons';
 import {General, WebsocketEvents} from 'mattermost-redux/constants';
 import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
@@ -86,9 +86,9 @@ export default class ChannelSidebar extends Component {
         };
 
         Promise.all([
-            MaterialIcon.getImageSource('close', 25),
-            MaterialIcon.getImageSource('add-circle-outline', 25),
-            MaterialIcon.getImageSource('business', 25),
+            MaterialIcon.getImageSource('ios-close', 25),
+            MaterialIcon.getImageSource('ios-add-circle-outline', 25),
+            MaterialIcon.getImageSource('ios-menu', 25),
         ]).then((sources) => {
             this.closeButton = sources[0];
             this.addButton = sources[1];
