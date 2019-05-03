@@ -121,6 +121,16 @@ export default class Apps extends PureComponent {
                             iconType='ion'
                             uri={'https://xw.tianqi.qq.com/'}
                             navigator={navigator}
+                            separator={true}
+                            showArrow={showArrow}
+                            theme={theme}
+                        />
+                        <DrawerItem
+                            defaultMessage='地图'
+                            iconName='ios-compass'
+                            iconType='ion'
+                            uri={'https://map.qq.com/'}
+                            navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
