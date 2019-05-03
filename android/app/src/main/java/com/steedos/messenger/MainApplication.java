@@ -11,6 +11,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
 import com.reactnativedocumentpicker.ReactNativeDocumentPicker;
 import com.oblador.keychain.KeychainPackage;
 import com.reactlibrary.RNReactNativeDocViewerPackage;
@@ -86,7 +87,8 @@ public class MainApplication extends NavigationApplication implements INotificat
             new InitializationPackage(this),
             new RNRecyclerviewListPackage(),
             new RNCWebViewPackage(),
-            new RNGestureHandlerPackage()
+            new RNGestureHandlerPackage(),
+            new RNInAppBrowserPackage()
     );
   }
 

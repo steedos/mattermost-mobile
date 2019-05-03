@@ -8,6 +8,8 @@ import {TouchableOpacity, View, Text} from 'react-native';
 import FormattedText from 'app/components/formatted_text';
 import VectorIcon from 'app/components/vector_icon.js';
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
+import InAppBrowser from 'react-native-inappbrowser-reborn';
+import {preventDoubleTap} from 'app/utils/tap';
 
 export default class DrawerItem extends PureComponent {
     static propTypes = {
@@ -20,6 +22,7 @@ export default class DrawerItem extends PureComponent {
         labelComponent: PropTypes.node,
         leftComponent: PropTypes.node,
         onPress: PropTypes.func,
+        uri: PropTypes.string,
         separator: PropTypes.bool,
         theme: PropTypes.object.isRequired,
     };
@@ -29,6 +32,53 @@ export default class DrawerItem extends PureComponent {
         isDestructor: false,
         separator: true,
     };
+
+    onPress = () => {
+        const {uri, onPress} = this.props;
+        if (uri) {
+            this.gotoWeb(uri);
+        } else if (onPress) {
+            onPress();
+        }
+    }
+
+    gotoWeb = preventDoubleTap(async (url) => {
+        const {theme} = this.props;
+
+        try {
+            if (InAppBrowser && await InAppBrowser.isAvailable()) {
+                await InAppBrowser.open(url, {
+
+                    // iOS Properties
+                    dismissButtonStyle: 'close',
+                    preferredBarTintColor: theme.mobileNavBarBg,
+                    preferredControlTintColor: theme.mobileNavBarTextColor,
+                    readerMode: false,
+
+                    // Android Properties
+                    showTitle: true,
+                    toolbarColor: theme.mobileNavBarBg,
+                    secondaryToolbarColor: theme.mobileNavBarBg,
+                    enableUrlBarHiding: true,
+                    enableDefaultShare: true,
+                    forceCloseOnRedirection: false,
+
+                    // Specify full animation resource identifier(package:anim/name)
+                    // or only resource name(in case of animation bundled with app).
+                    animations: {
+                        startEnter: 'slide_in_right',
+                        startExit: 'slide_out_left',
+                        endEnter: 'slide_in_right',
+                        endExit: 'slide_out_left',
+                    },
+                    headers: {
+                    },
+                });
+            }
+        } catch (e) {
+            //Alert.alert(e.message);
+        }
+    });
 
     render() {
         const {
@@ -40,7 +90,6 @@ export default class DrawerItem extends PureComponent {
             isDestructor,
             labelComponent,
             leftComponent,
-            onPress,
             separator,
             theme,
         } = this.props;
@@ -91,7 +140,7 @@ export default class DrawerItem extends PureComponent {
 
         return (
             <TouchableOpacity
-                onPress={onPress}
+                onPress={this.onPress}
             >
                 <View style={style.container}>
                     {icon &&

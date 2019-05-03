@@ -60,51 +60,6 @@ export default class Apps extends PureComponent {
         });
     });
 
-    gotoApp = () => {
-        return this.gotoWeb('https://cn.steedos.com/workflow/');
-    };
-
-    gotoAbout = () => {
-        return this.gotoWeb('https://www.steedos.com/cn/workflow/');
-    };
-    
-    gotoWeb = preventDoubleTap( async (url) => {
-        const {navigator, theme} = this.props;
-
-        try {
-            if (InAppBrowser && await InAppBrowser.isAvailable()) {
-                const result = await InAppBrowser.open(url, {
-                    // iOS Properties
-                    dismissButtonStyle: 'close',
-                    preferredBarTintColor: "#FFFFFF",
-                    preferredControlTintColor: theme.linkColor,
-                    readerMode: false,
-                    // Android Properties
-                    showTitle: true,
-                    toolbarColor: '#6200EE',
-                    secondaryToolbarColor: 'black',
-                    enableUrlBarHiding: true,
-                    enableDefaultShare: true,
-                    forceCloseOnRedirection: false,
-                    // Specify full animation resource identifier(package:anim/name)
-                    // or only resource name(in case of animation bundled with app).
-                    animations: {
-                    startEnter: 'slide_in_right',
-                    startExit: 'slide_out_left',
-                    endEnter: 'slide_in_right',
-                    endExit: 'slide_out_left',
-                    },
-                    headers: {
-                    //'my-custom-header': 'my custom header value'
-                    },
-                })
-            }
-        } catch (e) {
-            Alert.alert(e.message)
-        }
-        
-    });
-
     onNavigatorEvent = (event) => {
         if (event.id === 'willAppear') {
             setNavigatorStyles(this.props.navigator, this.props.theme);
@@ -129,7 +84,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='审批'
                             iconName='ios-list'
                             iconType='ion'
-                            onPress={this.gotoApp}
+                            uri={'https://cn.steedos.com/workflow/'}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
@@ -152,7 +107,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='关于'
                             iconName='ios-information-circle-outline'
                             iconType='ion'
-                            onPress={this.gotoAbout}
+                            uri={'https://www.steedos.com/cn/workflow/'}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
