@@ -129,7 +129,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='地图'
                             iconName='ios-compass'
                             iconType='ion'
-                            uri={'https://map.qq.com/'}
+                            uri={'https://map.qq.com/m/index/map'}
                             navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
