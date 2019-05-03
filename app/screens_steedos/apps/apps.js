@@ -117,7 +117,7 @@ export default class Apps extends PureComponent {
                     <View style={style.block}>
                         <DrawerItem
                             defaultMessage='天气'
-                            iconName='ios-information-circle-outline'
+                            iconName='ios-sunny'
                             iconType='ion'
                             uri={'https://xw.tianqi.qq.com/'}
                             navigator={navigator}
