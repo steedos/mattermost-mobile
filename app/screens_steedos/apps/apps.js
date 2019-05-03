@@ -90,6 +90,15 @@ export default class Apps extends PureComponent {
                             theme={theme}
                         />
                         <DrawerItem
+                            defaultMessage='邮件'
+                            iconName='ios-mail'
+                            iconType='ion'
+                            uri={'https://mail.steedos.cn/'}
+                            separator={true}
+                            showArrow={showArrow}
+                            theme={theme}
+                        />
+                        <DrawerItem
                             defaultMessage='Contacts'
                             i18nId='mobile.tabs.contacts'
                             iconName='ios-people'
@@ -104,10 +113,10 @@ export default class Apps extends PureComponent {
                     <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem
-                            defaultMessage='关于'
+                            defaultMessage='天气'
                             iconName='ios-information-circle-outline'
                             iconType='ion'
-                            uri={'https://www.steedos.com/cn/workflow/'}
+                            uri={'https://xw.tianqi.qq.com/'}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
