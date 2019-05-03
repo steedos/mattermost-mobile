@@ -67,7 +67,7 @@ export default class Apps extends PureComponent {
     };
 
     render() {
-        const {theme} = this.props;
+        const {navigator, theme} = this.props;
         const style = getStyleSheet(theme);
         const showArrow = Platform.OS === 'ios';
 
@@ -85,6 +85,7 @@ export default class Apps extends PureComponent {
                             iconName='ios-list'
                             iconType='ion'
                             uri={'https://cn.steedos.com/workflow/'}
+                            navigator={navigator}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
@@ -94,6 +95,7 @@ export default class Apps extends PureComponent {
                             iconName='ios-mail'
                             iconType='ion'
                             uri={'https://mail.steedos.cn/'}
+                            navigator={navigator}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
@@ -104,6 +106,7 @@ export default class Apps extends PureComponent {
                             iconName='ios-people'
                             iconType='ion'
                             onPress={this.gotoContacts}
+                            navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
@@ -117,6 +120,7 @@ export default class Apps extends PureComponent {
                             iconName='ios-information-circle-outline'
                             iconType='ion'
                             uri={'https://xw.tianqi.qq.com/'}
+                            navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}

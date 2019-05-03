@@ -76,4 +76,5 @@ export function registerScreens(store, Provider) {
     Navigation.registerComponent('Contacts', () => wrapWithContextProvider(require('app/screens_steedos/contacts').default, false), store, Provider);
     Navigation.registerComponent('SteedosSettings', () => wrapWithContextProvider(require('app/screens_steedos/settings').default), store, Provider);
     Navigation.registerComponent('Apps', () => wrapWithContextProvider(require('app/screens_steedos/apps').default, false), store, Provider);
+    Navigation.registerComponent('Browser', () => wrapWithContextProvider(require('app/screens_steedos/browser').default, false), store, Provider);
 }

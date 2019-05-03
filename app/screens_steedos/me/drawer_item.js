@@ -13,6 +13,7 @@ import {preventDoubleTap} from 'app/utils/tap';
 
 export default class DrawerItem extends PureComponent {
     static propTypes = {
+        navigator: PropTypes.object,
         centered: PropTypes.bool,
         defaultMessage: PropTypes.string,
         i18nId: PropTypes.string,
@@ -36,11 +37,30 @@ export default class DrawerItem extends PureComponent {
     onPress = () => {
         const {uri, onPress} = this.props;
         if (uri) {
-            this.gotoWeb(uri);
+            this.openBrowser(uri);
         } else if (onPress) {
             onPress();
         }
     }
+
+    openBrowser = preventDoubleTap(async (url) => {
+        const {navigator, theme} = this.props;
+        navigator.push({
+            screen: 'Browser',
+            backButtonTitle: '',
+            animated: true,
+            navigatorStyle: {
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+                tabBarHidden: true,
+            },
+            passProps: {
+                url,
+            },
+        });
+    })
 
     gotoWeb = preventDoubleTap(async (url) => {
         const {theme} = this.props;
