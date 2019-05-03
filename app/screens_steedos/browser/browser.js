@@ -245,9 +245,9 @@ class Browser extends Component {
         const {url} = this.props;
         const config = this.getConfig();
 
-        this.props.navigator.setTitle({
-            title,
-        });
+        // this.props.navigator.setTitle({
+        //     title: url,
+        // });
 
         return (
             <View style={styles.browserContainer}>

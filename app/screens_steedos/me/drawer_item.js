@@ -44,10 +44,11 @@ export default class DrawerItem extends PureComponent {
     }
 
     openBrowser = preventDoubleTap(async (url) => {
-        const {navigator, theme} = this.props;
+        const {navigator, theme, defaultMessage} = this.props;
         navigator.push({
             screen: 'Browser',
             backButtonTitle: '',
+            title: defaultMessage,
             animated: true,
             navigatorStyle: {
                 navBarTextColor: theme.sidebarHeaderTextColor,
