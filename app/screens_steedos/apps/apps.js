@@ -212,7 +212,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         icon: {
             color: theme.buttonColor,
-            fontSize: 22,
+            fontSize: 26,
         },
     };
 });
