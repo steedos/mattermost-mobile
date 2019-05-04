@@ -116,7 +116,7 @@ export default class ChannelIcon extends React.PureComponent {
         } else if (type === General.OPEN_CHANNEL) {
             icon = (
                 <View style={[style.groupBox, unreadGroupBox, activeGroupBox, {width: size, height: size}]}>
-                    <Text style={[style.icon, unreadIcon, activeIcon, {fontSize: (size * 0.4)}]}>
+                    <Text style={[style.icon, unreadIcon, activeIcon, {fontSize: (size * 0.5)}]}>
                         #
                     </Text>
                 </View>
@@ -170,27 +170,27 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             justifyContent: 'center',
         },
         icon: {
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
+            color: changeOpacity(theme.buttonColor, 1),
         },
         iconActive: {
-            color: theme.mobileSectionItemTextColor,
+            color: theme.buttonColor,
         },
         iconUnread: {
-            color: theme.mobileSectionItemTextColor,
+            color: theme.buttonColor,
         },
         iconInfo: {
-            color: theme.mobileSectionItemTextColor,
+            color: theme.buttonColor,
         },
         iconBot: {
-            marginLeft: -5,
+            //marginLeft: -5,
         },
         groupBox: {
             alignSelf: 'flex-start',
             alignItems: 'center',
             borderWidth: 0,
-            backgroundColor: changeOpacity(theme.mobileSectionSeperator, 0.3),
+            backgroundColor: changeOpacity(theme.buttonBg, 1),
             justifyContent: 'center',
-            borderRadius: 6,
+            borderRadius: 20,
         },
         groupBoxActive: {
             borderColor: theme.mobileSectionItemTextColor,
@@ -202,7 +202,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             borderColor: theme.mobileSectionItemTextColor,
         },
         group: {
-            color: theme.mobileSectionItemTextColor,
+            color: theme.buttonColor,
             fontSize: 10,
             fontWeight: '600',
         },

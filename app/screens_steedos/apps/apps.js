@@ -21,6 +21,7 @@ import {changeOpacity, makeStyleSheetFromTheme, setNavigatorStyles} from 'app/ut
 import {isValidUrl} from 'app/utils/url';
 import {t} from 'app/utils/i18n';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
+import VectorIcon from 'app/components/vector_icon.js';
 
 import DrawerItem from '../me/drawer_item';
 
@@ -82,34 +83,55 @@ export default class Apps extends PureComponent {
                     <View style={style.block}>
                         <DrawerItem
                             defaultMessage='审批'
-                            iconName='ios-list'
-                            iconType='ion'
                             uri={'https://cn.steedos.com/workflow/'}
                             navigator={navigator}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
+                            leftComponent={
+                                <View style={style.iconContainer}>
+                                    <VectorIcon
+                                        name='ios-list'
+                                        type='ion'
+                                        style={[style.icon]}
+                                    />
+                                </View>
+                            }
                         />
                         <DrawerItem
                             defaultMessage='邮件'
-                            iconName='ios-mail'
-                            iconType='ion'
                             uri={'https://mail.steedos.cn/'}
                             navigator={navigator}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
+                            leftComponent={
+                                <View style={style.iconContainer}>
+                                    <VectorIcon
+                                        name='ios-mail'
+                                        type='ion'
+                                        style={[style.icon]}
+                                    />
+                                </View>
+                            }
                         />
                         <DrawerItem
                             defaultMessage='Contacts'
                             i18nId='mobile.tabs.contacts'
-                            iconName='ios-people'
-                            iconType='ion'
                             onPress={this.gotoContacts}
                             navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
+                            leftComponent={
+                                <View style={style.iconContainer}>
+                                    <VectorIcon
+                                        name='ios-people'
+                                        type='ion'
+                                        style={[style.icon]}
+                                    />
+                                </View>
+                            }
                         />
                     </View>
 
@@ -117,23 +139,37 @@ export default class Apps extends PureComponent {
                     <View style={style.block}>
                         <DrawerItem
                             defaultMessage='天气'
-                            iconName='ios-sunny'
-                            iconType='ion'
                             uri={'https://xw.tianqi.qq.com/'}
                             navigator={navigator}
                             separator={true}
                             showArrow={showArrow}
                             theme={theme}
+                            leftComponent={
+                                <View style={style.iconContainer}>
+                                    <VectorIcon
+                                        name='ios-sunny'
+                                        type='ion'
+                                        style={[style.icon]}
+                                    />
+                                </View>
+                            }
                         />
                         <DrawerItem
                             defaultMessage='地图'
-                            iconName='ios-compass'
-                            iconType='ion'
                             uri={'https://map.qq.com/m/index/map'}
                             navigator={navigator}
                             separator={false}
                             showArrow={showArrow}
                             theme={theme}
+                            leftComponent={
+                                <View style={style.iconContainer}>
+                                    <VectorIcon
+                                        name='ios-compass'
+                                        type='ion'
+                                        style={[style.icon]}
+                                    />
+                                </View>
+                            }
                         />
                     </View>
                 </ScrollView>
@@ -164,6 +200,19 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         separator: {
             marginTop: 35,
+        },
+        iconContainer: {
+            width: 40,
+            height: 40,
+            backgroundColor: theme.buttonBg,
+            borderRadius: 8,
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: 10,
+        },
+        icon: {
+            color: theme.buttonColor,
+            fontSize: 22,
         },
     };
 });

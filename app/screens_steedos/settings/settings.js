@@ -344,6 +344,7 @@ class Settings extends PureComponent {
                             onPress={this.logout}
                             separator={false}
                             theme={theme}
+                            showArrow={false}
                         />
                     </View>
                 </ScrollView>

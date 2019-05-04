@@ -196,7 +196,7 @@ export default class ChannelItem extends PureComponent {
                 isUnread={isUnread}
                 hasDraft={hasDraft && channelId !== currentChannelId}
                 membersCount={displayName.split(',').length}
-                size={40}
+                size={36}
                 status={channel.status}
                 theme={theme}
                 type={channel.type}
@@ -247,7 +247,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            height: 60,
+            paddingTop: 10,
+            paddingBottom: 10,
             backgroundColor: theme.mobileSectionItemBg,
         },
         borderActive: {
@@ -267,7 +268,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingLeft: 11,
         },
         iconContainer: {
-            width: 70,
+            width: 60,
             alignItems: 'center',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -279,7 +280,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         text: {
             color: theme.mobileSectionItemTextColor,
-            fontSize: 16,
+            fontSize: 17,
             paddingRight: 40,
             alignItems: 'center',
             flex: 1,

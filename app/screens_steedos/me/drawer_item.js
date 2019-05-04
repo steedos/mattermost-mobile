@@ -7,6 +7,7 @@ import {TouchableOpacity, View, Text} from 'react-native';
 
 import FormattedText from 'app/components/formatted_text';
 import VectorIcon from 'app/components/vector_icon.js';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import {preventDoubleTap} from 'app/utils/tap';
@@ -25,6 +26,7 @@ export default class DrawerItem extends PureComponent {
         onPress: PropTypes.func,
         uri: PropTypes.string,
         separator: PropTypes.bool,
+        showArrow: PropTypes.bool,
         theme: PropTypes.object.isRequired,
     };
 
@@ -32,6 +34,7 @@ export default class DrawerItem extends PureComponent {
         defaultMessage: '',
         isDestructor: false,
         separator: true,
+        showArrow: true,
     };
 
     onPress = () => {
@@ -112,6 +115,7 @@ export default class DrawerItem extends PureComponent {
             labelComponent,
             leftComponent,
             separator,
+            showArrow,
             theme,
         } = this.props;
         const style = getStyleSheet(theme);
@@ -159,12 +163,22 @@ export default class DrawerItem extends PureComponent {
             )
         }
 
+        let additionalComponent;
+        if (showArrow) {
+            additionalComponent = (
+                <FontAwesomeIcon
+                    name='angle-right'
+                    style={style.arrow}
+                />
+            );
+        }
+
         return (
             <TouchableOpacity
                 onPress={this.onPress}
             >
                 <View style={style.container}>
-                    {icon &&
+                    {icon && 
                     <View style={style.iconContainer}>
                         {icon}
                     </View>
@@ -172,6 +186,11 @@ export default class DrawerItem extends PureComponent {
                     <View style={style.wrapper}>
                         <View style={style.labelContainer}>
                             {label}
+                            {Boolean(additionalComponent) &&
+                            <View style={style.arrowContainer}>
+                                {additionalComponent}
+                            </View>
+                            }
                         </View>
                         {divider}
                     </View>
@@ -187,11 +206,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             backgroundColor: theme.mobileSectionItemBg,
             flexDirection: 'row',
-            height: 50,
+            minHeight: 50, 
         },
         iconContainer: {
-            width: 45,
-            height: 50,
+            minWidth: 50,
+            minHeight: 50,
             alignItems: 'center',
             justifyContent: 'center',
             marginLeft: 5,
@@ -207,6 +226,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
+            paddingTop: 10, 
+            paddingBottom: 10,
         },
         centerLabel: {
             textAlign: 'center',
@@ -222,6 +243,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         divider: {
             backgroundColor: theme.mobileSectionSeperator,
             height: 1,
+        },
+        arrowContainer: {
+            justifyContent: 'center',
+            paddingRight: 15,
+        },
+        arrow: {
+            color: changeOpacity(theme.mobileSectionItemTextColor, 0.25),
+            fontSize: 18,
         },
     };
 });

@@ -86,9 +86,9 @@ export default class ChannelSidebar extends Component {
         };
 
         Promise.all([
-            MaterialIcon.getImageSource('ios-close', 25),
-            MaterialIcon.getImageSource('ios-add-circle-outline', 25),
-            MaterialIcon.getImageSource('ios-menu', 25),
+            MaterialIcon.getImageSource('ios-close', 24),
+            MaterialIcon.getImageSource('ios-add', 28),
+            MaterialIcon.getImageSource('ios-contacts', 24),
         ]).then((sources) => {
             this.closeButton = sources[0];
             this.addButton = sources[1];
@@ -100,7 +100,7 @@ export default class ChannelSidebar extends Component {
                         icon: this.teamsButton, // for a textual button, provide the button title (label)
                         id: 'buttonTeams', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
                         component: 'SwitchTeamsButton',
-                    },
+                    }
                 ];
             }
             this.rightButtons = [

@@ -26,6 +26,11 @@ export default function startTabs(theme) {
                 navBarBackgroundColor: theme.mobileNavBarBg,
                 navBarButtonColor: theme.mobileNavBarTextColor,
                 screenBackgroundColor: theme.mobileBg,
+                navBarTranslucent: false,
+                navBarHideOnScroll: false,
+                drawUnderNavBar: false,
+                tabBarTranslucent: true,
+                largeTitle: false,
             },
         },
         // {
@@ -54,12 +59,13 @@ export default function startTabs(theme) {
             navigatorStyle: {
                 navBarHidden: false,
                 statusBarHidden: false,
-                statusBarHideWithNavBar: false,
+                statusBarHideWithNavBar: true,
                 statusBarTextColorScheme: 'light',
                 navBarTextColor: theme.mobileNavBarTextColor,
                 navBarBackgroundColor: theme.mobileNavBarBg,
                 navBarButtonColor: theme.mobileNavBarTextColor,
                 screenBackgroundColor: theme.mobileBg,
+                largeTitle: false,
             },
         },
         {

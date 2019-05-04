@@ -156,14 +156,14 @@ export default class ProfilePicture extends PureComponent {
             image = (
                 <Image
                     key={pictureUrl}
-                    style={{width: this.props.size, height: this.props.size, borderRadius: this.props.size / 5}}
+                    style={{width: this.props.size, height: this.props.size, borderRadius: this.props.size / 2}}
                     source={source}
                 />
             );
         } else {
             image = (
                 <Image
-                    style={{width: this.props.size, height: this.props.size, borderRadius: this.props.size / 5}}
+                    style={{width: this.props.size, height: this.props.size, borderRadius: this.props.size / 2}}
                     source={placeholder}
                 />
             );

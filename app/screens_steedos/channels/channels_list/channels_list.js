@@ -177,6 +177,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
+            backgroundColor: theme.itemBg,
         },
         statusBar: {
             backgroundColor: theme.sidebarHeaderBg,
@@ -222,7 +223,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
 
             //paddingTop: 16,
-            height: 36,
+            paddingTop: 2,
+            paddingBottom: 2,
             paddingLeft: 16,
             backgroundColor: theme.mobileBg,
         },
@@ -230,8 +232,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             color: theme.mobileSectionHeaderTextColor,
             opacity: 1,
-            fontSize: 13,
-            fontWeight: '400',
+            fontSize: 12,
             letterSpacing: 0.8,
             lineHeight: 18,
         },
@@ -247,16 +248,20 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
                 },
             }),
         },
+        itemContainer: {
+            backgroundColor: theme.mobileSectionItemBg,
+            height: 1,
+        },
         itemDivider: {
-            color: theme.mobileSectionSeperator,
+            backgroundColor: theme.mobileSectionSeperator,
 
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 0.5,
-            marginLeft: 70,
+            height: 1,
+            marginLeft: 60,
         },
         divider: {
             backgroundColor: theme.mobileSectionSeperator,
-            height: 1,
+            height: 0,
         },
         actionContainer: {
             alignItems: 'center',
