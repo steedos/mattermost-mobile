@@ -261,7 +261,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         divider: {
             backgroundColor: theme.mobileSectionSeperator,
-            height: 0,
+            height: 1,
         },
         actionContainer: {
             alignItems: 'center',
