@@ -6,6 +6,7 @@ import {
     app,
 } from 'app/mattermost';
 import {t} from 'app/utils/i18n';
+import {changeOpacity} from 'app/utils/theme';
 
 export default function startTabs(theme) {
     const translations = app.getTranslations();
@@ -88,16 +89,16 @@ export default function startTabs(theme) {
             },
         }],
         tabsStyle: { // optional, add this if you want to style the tab bar beyond the defaults
-            tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-            tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-            tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
+            tabBarButtonColor: changeOpacity(theme.centerChannelColor, 0.5), // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+            tabBarSelectedButtonColor: theme.centerChannelColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+            tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
         },
         appStyle: {
             orientation: 'auto',
-            tabBarButtonColor: theme.mobileTabTextColor, // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
-            tabBarSelectedButtonColor: theme.mobileTabSelectedTextColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
-            tabBarBackgroundColor: theme.mobileTabBg, // optional, change the background color of the tab bar
+            tabBarButtonColor: changeOpacity(theme.centerChannelColor, 0.5), // optional, change the color of the tab icons and text (also unselected). On Android, add this to appStyle
+            tabBarSelectedButtonColor: theme.centerChannelColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
+            tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
             forceTitlesDisplay: true,
             navBarTextColor: theme.sidebarHeaderTextColor,
