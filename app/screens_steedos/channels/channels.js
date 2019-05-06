@@ -606,6 +606,7 @@ export default class ChannelSidebar extends Component {
                 key='channels'
                 style={style.swiperContent}
             >
+                <StatusBar/>
                 <ChannelsList
                     navigator={navigator}
                     onSelectChannel={this.selectChannel}
@@ -616,6 +617,10 @@ export default class ChannelSidebar extends Component {
                     onRefresh={this.onRefresh}
                     theme={theme}
                     drawerOpened={this.state.drawerOpened}
+                />
+                <NetworkIndicator/>
+                <TabBadge
+                    navigator={navigator}
                 />
             </View>
         );
