@@ -112,7 +112,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "updatesnapshot": "jest --updateSnapshot",
-    "make-assets": "node scripts/make-dist-assets.js"
+    "pre-run": "node scripts/make-dist-assets.js",
+    "run-android": "react-native run-android"
   },
   "rnpm": {
     "assets": [
