@@ -85,7 +85,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='审批'
                             uri={'https://cn.steedos.com/workflow/'}
                             navigator={navigator}
-                            separator={true}
+                            separator={false}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -102,7 +102,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='邮件'
                             uri={'https://mail.steedos.cn/'}
                             navigator={navigator}
-                            separator={true}
+                            separator={false}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -141,7 +141,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='天气'
                             uri={'https://xw.tianqi.qq.com/'}
                             navigator={navigator}
-                            separator={true}
+                            separator={false}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -186,25 +186,25 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         wrapper: {
             flex: 1,
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
+            //backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
         },
         block: {
             backgroundColor: theme.centerChannelBg,
-            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.0),
             borderBottomWidth: 1,
-            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderTopColor: changeOpacity(theme.centerChannelColor, 0.0),
             borderTopWidth: 1,
         },
         divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.0),
             height: 1,
         },
         separator: {
-            marginTop: 35,
+            marginTop: 20,
         },
         iconContainer: {
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             backgroundColor: theme.buttonBg,
             borderRadius: 8,
             alignItems: 'center',
@@ -213,7 +213,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         icon: {
             color: theme.buttonColor,
-            fontSize: 26,
+            fontSize: 20,
         },
     };
 });

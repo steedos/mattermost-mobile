@@ -210,7 +210,7 @@ export default class ChannelItem extends PureComponent {
             <AnimatedView ref={this.setPreviewRef}>
                 <View style={[style.container, mutedStyle]}>
                     <TouchableHighlight
-                        underlayColor={changeOpacity(theme.mobileSectionItemTextColor, 0.1)}
+                        underlayColor={changeOpacity(theme.centerChannelColor, 0.1)}
                         onPress={this.onPress}
                         onLongPress={this.onPreview}
                         style={style.highlight}
