@@ -3,7 +3,7 @@
 
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {TouchableOpacity, View, Text} from 'react-native';
+import {TouchableHighlight, View, Text} from 'react-native';
 
 import FormattedText from 'app/components/formatted_text';
 import VectorIcon from 'app/components/vector_icon.js';
@@ -174,8 +174,10 @@ export default class DrawerItem extends PureComponent {
         }
 
         return (
-            <TouchableOpacity
+            <TouchableHighlight
                 onPress={this.onPress}
+                underlayColor={changeOpacity(theme.centerChannelColor, 0.1)}
+                style={style.highlight}
             >
                 <View style={style.container}>
                     {icon && 
@@ -195,16 +197,18 @@ export default class DrawerItem extends PureComponent {
                         {divider}
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableHighlight>
         );
     }
 }
 
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
+        highlight: {
+            backgroundColor: theme.centerChannelBg,
+        },
         container: {
             alignItems: 'center',
-            backgroundColor: theme.centerChannelBg,
             flexDirection: 'row',
             minHeight: 50, 
         },
@@ -226,8 +230,6 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            paddingTop: 10, 
-            paddingBottom: 10,
         },
         centerLabel: {
             textAlign: 'center',
