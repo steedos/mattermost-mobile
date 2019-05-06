@@ -50,10 +50,13 @@ export default class UserStatus extends PureComponent {
             iconColor = theme.onlineIndicator;
             break;
         default:
-            iconColor = changeOpacity(theme.centerChannelColor, 0.3);
+            iconColor = null;
             break;
         }
 
+        if (iconColor == null)
+            return null
+        else
         return (
             <Image
                 source={Icon}

@@ -39,12 +39,13 @@ export default class ChannelItem extends PureComponent {
         theme: PropTypes.object.isRequired,
         unreadMsgs: PropTypes.number.isRequired,
         isSearchResult: PropTypes.bool,
-        isBot: PropTypes.bool.isRequired,
+        isBot: PropTypes.bool,
         separator: PropTypes.bool,
     };
 
     static defaultProps = {
         mentions: 0,
+        isBot: false,
     };
 
     static contextTypes = {
@@ -168,7 +169,7 @@ export default class ChannelItem extends PureComponent {
             badge = (
                 <Badge
                     style={style.badge}
-                    countStyle={style.mention}
+                    countStyle={style.badgeCount}
                     count={mentions}
                     onPress={this.onPress}
                 />
@@ -176,8 +177,8 @@ export default class ChannelItem extends PureComponent {
         } else if (unreadMsgs) {
             badge = (
                 <Badge
-                    style={style.messageBg}
-                    countStyle={style.mention}
+                    style={style.unread}
+                    countStyle={style.unreadCount}
                     count={unreadMsgs}
                     onPress={this.onPress}
                 />
@@ -196,7 +197,7 @@ export default class ChannelItem extends PureComponent {
                 isUnread={isUnread}
                 hasDraft={hasDraft && channelId !== currentChannelId}
                 membersCount={displayName.split(',').length}
-                size={36}
+                size={30}
                 status={channel.status}
                 theme={theme}
                 type={channel.type}
@@ -207,12 +208,13 @@ export default class ChannelItem extends PureComponent {
 
         return (
             <AnimatedView ref={this.setPreviewRef}>
-                <TouchableHighlight
-                    underlayColor={changeOpacity(theme.sidebarTextHoverBg, 0.5)}
-                    onPress={this.onPress}
-                    onLongPress={this.onPreview}
-                >
-                    <View style={[style.container, mutedStyle]}>
+                <View style={[style.container, mutedStyle]}>
+                    <TouchableHighlight
+                        underlayColor={changeOpacity(theme.mobileSectionItemTextColor, 0.1)}
+                        onPress={this.onPress}
+                        onLongPress={this.onPreview}
+                        style={style.highlight}
+                    >
                         {/* {extraBorder} */}
                         <View style={[style.item, extraItemStyle]}>
                             <View style={style.iconContainer}>
@@ -221,7 +223,7 @@ export default class ChannelItem extends PureComponent {
                             <View style={style.wrapper}>
                                 <View style={style.labelContainer}>
                                     <Text
-                                        style={[style.text]}
+                                        style={[style.text, extraTextStyle]}
                                         ellipsizeMode='tail'
                                         numberOfLines={1}
                                     >
@@ -231,8 +233,8 @@ export default class ChannelItem extends PureComponent {
                                 </View>
                             </View>
                         </View>
-                    </View>
-                </TouchableHighlight>
+                    </TouchableHighlight>
+                </View>
             </AnimatedView>
         );
     }
@@ -240,6 +242,11 @@ export default class ChannelItem extends PureComponent {
 
 const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
+        highlight: {
+            flex: 1,
+            padding: 8,
+            borderRadius: 8,
+        },
         wrapper: {
             flex: 1,
         },
@@ -247,9 +254,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             alignItems: 'center',
             flex: 1,
             flexDirection: 'row',
-            paddingTop: 10,
-            paddingBottom: 10,
-            backgroundColor: theme.mobileSectionItemBg,
+            paddingLeft: 8,
+            paddingRight: 8,
+            paddingTop: 2,
+            paddingBottom: 2,
+            backgroundColor: theme.centerChannelBg,
         },
         borderActive: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
@@ -268,10 +277,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             //paddingLeft: 11,
         },
         iconContainer: {
-            width: 60,
+            width: 36,
             alignItems: 'center',
             flexDirection: 'row',
             justifyContent: 'center',
+            marginRight: 6,
         },
         labelContainer: {
             alignItems: 'center',
@@ -279,8 +289,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
         },
         text: {
-            color: theme.mobileSectionItemTextColor,
-            fontSize: 17,
+            color: theme.centerChannelColor,
+            fontSize: 16,
             paddingRight: 40,
             alignItems: 'center',
             flex: 1,
@@ -298,19 +308,33 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         badge: {
             backgroundColor: '#fb3f38',
             borderColor: '#fb3f38',
+            alignItems: 'center',
             borderRadius: 10,
-            borderWidth: 1,
+            borderWidth: 0,
             padding: 3,
             position: 'relative',
             right: 16,
         },
-        mention: {
+        badgeCount: {
             color: '#ffffff',
-            fontSize: 10,
+            fontSize: 12,
+            fontWeight: '600',
+        },
+        unread: {
+            backgroundColor: theme.centerChannelBg,
+            borderRadius: 10,
+            borderWidth: 0,
+            padding: 3,
+            position: 'relative',
+            right: 16,
+        },
+        unreadCount: {
+            color: changeOpacity(theme.centerChannelColor, 0.5),
+            fontSize: 13,
             fontWeight: '600',
         },
         messageBg: {
-            backgroundColor: theme.mobileSectionSeperator,
+            backgroundColor: theme.centerChannelBg,
             padding: 3,
             position: 'relative',
             right: 16,

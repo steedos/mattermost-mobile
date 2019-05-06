@@ -5,6 +5,7 @@ import deepEqual from 'deep-equal';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+    Keyboard,
     FlatList,
     Text,
     TouchableHighlight,
@@ -21,7 +22,7 @@ import {sortChannelsByDisplayName} from 'mattermost-redux/utils/channel_utils';
 import {displayUsername} from 'mattermost-redux/utils/user_utils';
 import {t} from 'app/utils/i18n';
 
-import ChannelItem from 'app/components/sidebars/main/channels_list/channel_item';
+import ChannelItem from '../channel_item';
 import {ListTypes} from 'app/constants';
 
 const VIEWABILITY_CONFIG = ListTypes.VISIBILITY_CONFIG_DEFAULTS;
@@ -363,6 +364,13 @@ class FilteredList extends Component {
         return item.title;
     };
 
+    renderFooter = () => {
+        return (
+            <View style={{height: 300}}>
+            </View>
+        )
+    }
+
     renderTitle = (styles, id, defaultMessage, action, topDivider, bottomDivider) => {
         const {formatMessage} = this.props.intl;
 
@@ -403,6 +411,7 @@ class FilteredList extends Component {
                     keyboardShouldPersistTaps='always'
                     maxToRenderPerBatch={10}
                     viewabilityConfig={VIEWABILITY_CONFIG}
+                    ListFooterComponent={this.renderFooter}
                 />
             </View>
         );

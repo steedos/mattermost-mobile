@@ -63,17 +63,11 @@ export default class Me extends PureComponent {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
     }
 
-    componentDidUpdate(prevProps) {
-        const {navigator, theme} = this.props;
-
-        if (theme !== prevProps.theme) {
-            setNavigatorStyles(navigator, theme);
-        }
-    }
-
     onNavigatorEvent(event) {
         switch (event.id) {
         case 'willAppear':
+            const {navigator, theme} = this.props;
+            setNavigatorStyles(navigator, theme);
             // const {theme} = this.props;
             // this.props.navigator.setStyle({
             //     statusBarHidden: false,
@@ -350,21 +344,22 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
-            backgroundColor: theme.mobileBg,
+            backgroundColor: theme.centerChannelBg,
         },
         wrapper: {
             flex: 1,
             paddingTop: 0,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
         },
         block: {
-            backgroundColor: theme.mobileSectionItemBg,
-            borderBottomColor: theme.mobileSectionSeperator,
+            backgroundColor: theme.centerChannelBg,
+            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
             borderBottomWidth: 1,
-            borderTopColor: theme.mobileSectionSeperator,
+            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
             borderTopWidth: 1,
         },
         divider: {
-            backgroundColor: theme.mobileSectionSeperator,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             height: 1,
         },
         separator: {

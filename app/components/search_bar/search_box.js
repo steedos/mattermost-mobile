@@ -97,6 +97,7 @@ export default class Search extends Component {
         shadowRadius: 4,
         shadowVisible: false,
         value: '',
+        inputBorderRadius: 8,
     };
 
     constructor(props) {
@@ -337,14 +338,15 @@ export default class Search extends Component {
                 style={[
                     styles.container,
                     this.props.backgroundColor && {backgroundColor: this.props.backgroundColor},
+                    
                 ]}
                 onLayout={this.onLayout}
             >
-                <View style={{backgroundColor}}>
                     <AnimatedTextInput
                         ref='input_keyword'
                         style={[
                             styles.input,
+                            backgroundColor && {backgroundColor: backgroundColor},
                             this.props.placeholderTextColor && {color: this.props.placeholderTextColor},
                             this.props.inputHeight && {height: this.props.inputHeight},
                             this.props.inputBorderRadius && {borderRadius: this.props.inputBorderRadius},
@@ -380,7 +382,6 @@ export default class Search extends Component {
                         underlineColorAndroid='transparent'
                         enablesReturnKeyAutomatically={true}
                     />
-                </View>
                 <TouchableWithoutFeedback onPress={this.onFocus}>
                     {((this.props.iconSearch) ?
                         <Animated.View

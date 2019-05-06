@@ -17,6 +17,7 @@ import {changeOpacity, makeStyleSheetFromTheme} from 'app/utils/theme';
 
 import List from './list';
 import SwitchTeamsButton from './switch_teams_button';
+import KeyboardLayout from 'app/components/layout/keyboard_layout';
 
 const {ANDROID_TOP_PORTRAIT} = ViewTypes;
 let FilteredList = null;
@@ -121,12 +122,13 @@ export default class ChannelsList extends PureComponent {
         const searchBarInput = {
             backgroundColor: changeOpacity(theme.sidebarHeaderTextColor, 0.2),
             color: theme.sidebarHeaderTextColor,
-            fontSize: 15,
-            ...Platform.select({
-                android: {
-                    marginBottom: -5,
-                },
-            }),
+            borderRadius: 8,
+            fontSize: 13,
+            // ...Platform.select({
+            //     android: {
+            //         marginBottom: -5,
+            //     },
+            // }),
         };
 
         const searchbar = (
@@ -136,7 +138,7 @@ export default class ChannelsList extends PureComponent {
                     placeholder={intl.formatMessage({id: 'mobile.channel_drawer.search', defaultMessage: 'Jump to...'})}
                     cancelTitle={intl.formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
                     backgroundColor='transparent'
-                    inputHeight={34}
+                    inputHeight={30}
                     inputStyle={searchBarInput}
                     placeholderTextColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
                     tintColorSearch={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
@@ -156,17 +158,17 @@ export default class ChannelsList extends PureComponent {
             <View
                 style={styles.container}
             >
-                {/* <View style={styles.statusBar}>
+                <View style={styles.statusBar}>
                     <View style={styles.headerContainer}>
-                        <View style={styles.switchContainer}>
+                        {/* <View style={styles.switchContainer}>
                             <SwitchTeamsButton
                                 searching={searching}
                                 onShowTeams={onShowTeams}
                             />
-                        </View>
+                        </View> */}
                         {searchbar}
                     </View>
-                </View> */}
+                </View>
                 {list}
             </View>
         );
@@ -177,29 +179,29 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             flex: 1,
-            backgroundColor: theme.itemBg,
+            backgroundColor: theme.centerChannelBg,
         },
         statusBar: {
             backgroundColor: theme.sidebarHeaderBg,
         },
         itemContainer: {
-            backgroundColor: theme.itemBg,
+            backgroundColor: theme.centerChannelBg,
         },
         headerContainer: {
             alignItems: 'center',
             backgroundColor: theme.sidebarHeaderBg,
             flexDirection: 'row',
             borderBottomWidth: 0,
-            top: 0,
+            top: -1,
             borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.10),
-            ...Platform.select({
-                android: {
-                    height: ANDROID_TOP_PORTRAIT,
-                },
-                ios: {
-                    height: 44,
-                },
-            }),
+            // ...Platform.select({
+            //     android: {
+            //         height: ANDROID_TOP_PORTRAIT,
+            //     },
+            //     ios: {
+            //         height: 44,
+            //     },
+            // }),
         },
         headerTitleWrapper: {
             alignItems: 'flex-start',
@@ -223,22 +225,24 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
 
             //paddingTop: 16,
-            paddingTop: 2,
-            paddingBottom: 2,
+            paddingTop: 16,
+            paddingBottom: 5,
             paddingLeft: 16,
-            backgroundColor: theme.mobileBg,
+            backgroundColor: theme.centerChannelBg,
         },
         title: {
             flex: 1,
-            color: theme.mobileSectionHeaderTextColor,
+            color: changeOpacity(theme.centerChannelColor, 0.5),
             opacity: 1,
-            fontSize: 12,
+            fontSize: 14,
             letterSpacing: 0.8,
             lineHeight: 18,
         },
         searchContainer: {
             flex: 1,
+            paddingLeft: 10,
             paddingRight: 10,
+            paddingBottom: 5,
             ...Platform.select({
                 android: {
                     marginBottom: 1,
@@ -248,20 +252,16 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
                 },
             }),
         },
-        itemContainer: {
-            backgroundColor: theme.mobileSectionItemBg,
-            height: 1,
-        },
         itemDivider: {
-            backgroundColor: theme.mobileSectionSeperator,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
 
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 1,
+            height: 0,
             marginLeft: 60,
         },
-        divider: {
-            backgroundColor: theme.mobileSectionSeperator,
-            height: 1,
+        sectionDivider: {
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
+            height: 0,
         },
         actionContainer: {
             alignItems: 'center',
@@ -270,7 +270,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             width: 50,
         },
         action: {
-            color: theme.mobileSectionHeaderTextColor,
+            color: changeOpacity(theme.centerChannelColor, 0.5),
             fontSize: 20,
             fontWeight: '500',
             lineHeight: 18,

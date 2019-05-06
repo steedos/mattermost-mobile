@@ -23,7 +23,6 @@ import {SidebarSectionTypes} from 'app/constants/view';
 import {t} from 'app/utils/i18n';
 import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity} from 'app/utils/theme';
-import SearchBar from 'app/components/search_bar';
 
 const VIEWABILITY_CONFIG = {
     ...ListTypes.VISIBILITY_CONFIG_DEFAULTS,
@@ -331,55 +330,6 @@ export default class List extends PureComponent {
         this.setState({width: width - 40});
     };
 
-    renderSearchBar = () => {
-        const {intl} = this.context;
-        const {styles, theme} = this.props;
-
-        const searchBarInput = {
-            backgroundColor: changeOpacity(theme.sidebarHeaderTextColor, 0.2),
-            color: theme.sidebarHeaderTextColor,
-            fontSize: 15,
-            ...Platform.select({
-                android: {
-                    marginBottom: -5,
-                },
-            }),
-        };
-
-        return (
-            <View style={styles.searchContainer}>
-                <SearchBar
-
-                    //ref='search_bar'
-                    placeholder={intl.formatMessage({id: 'search_bar.search', defaultMessage: 'Search'})}
-                    cancelTitle={intl.formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
-                    backgroundColor='transparent'
-                    inputHeight={34}
-                    inputStyle={searchBarInput}
-                    placeholderTextColor={changeOpacity(theme.itemTextColor, 0.5)}
-                    tintColorSearch={changeOpacity(theme.itemTextColor, 0.5)}
-                    tintColorDelete={changeOpacity(theme.itemTextColor, 0.5)}
-                    titleCancelColor={theme.itemTextColor}
-                    selectionColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
-
-                    // onSearchButtonPress={this.onSearch}
-                    // onCancelButtonPress={this.cancelSearch}
-                    // onChangeText={this.onSearch}
-                    onFocus={this.handleSearchBarPress}
-
-                    // value={term}
-                />
-            </View>
-        );
-    };
-
-    handleSearchBarPress = preventDoubleTap(async () => {
-        // const {actions, navigator} = this.props;
-
-        // await actions.clearSearch();
-        // await actions.showSearchModal(navigator);
-    });
-
     renderSectionAction = (styles, action) => {
         const {theme} = this.props;
         return (
@@ -399,7 +349,7 @@ export default class List extends PureComponent {
     renderSectionSeparator = () => {
         const {styles} = this.props;
         return (
-            <View style={[styles.divider]}/>
+            <View style={[styles.sectionDivider]}/>
         );
     };
 
@@ -501,13 +451,11 @@ export default class List extends PureComponent {
                     onViewableItemsChanged={this.updateUnreadIndicators}
                     keyboardDismissMode='on-drag'
                     maxToRenderPerBatch={10}
-                    stickySectionHeadersEnabled={true}
+                    stickySectionHeadersEnabled={false}
                     viewabilityConfig={VIEWABILITY_CONFIG}
                     onRefresh={this.onRefresh}
                     refreshing={this.state.refreshing}
                     ItemSeparatorComponent={this.renderItemSeparator}
-
-                    //ListHeaderComponent={this.renderSearchBar}
                 />
                 {/* {showIndicator &&
                 <UnreadIndicator

@@ -88,7 +88,7 @@ export default class ChannelSidebar extends Component {
         Promise.all([
             MaterialIcon.getImageSource('ios-close', 24),
             MaterialIcon.getImageSource('ios-add', 28),
-            MaterialIcon.getImageSource('ios-contacts', 24),
+            MaterialIcon.getImageSource('ios-menu', 24),
         ]).then((sources) => {
             this.closeButton = sources[0];
             this.addButton = sources[1];
@@ -122,6 +122,8 @@ export default class ChannelSidebar extends Component {
     onNavigatorEvent(event) {
         switch (event.id) {
         case 'willAppear':
+            const {navigator, theme} = this.props;
+            setNavigatorStyles(navigator, theme);
             this.props.actions.unselectChannel();
             break;
         case 'didAppear':
@@ -153,14 +155,6 @@ export default class ChannelSidebar extends Component {
         // if (this.props.currentChannelId) {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
-    }
-
-    componentDidUpdate(prevProps) {
-        const {navigator, theme} = this.props;
-
-        if (theme !== prevProps.theme) {
-            setNavigatorStyles(navigator, theme);
-        }
     }
 
     onRefresh = () => {
@@ -608,19 +602,10 @@ export default class ChannelSidebar extends Component {
         } = this.props;
 
         return (
-
-            // <SafeAreaView
-            //     backgroundColor={theme.sidebarHeaderBg}
-            //     footerColor={theme.sidebarHeaderBg}
-            //     navigator={navigator}
-            //     excludeHeader={true}
-            // >
             <View
                 key='channels'
                 style={style.swiperContent}
-                excludeHeader={true}
             >
-                <StatusBar/>
                 <ChannelsList
                     navigator={navigator}
                     onSelectChannel={this.selectChannel}
@@ -632,13 +617,7 @@ export default class ChannelSidebar extends Component {
                     theme={theme}
                     drawerOpened={this.state.drawerOpened}
                 />
-                <NetworkIndicator/>
-                <TabBadge
-                    navigator={navigator}
-                />
             </View>
-
-        // </SafeAreaView>
         );
     }
 }

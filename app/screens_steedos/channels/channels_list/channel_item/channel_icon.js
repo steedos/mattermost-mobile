@@ -148,8 +148,8 @@ export default class ChannelIcon extends React.PureComponent {
                     userId={teammateId}
                     size={size}
                     status={status}
-                    statusBorderWidth={1}
-                    statusSize={12}
+                    statusBorderWidth={0}
+                    statusSize={10}
                 />);
         }
 

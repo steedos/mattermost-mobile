@@ -8,6 +8,7 @@ import {
     Platform,
     StyleSheet,
     View,
+    Dimensions,
 } from 'react-native';
 
 import * as CustomPropTypes from 'app/constants/custom_prop_types';
@@ -16,6 +17,10 @@ export default class KeyboardLayout extends PureComponent {
     static propTypes = {
         children: PropTypes.node,
         style: CustomPropTypes.Style,
+    };
+
+    static defaultProps = {
+        style: {flex: 1},
     };
 
     constructor(props) {

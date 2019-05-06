@@ -204,7 +204,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
     return {
         container: {
             alignItems: 'center',
-            backgroundColor: theme.mobileSectionItemBg,
+            backgroundColor: theme.centerChannelBg,
             flexDirection: 'row',
             minHeight: 50, 
         },
@@ -234,14 +234,14 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             textAlignVertical: 'center',
         },
         label: {
-            color: theme.mobileSectionItemTextColor,
+            color: theme.centerChannelColor,
             flex: 1,
             fontSize: 17,
             textAlignVertical: 'center',
             includeFontPadding: false,
         },
         divider: {
-            backgroundColor: theme.mobileSectionSeperator,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
             height: 1,
         },
         arrowContainer: {
@@ -249,7 +249,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             paddingRight: 15,
         },
         arrow: {
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.25),
+            color: changeOpacity(theme.centerChannelColor, 0.25),
             fontSize: 18,
         },
     };
