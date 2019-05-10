@@ -9,8 +9,8 @@ import {joinChannel} from 'mattermost-redux/actions/channels';
 import {getTeams} from 'mattermost-redux/actions/teams';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {getCurrentUserId, getCurrentUserRoles} from 'mattermost-redux/selectors/entities/users';
-import {getCurrentTeamId, getMyTeamsCount, getCurrentTeam} from 'mattermost-redux/selectors/entities/teams';
-import {getCurrentChannelId} from 'mattermost-redux/selectors/entities/channels';
+import {getCurrentTeamId, getMyTeamsCount, getCurrentTeam, getTeamMemberships} from 'mattermost-redux/selectors/entities/teams';
+import {getCurrentChannelId, getUnreadsInCurrentTeam, getUnreads} from 'mattermost-redux/selectors/entities/channels';
 import {showCreateOption} from 'mattermost-redux/utils/channel_utils';
 
 import {makeDirectChannel} from 'app/actions/views/more_dms';
@@ -63,6 +63,8 @@ function mapStateToProps(state) {
         isLandscape: isLandscape(state),
         isTablet: isTablet(state),
         teamsCount: getMyTeamsCount(state),
+        unreadsInCurrentTeam: getUnreadsInCurrentTeam(state),
+        unreads: getUnreads(state),
         theme: getTheme(state),
     };
 }

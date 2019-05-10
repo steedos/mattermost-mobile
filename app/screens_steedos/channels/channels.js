@@ -30,6 +30,7 @@ import TeamsList from 'app/components/sidebars/main/teams_list';
 import NetworkIndicator from 'app/components/network_indicator';
 import {setNavigatorStyles} from 'app/utils/theme';
 import TabBadge from './badge';
+import PushNotifications from 'app/push_notifications';
 
 const DRAWER_INITIAL_OFFSET = 0;
 const DRAWER_LANDSCAPE_OFFSET = 0;
@@ -64,6 +65,8 @@ export default class ChannelSidebar extends Component {
         teamsCount: PropTypes.number.isRequired,
         theme: PropTypes.object.isRequired,
         canCreatePrivateChannels: PropTypes.bool.isRequired,
+        messageCount: PropTypes.number,
+        mentionCount: PropTypes.number,
     };
 
     static contextTypes = {
@@ -89,19 +92,24 @@ export default class ChannelSidebar extends Component {
             MaterialIcon.getImageSource('ios-close', 24),
             MaterialIcon.getImageSource('ios-add', 28),
             MaterialIcon.getImageSource('ios-menu', 24),
+            MaterialIcon.getImageSource('ios-menu', 24, '#fb3f38'),
         ]).then((sources) => {
             this.closeButton = sources[0];
             this.addButton = sources[1];
             this.teamsButton = sources[2];
+            this.badgeButton = sources[3];
             this.leftButtons = null;
             if (this.props.teamsCount > 1) {
-                this.leftButtons = [
-                    {
+                this.buttonTeam = {
                         icon: this.teamsButton, // for a textual button, provide the button title (label)
                         id: 'buttonTeams', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
-                        component: 'SwitchTeamsButton',
-                    }
-                ];
+                        //component: 'SwitchTeamsButton',
+                };
+                this.buttonBadge = {
+                        icon: this.badgeButton, // for a textual button, provide the button title (label)
+                        id: 'buttonBadge', // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+                        disableIconTint: true,
+                };
             }
             this.rightButtons = [
                 {
@@ -111,9 +119,11 @@ export default class ChannelSidebar extends Component {
             ];
 
             this.props.navigator.setButtons({
-                leftButtons: this.leftButtons,
+                leftButtons: [this.buttonTeam],
                 rightButtons: this.rightButtons,
             });
+
+            this.renderBadge()
         });
 
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
@@ -140,6 +150,9 @@ export default class ChannelSidebar extends Component {
         case 'buttonTeams':
             this.showTeams();
             break;
+        case 'buttonBadge':
+            this.showTeams();
+            break;
         }
     }
 
@@ -156,6 +169,110 @@ export default class ChannelSidebar extends Component {
         //     PushNotifications.clearChannelNotifications(this.props.currentChannelId);
         // }
     }
+
+    componentDidMount() {
+        EventEmitter.on('close_channel_drawer', this.closeChannelDrawer);
+        EventEmitter.on('renderDrawer', this.handleShowDrawerContent);
+        EventEmitter.on(WebsocketEvents.CHANNEL_UPDATED, this.handleUpdateTitle);
+        BackHandler.addEventListener('hardwareBackPress', this.handleAndroidBack);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const {isLandscape} = this.props;
+        if (nextProps.isLandscape !== isLandscape) {
+            if (this.state.openDrawerOffset !== 0) {
+                let openDrawerOffset = DRAWER_INITIAL_OFFSET;
+                if (nextProps.isLandscape || this.props.isTablet) {
+                    openDrawerOffset = DRAWER_LANDSCAPE_OFFSET;
+                }
+                this.setState({openDrawerOffset});
+            }
+        }
+
+        if (nextProps.currentTeamId && this.props.currentTeamId !== nextProps.currentTeamId) {
+            this.loadChannels(nextProps.currentTeamId);
+        }
+
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        const {currentUserId, currentTeamId, deviceWidth, isLandscape, teamsCount} = this.props;
+        const {openDrawerOffset} = this.state;
+
+        if (nextState.openDrawerOffset !== openDrawerOffset || nextState.show !== this.state.show) {
+            return true;
+        }
+
+        const shouldUpdate = nextProps.currentUserId !== currentUserId ||
+            nextProps.currentTeamId !== currentTeamId ||
+            nextProps.isLandscape !== isLandscape || nextProps.deviceWidth !== deviceWidth ||
+            nextProps.teamsCount !== teamsCount || 
+            nextProps.unreads.mentionCount !== this.props.unreads.mentionCount || 
+            nextProps.unreads.messageCount !== this.props.unreads.messageCount;
+        return shouldUpdate;
+    }
+
+    componentDidUpdate(prevProps) {
+
+        console.log("componentDidUpdate")
+        console.log(prevProps.unreads)
+        console.log(this.props.unreads)
+        if ((prevProps.unreads.mentionCount !== this.props.unreads.mentionCount) || 
+            (prevProps.unreads.messageCount !== this.props.unreads.messageCount) || 
+            (prevProps.currentTeamId !== this.props.currentTeamId)) {
+            this.renderBadge();
+        }
+    }
+
+    componentWillUnmount() {
+        EventEmitter.off('close_channel_drawer', this.closeChannelDrawer);
+        EventEmitter.off(WebsocketEvents.CHANNEL_UPDATED, this.handleUpdateTitle);
+        EventEmitter.off('renderDrawer', this.handleShowDrawerContent);
+        BackHandler.removeEventListener('hardwareBackPress', this.handleAndroidBack);
+    }
+
+    renderBadge = () => {
+
+        const {
+            theme,
+        } = this.props;
+
+        let mentions = this.props.unreads.mentionCount;
+        let messages = this.props.unreads.messageCount;
+        console.log("renderBadge ")
+        console.log(this.props.unreads)
+        console.log(this.props.unreadsInCurrentTeam)
+
+        if (mentions) {
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: mentions.toString(),
+                badgeColor: theme.mentionBg,
+            });
+            PushNotifications.setApplicationIconBadgeNumber(mentions);
+        } else if (messages) {
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: '•',
+                badgeColor: theme.mentionBg,
+            });
+            PushNotifications.setApplicationIconBadgeNumber(0);
+        } else {
+            this.props.navigator.setTabBadge({
+                tabIndex: 0,
+                badge: null,
+            });
+            PushNotifications.setApplicationIconBadgeNumber(0);
+        }
+
+        if (this.props.unreads.messageCount>this.props.unreadsInCurrentTeam.messageCount) {
+            this.props.navigator.setButtons({ leftButtons: [this.buttonBadge] });
+        } else {
+            this.props.navigator.setButtons({ leftButtons: [this.buttonTeam] });
+        }
+
+        return null;
+    }   
 
     onRefresh = () => {
         const {
@@ -333,52 +450,6 @@ export default class ChannelSidebar extends Component {
             }
         });
     };
-
-    componentDidMount() {
-        EventEmitter.on('close_channel_drawer', this.closeChannelDrawer);
-        EventEmitter.on('renderDrawer', this.handleShowDrawerContent);
-        EventEmitter.on(WebsocketEvents.CHANNEL_UPDATED, this.handleUpdateTitle);
-        BackHandler.addEventListener('hardwareBackPress', this.handleAndroidBack);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const {isLandscape} = this.props;
-        if (nextProps.isLandscape !== isLandscape) {
-            if (this.state.openDrawerOffset !== 0) {
-                let openDrawerOffset = DRAWER_INITIAL_OFFSET;
-                if (nextProps.isLandscape || this.props.isTablet) {
-                    openDrawerOffset = DRAWER_LANDSCAPE_OFFSET;
-                }
-                this.setState({openDrawerOffset});
-            }
-        }
-
-        if (nextProps.currentTeamId && this.props.currentTeamId !== nextProps.currentTeamId) {
-            this.loadChannels(nextProps.currentTeamId);
-        }
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        const {currentUserId, currentTeamId, deviceWidth, isLandscape, teamsCount} = this.props;
-        const {openDrawerOffset} = this.state;
-
-        if (nextState.openDrawerOffset !== openDrawerOffset || nextState.show !== this.state.show) {
-            return true;
-        }
-
-        const shouldUpdate = nextProps.currentUserId !== currentUserId ||
-            nextProps.currentTeamId !== currentTeamId ||
-            nextProps.isLandscape !== isLandscape || nextProps.deviceWidth !== deviceWidth ||
-            nextProps.teamsCount !== teamsCount;
-        return shouldUpdate;
-    }
-
-    componentWillUnmount() {
-        EventEmitter.off('close_channel_drawer', this.closeChannelDrawer);
-        EventEmitter.off(WebsocketEvents.CHANNEL_UPDATED, this.handleUpdateTitle);
-        EventEmitter.off('renderDrawer', this.handleShowDrawerContent);
-        BackHandler.removeEventListener('hardwareBackPress', this.handleAndroidBack);
-    }
 
     handleAndroidBack = () => {
         if (this.state.drawerOpened && this.refs.drawer) {
@@ -619,9 +690,6 @@ export default class ChannelSidebar extends Component {
                     drawerOpened={this.state.drawerOpened}
                 />
                 <NetworkIndicator/>
-                <TabBadge
-                    navigator={navigator}
-                />
             </View>
         );
     }
