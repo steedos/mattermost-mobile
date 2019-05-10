@@ -186,7 +186,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         wrapper: {
             flex: 1,
-            //backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
         },
         block: {
             backgroundColor: theme.centerChannelBg,

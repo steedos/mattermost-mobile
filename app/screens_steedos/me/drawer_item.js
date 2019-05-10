@@ -244,7 +244,7 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 1,
+            height: 0,
         },
         arrowContainer: {
             justifyContent: 'center',

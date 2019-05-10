@@ -31,7 +31,7 @@ export default function startTabs(theme) {
                 navBarTranslucent: false,
                 navBarHideOnScroll: false,
                 drawUnderNavBar: false,
-                tabBarTranslucent: true,
+                tabBarTranslucent: false,
                 largeTitle: false,
             },
         },
