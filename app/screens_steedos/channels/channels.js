@@ -16,8 +16,6 @@ import MaterialIcon from 'react-native-vector-icons/Ionicons';
 import {General, WebsocketEvents} from 'mattermost-redux/constants';
 import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
-import SafeAreaView from 'app/components/safe_area_view';
-import DrawerLayout from 'app/components/sidebars/drawer_layout';
 import StatusBar from 'app/components/status_bar';
 import tracker from 'app/utils/time_tracker';
 import {t} from 'app/utils/i18n';
@@ -25,11 +23,8 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {app} from 'app/mattermost';
 
 import ChannelsList from './channels_list';
-import DrawerSwiper from 'app/components/sidebars/main/drawer_swipper';
-import TeamsList from 'app/components/sidebars/main/teams_list';
 import NetworkIndicator from 'app/components/network_indicator';
 import {setNavigatorStyles} from 'app/utils/theme';
-import TabBadge from './badge';
 import PushNotifications from 'app/push_notifications';
 
 const DRAWER_INITIAL_OFFSET = 0;
@@ -92,7 +87,7 @@ export default class ChannelSidebar extends Component {
             MaterialIcon.getImageSource('ios-close', 24),
             MaterialIcon.getImageSource('ios-add', 28),
             MaterialIcon.getImageSource('ios-menu', 24),
-            MaterialIcon.getImageSource('ios-menu', 24, '#fb3f38'),
+            MaterialIcon.getImageSource('ios-more', 24, '#fb3f38'),
         ]).then((sources) => {
             this.closeButton = sources[0];
             this.addButton = sources[1];
@@ -132,11 +127,11 @@ export default class ChannelSidebar extends Component {
     onNavigatorEvent(event) {
         switch (event.id) {
         case 'willAppear':
+            break;
+        case 'didAppear':
             const {navigator, theme} = this.props;
             setNavigatorStyles(navigator, theme);
             this.props.actions.unselectChannel();
-            break;
-        case 'didAppear':
             break;
         case 'willDisappear':
             break;
@@ -214,13 +209,13 @@ export default class ChannelSidebar extends Component {
 
     componentDidUpdate(prevProps) {
 
-        console.log("componentDidUpdate")
-        console.log(prevProps.unreads)
-        console.log(this.props.unreads)
         if ((prevProps.unreads.mentionCount !== this.props.unreads.mentionCount) || 
             (prevProps.unreads.messageCount !== this.props.unreads.messageCount) || 
             (prevProps.currentTeamId !== this.props.currentTeamId)) {
             this.renderBadge();
+        }
+        if (prevProps.currentTeamId !== this.props.currentTeamId) {
+            setNavigatorStyles(this.props.navigator, this.props.theme);
         }
     }
 
@@ -239,9 +234,6 @@ export default class ChannelSidebar extends Component {
 
         let mentions = this.props.unreads.mentionCount;
         let messages = this.props.unreads.messageCount;
-        console.log("renderBadge ")
-        console.log(this.props.unreads)
-        console.log(this.props.unreadsInCurrentTeam)
 
         if (mentions) {
             this.props.navigator.setTabBadge({
