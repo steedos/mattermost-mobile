@@ -272,7 +272,6 @@ export default class Me extends PureComponent {
                             theme={theme}
                         />
                     </View>
-                    <View style={style.separator}/>
                     <View style={style.block}>
                         <DrawerItem
                             defaultMessage='Recent Mentions'
@@ -280,7 +279,7 @@ export default class Me extends PureComponent {
                             iconName='ios-at'
                             iconType='ion'
                             onPress={this.goToMentions}
-                            separator={true}
+                            separator={false}
                             theme={theme}
                         />
                         <DrawerItem
@@ -354,16 +353,16 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         block: {
             backgroundColor: theme.centerChannelBg,
             borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderBottomWidth: 1,
+            borderBottomWidth: 0,
             borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderTopWidth: 1,
+            borderTopWidth: 0,
         },
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 1,
+            height: 0,
         },
         separator: {
-            marginTop: 35,
+            marginTop: 20,
         },
     };
 });
