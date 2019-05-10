@@ -48,7 +48,7 @@ export default class Badge extends PureComponent {
         } else if (messages) {
             this.props.navigator.setTabBadge({
                 tabIndex: 0,
-                badge: '#',
+                badge: '•',
                 badgeColor: theme.mentionBg,
             });
             PushNotifications.setApplicationIconBadgeNumber(0);
