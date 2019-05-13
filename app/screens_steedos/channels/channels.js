@@ -132,6 +132,7 @@ export default class ChannelSidebar extends Component {
             const {navigator, theme} = this.props;
             setNavigatorStyles(navigator, theme);
             this.props.actions.unselectChannel();
+            this.renderBadge()
             break;
         case 'willDisappear':
             break;
