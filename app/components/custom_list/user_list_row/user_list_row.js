@@ -131,7 +131,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
         profileContainer: {
             flexDirection: 'row',
             alignItems: 'center',
-            color: theme.mobileSectionItemTextColor,
+            color: theme.centerChannelColor,
         },
         textContainer: {
             marginLeft: 10,
@@ -140,12 +140,12 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             flex: 1,
         },
         displayName: {
-            fontSize: 14,
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
+            fontSize: 15,
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
         username: {
-            fontSize: 16,
-            color: theme.mobileSectionItemTextColor,
+            fontSize: 15,
+            color: theme.centerChannelColor,
         },
         indicatorContainer: {
             flexDirection: 'row',
@@ -153,7 +153,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
         deactivated: {
             marginTop: 2,
             fontSize: 12,
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
     };
 });

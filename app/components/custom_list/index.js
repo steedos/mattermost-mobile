@@ -220,17 +220,21 @@ export default class CustomList extends PureComponent {
 const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
     return {
         list: {
-            backgroundColor: theme.mobileSectionItemBg,
+            backgroundColor: theme.centerChannelBg,
             flex: 1,
+            ...Platform.select({
+                android: {
+                    marginBottom: 20,
+                },
+            }),
         },
         container: {
             flexGrow: 1,
         },
         separator: {
-            height: 0.5,
+            height: 1,
             flex: 1,
-            backgroundColor: theme.mobileSectionSeperator,
-            marginLeft: 10,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
         },
         listView: {
             flex: 1,
@@ -242,30 +246,25 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             }),
         },
         loadingText: {
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.6),
+            color: changeOpacity(theme.centerChannelColor, 0.6),
         },
         searching: {
-            backgroundColor: theme.mobileBg,
+            backgroundColor: theme.centerChannelBg,
             height: '100%',
             position: 'absolute',
             width: '100%',
         },
         sectionContainer: {
-            backgroundColor: theme.mobileBg,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.07),
             paddingLeft: 10,
             paddingVertical: 2,
-            height: 30,
-            alignItems: 'center',
-            flex: 1,
-            flexDirection: 'row',
         },
         sectionWrapper: {
-            backgroundColor: theme.mobileSectionItemBg,
+            backgroundColor: theme.centerChannelBg,
         },
         sectionText: {
-
-            //fontWeight: '600',
-            color: theme.mobileSectionHeaderTextColor,
+            fontWeight: '600',
+            color: theme.centerChannelColor,
         },
         noResultContainer: {
             flex: 1,
@@ -275,7 +274,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
         },
         noResultText: {
             fontSize: 26,
-            color: changeOpacity(theme.mobileSectionItemTextColor, 0.5),
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
     };
 });

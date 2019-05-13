@@ -328,7 +328,7 @@ export default class Contacts extends PureComponent {
         return (
             <View style={{flex: 1}}>
                 <StatusBar/>
-                {/* <View style={style.searchBar}>
+                <View style={style.searchBar}>
                     <SearchBar
                         ref='search_bar'
                         placeholder={formatMessage({id: 'search_bar.search', defaultMessage: 'Search'})}
@@ -346,7 +346,7 @@ export default class Contacts extends PureComponent {
                         autoCapitalize='none'
                         value={term}
                     />
-                </View> */}
+                </View>
                 <CustomList
                     data={data}
                     extraData={selectedIds}
