@@ -31,27 +31,26 @@ export default function startTabs(theme) {
                 navBarTranslucent: false,
                 navBarHideOnScroll: false,
                 drawUnderNavBar: false,
-                tabBarTranslucent: false,
                 largeTitle: false,
             },
         },
-        // {
-        //     title: translations[t('mobile.tabs.contacts')],
-        //     label: translations[t('mobile.tabs.contacts')],
-        //     screen: 'Contacts',
-        //     icon: require('assets/images/tabs/contacts.png'),
-        //     selectedIcon: require('assets/images/tabs/contacts_selected.png'),
-        //     navigatorStyle: {
-        //         navBarHidden: false,
-        //         statusBarHidden: false,
-        //         statusBarHideWithNavBar: false,
-        //         statusBarTextColorScheme: 'light',
-        //         navBarTextColor: theme.mobileNavBarTextColor,
-        //         navBarBackgroundColor: theme.mobileNavBarBg,
-        //         navBarButtonColor: theme.mobileNavBarTextColor,
-        //         screenBackgroundColor: theme.mobileBg,
-        //     },
-        // },
+        {
+            title: translations[t('mobile.tabs.contacts')],
+            label: translations[t('mobile.tabs.contacts')],
+            screen: 'Contacts',
+            icon: require('assets/images/tabs/contacts.png'),
+            selectedIcon: require('assets/images/tabs/contacts_selected.png'),
+            navigatorStyle: {
+                navBarHidden: false,
+                statusBarHidden: false,
+                statusBarHideWithNavBar: false,
+                statusBarTextColorScheme: 'light',
+                navBarTextColor: theme.sidebarHeaderTextColor,
+                navBarBackgroundColor: theme.sidebarHeaderBg,
+                navBarButtonColor: theme.sidebarHeaderTextColor,
+                screenBackgroundColor: theme.centerChannelBg,
+            },
+        },
         {
             title: translations[t('mobile.tabs.apps')],
             label: translations[t('mobile.tabs.apps')],
@@ -95,6 +94,7 @@ export default function startTabs(theme) {
             tabBarSelectedButtonColor: theme.centerChannelColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
             tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+            tabBarTranslucent: true,
         },
         appStyle: {
             orientation: 'auto',
@@ -102,6 +102,7 @@ export default function startTabs(theme) {
             tabBarSelectedButtonColor: theme.centerChannelColor, // optional, change the color of the selected tab icon and text (only selected). On Android, add this to appStyle
             tabBarBackgroundColor: theme.centerChannelBg, // optional, change the background color of the tab bar
             initialTabIndex: 0, // optional, the default selected bottom tab. Default: 0. On Android, add this to appStyle
+            tabBarTranslucent: true,
             forceTitlesDisplay: true,
             navBarTextColor: theme.sidebarHeaderTextColor,
             navBarBackgroundColor: theme.sidebarHeaderBg,
