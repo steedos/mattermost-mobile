@@ -257,10 +257,12 @@ export default class ChannelSidebar extends Component {
             PushNotifications.setApplicationIconBadgeNumber(0);
         }
 
-        if (this.props.unreads.messageCount>this.props.unreadsInCurrentTeam.messageCount) {
-            this.props.navigator.setButtons({ leftButtons: [this.buttonBadge] });
-        } else {
-            this.props.navigator.setButtons({ leftButtons: [this.buttonTeam] });
+        if (this.buttonBadge && this.buttonTeam) {
+            if (this.props.unreads.messageCount>this.props.unreadsInCurrentTeam.messageCount) {
+                this.props.navigator.setButtons({ leftButtons: [this.buttonBadge] });
+            } else {
+                this.props.navigator.setButtons({ leftButtons: [this.buttonTeam] });
+            }
         }
 
         return null;
@@ -652,7 +654,11 @@ export default class ChannelSidebar extends Component {
     };
 
     render() {
-        const {currentTeam} = this.props;
+        const {currentUserId, currentTeam} = this.props;
+
+        if (!currentUserId)
+            return null
+
         if (currentTeam) {
             this.props.navigator.setTitle({
                 title: currentTeam.display_name,

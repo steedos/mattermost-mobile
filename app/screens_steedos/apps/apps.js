@@ -29,7 +29,7 @@ import LocalConfig from 'assets/config';
 
 export default class Apps extends PureComponent {
     static propTypes = {
-        currentTeam: PropTypes.object.isRequired,
+        currentTeam: PropTypes.object,
         currentUserId: PropTypes.string.isRequired,
         navigator: PropTypes.object,
         theme: PropTypes.object,
@@ -68,6 +68,9 @@ export default class Apps extends PureComponent {
     };
 
     render() {
+        if (!this.props.currentUserId)
+            return null
+
         const {navigator, theme} = this.props;
         const style = getStyleSheet(theme);
         const showArrow = Platform.OS === 'ios';
