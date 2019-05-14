@@ -49,6 +49,7 @@ export default function startTabs(theme) {
                 navBarBackgroundColor: theme.sidebarHeaderBg,
                 navBarButtonColor: theme.sidebarHeaderTextColor,
                 screenBackgroundColor: theme.centerChannelBg,
+                navBarNoBorder: true,
             },
         },
         {
