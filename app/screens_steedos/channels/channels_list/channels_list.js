@@ -7,6 +7,7 @@ import {
     Platform,
     View,
     Text,
+    ScrollView,
 } from 'react-native';
 import {intlShape} from 'react-intl';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -120,10 +121,10 @@ export default class ChannelsList extends PureComponent {
         }
 
         const searchBarInput = {
-            backgroundColor: changeOpacity(theme.sidebarHeaderTextColor, 0.2),
-            color: theme.sidebarHeaderTextColor,
-            borderRadius: 8,
-            fontSize: 13,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
+            color: theme.centerChannelColor,
+            borderRadius: 12,
+            fontSize: 14,
             ...Platform.select({
                 android: {
                     marginBottom: -5,
@@ -138,13 +139,13 @@ export default class ChannelsList extends PureComponent {
                     placeholder={intl.formatMessage({id: 'mobile.channel_drawer.search', defaultMessage: 'Jump to...'})}
                     cancelTitle={intl.formatMessage({id: 'mobile.post.cancel', defaultMessage: 'Cancel'})}
                     backgroundColor='transparent'
-                    inputHeight={36}
+                    inputHeight={33}
                     inputStyle={searchBarInput}
-                    placeholderTextColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
-                    tintColorSearch={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
-                    tintColorDelete={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
-                    titleCancelColor={theme.sidebarHeaderTextColor}
-                    selectionColor={changeOpacity(theme.sidebarHeaderTextColor, 0.5)}
+                    placeholderTextColor={changeOpacity(theme.centerChannelColor, 0.5)}
+                    tintColorSearch={changeOpacity(theme.centerChannelColor, 0.5)}
+                    tintColorDelete={changeOpacity(theme.centerChannelColor, 0.5)}
+                    titleCancelColor={theme.centerChannelColor}
+                    selectionColor={changeOpacity(theme.centerChannelColor, 0.5)}
                     onSearchButtonPress={this.onSearch}
                     onCancelButtonPress={this.cancelSearch}
                     onChangeText={this.onSearch}
@@ -155,7 +156,7 @@ export default class ChannelsList extends PureComponent {
         );
 
         return (
-            <View
+            <ScrollView
                 style={styles.container}
             >
                 <View style={styles.statusBar}>
@@ -170,7 +171,7 @@ export default class ChannelsList extends PureComponent {
                     </View>
                 </View>
                 {list}
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -189,11 +190,11 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         headerContainer: {
             alignItems: 'center',
-            backgroundColor: theme.sidebarHeaderBg,
+            backgroundColor: theme.centerChannelBg,
             flexDirection: 'row',
             borderBottomWidth: 0,
-            top: -1,
-            borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.10),
+            top: 0,
+            borderBottomColor: changeOpacity(theme.sidebarHeaderTextColor, 0.15),
             // ...Platform.select({
             //     android: {
             //         height: ANDROID_TOP_PORTRAIT,
@@ -225,10 +226,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flexDirection: 'row',
 
             //paddingTop: 16,
-            paddingTop: 16,
-            paddingBottom: 5,
+            paddingTop: 8,
+            paddingBottom: 8,
             paddingLeft: 16,
-            backgroundColor: theme.centerChannelBg,
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
         },
         title: {
             flex: 1,
@@ -242,7 +243,8 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             flex: 1,
             paddingLeft: 10,
             paddingRight: 10,
-            paddingBottom: 5,
+            paddingTop: 6,
+            paddingBottom: 6,
             ...Platform.select({
                 android: {
                     marginBottom: 1,
@@ -256,12 +258,12 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
 
             //color: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 0,
+            height: 0.5,
             marginLeft: 60,
         },
         sectionDivider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 0,
+            height: 0.5,
         },
         actionContainer: {
             alignItems: 'center',

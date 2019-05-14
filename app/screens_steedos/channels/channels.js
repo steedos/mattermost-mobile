@@ -309,8 +309,9 @@ export default class ChannelSidebar extends Component {
             },
         };
 
+        items.push(moreChannels);
         items.push(newConversation);
-        items.push(moreChannels, createPublicChannel);
+        items.push(createPublicChannel);
         if (canCreatePrivateChannels) {
             items.push(createPrivateChannel);
         }

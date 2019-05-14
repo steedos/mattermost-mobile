@@ -267,19 +267,17 @@ export default class Me extends PureComponent {
                         <DrawerItem
                             labelComponent={this.renderUserStatusLabel(currentUser.id)}
                             leftComponent={this.renderUserStatusIcon(currentUser.id)}
-                            separator={false}
+                            separator={true}
                             onPress={this.handleSetStatus}
                             theme={theme}
                         />
-                    </View>
-                    <View style={style.block}>
                         <DrawerItem
                             defaultMessage='Recent Mentions'
                             i18nId='search_header.title2'
                             iconName='ios-at'
                             iconType='ion'
                             onPress={this.goToMentions}
-                            separator={false}
+                            separator={true}
                             theme={theme}
                         />
                         <DrawerItem
@@ -353,13 +351,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         block: {
             backgroundColor: theme.centerChannelBg,
             borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderBottomWidth: 0,
+            borderBottomWidth: 1,
             borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderTopWidth: 0,
+            borderTopWidth: 1,
         },
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 0,
+            height: 1,
         },
         separator: {
             marginTop: 20,

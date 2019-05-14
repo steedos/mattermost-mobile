@@ -5,7 +5,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {intlShape} from 'react-intl';
 import {
-    Alert,
+    ScrollView,
     Platform,
     View,
 } from 'react-native';
@@ -292,9 +292,10 @@ export default class Contacts extends PureComponent {
         }
 
         const searchBarInput = {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.2),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
             color: theme.centerChannelColor,
-            fontSize: 15,
+            borderRadius: 12,
+            fontSize: 14,
             ...Platform.select({
                 android: {
                     marginBottom: -5,
@@ -326,7 +327,7 @@ export default class Contacts extends PureComponent {
         }
 
         return (
-            <View style={{flex: 1}}>
+            <ScrollView style={{flex: 1}}>
                 <StatusBar/>
                 <View style={style.searchBar}>
                     <SearchBar
@@ -360,7 +361,7 @@ export default class Contacts extends PureComponent {
                     renderItem={this.renderItem}
                     theme={theme}
                 />
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -371,7 +372,18 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             flex: 1,
         },
         searchBar: {
-            marginVertical: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingTop: 6,
+            paddingBottom: 6,
+            ...Platform.select({
+                android: {
+                    marginBottom: 1,
+                },
+                ios: {
+                    marginBottom: 3,
+                },
+            }),
         },
         loadingContainer: {
             alignItems: 'center',

@@ -232,7 +232,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             flexGrow: 1,
         },
         separator: {
-            height: 0,
+            height: 0.5,
             flex: 1,
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
         },
@@ -255,7 +255,7 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             width: '100%',
         },
         sectionContainer: {
-            //backgroundColor: changeOpacity(theme.centerChannelColor, 0.07),
+            backgroundColor: changeOpacity(theme.centerChannelColor, 0.06),
             paddingLeft: 10,
             paddingVertical: 2,
         },
@@ -263,8 +263,8 @@ const getStyleFromTheme = makeStyleSheetFromTheme((theme) => {
             backgroundColor: theme.centerChannelBg,
         },
         sectionText: {
-            fontWeight: '600',
-            color: theme.centerChannelColor,
+            fontWeight: '300',
+            color: changeOpacity(theme.centerChannelColor, 0.5),
         },
         noResultContainer: {
             flex: 1,

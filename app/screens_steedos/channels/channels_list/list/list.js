@@ -386,20 +386,24 @@ export default class List extends PureComponent {
             defaultMessage,
             id,
             topSeparator,
+            data,
         } = section;
 
-        return (
-            <View>
-                {topSeparator && this.renderSectionSeparator()}
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>
-                        {intl.formatMessage({id, defaultMessage}).toUpperCase()}
-                    </Text>
-                    {/* {action && this.renderSectionAction(styles, action)} */}
+        if (data.length == 0)
+            return null
+        else 
+            return (
+                <View>
+                    {topSeparator && this.renderSectionSeparator()}
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>
+                            {intl.formatMessage({id, defaultMessage}).toUpperCase()}
+                        </Text>
+                        {/* {action && this.renderSectionAction(styles, action)} */}
+                    </View>
+                    {bottomSeparator && this.renderSectionSeparator()}
                 </View>
-                {bottomSeparator && this.renderSectionSeparator()}
-            </View>
-        );
+            );
     };
 
     scrollToTop = () => {

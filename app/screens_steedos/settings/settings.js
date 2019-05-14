@@ -366,13 +366,13 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         block: {
             backgroundColor: theme.centerChannelBg,
             borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderBottomWidth: 0,
+            borderBottomWidth: 1,
             borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
-            borderTopWidth: 0,
+            borderTopWidth: 1,
         },
         divider: {
             backgroundColor: changeOpacity(theme.centerChannelColor, 0.1),
-            height: 0,
+            height: 1,
         },
         separator: {
             marginTop: 20,

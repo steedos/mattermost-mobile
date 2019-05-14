@@ -88,7 +88,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='审批'
                             uri={'https://cn.steedos.com/workflow/'}
                             navigator={navigator}
-                            separator={false}
+                            separator={true}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -105,7 +105,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='邮件'
                             uri={'https://mail.steedos.cn/'}
                             navigator={navigator}
-                            separator={false}
+                            separator={true}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -144,7 +144,7 @@ export default class Apps extends PureComponent {
                             defaultMessage='天气'
                             uri={'https://xw.tianqi.qq.com/'}
                             navigator={navigator}
-                            separator={false}
+                            separator={true}
                             showArrow={showArrow}
                             theme={theme}
                             leftComponent={
@@ -193,14 +193,10 @@ const getStyleSheet = makeStyleSheetFromTheme((theme) => {
         },
         block: {
             backgroundColor: theme.centerChannelBg,
-            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.0),
-            borderBottomWidth: 1,
-            borderTopColor: changeOpacity(theme.centerChannelColor, 0.0),
-            borderTopWidth: 1,
-        },
-        divider: {
-            backgroundColor: changeOpacity(theme.centerChannelColor, 0.0),
-            height: 1,
+            borderBottomColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderBottomWidth: 0.5,
+            borderTopColor: changeOpacity(theme.centerChannelColor, 0.1),
+            borderTopWidth: 0.5,
         },
         separator: {
             marginTop: 20,
