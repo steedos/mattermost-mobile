@@ -270,6 +270,9 @@ export default class Contacts extends PureComponent {
     };
 
     render() {
+        if (!this.props.currentUserId)
+            return null
+            
         const {formatMessage} = this.context.intl;
         const {currentUserId, theme} = this.props;
         const {profilesInTeam} = this.state;
