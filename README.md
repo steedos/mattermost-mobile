@@ -1,19 +1,6 @@
 # 华信
 Mac编译过程
 
-创建fastlane/.env
-```
-REPLACE_ASSETS=true
-APP_NAME=华信
-MAIN_APP_IDENTIFIER=com.steedos.messenger
-IOS_APP_GROUP=group.com.steedos.messenger
-IOS_ICLOUD_CONTAINER=iCloud.com.steedos.messenger
-```
-
-创建 assets/override，修改图标
-```
-make pre-run
-```
 
 安装依赖包
 ```
