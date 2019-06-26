@@ -17,12 +17,27 @@ make pre-run
 
 安装依赖包
 ```
+fanslane
+
 yarn
 yarn --cwd node_modules/mattermost-redux
 
 cd ios
 pod install
 cd ..
+```
+
+安卓编译
+```
+git checkout -- android
+rm -rf ./android/app/src/main/java/com/steedos
+make build-android
+```
+
+iOS编译
+```
+git checkout -- ios
+make build-ios
 ```
 
 # Mattermost Mobile
