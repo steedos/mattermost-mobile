@@ -405,7 +405,7 @@ const launchSelectServer = () => {
     });
 };
 
-const launchChannel = () => {
+const launchChannel = (skipMetrics = false) => {
     Navigation.startSingleScreenApp({
         screen: {
             screen: 'Channel',
@@ -415,6 +415,9 @@ const launchChannel = () => {
                 statusBarHideWithNavBar: false,
                 screenBackgroundColor: 'transparent',
             },
+        },
+        passProps: {
+            skipMetrics,
         },
         appStyle: {
             orientation: 'auto',
@@ -508,19 +511,23 @@ const launchEntry = () => {
 
 configurePushNotifications();
 const startedSharedExtension = Platform.OS === 'android' && MattermostShare.isOpened;
-const fromPushNotification = Platform.OS === 'android' && Initialization.replyFromPushNotification;
 
-if (startedSharedExtension || fromPushNotification) {
+if (startedSharedExtension) {
     // Hold on launching Entry screen
     app.setAppStarted(true);
-
-    // Listen for when the user opens the app
-    new NativeEventsReceiver().appLaunched(() => {
-        app.setAppStarted(false);
-        launchEntry();
-    });
 }
 
 if (!app.appStarted) {
     launchEntry();
 }
+
+new NativeEventsReceiver().appLaunched(() => {
+    if (startedSharedExtension) {
+        app.setAppStarted(false);
+        launchEntry();
+    } else if (app.token && app.url) {
+        launchChannel(true);
+    } else {
+        launchSelectServer();
+    }
+});
