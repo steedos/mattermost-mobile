@@ -28,7 +28,7 @@ npm-ci: package.json
 	fi
 
 	@echo Getting Javascript dependencies
-	@npm ci
+	#@npm ci
 
 .podinstall:
 ifeq ($(OS), Darwin)
