@@ -15,6 +15,8 @@ import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 import {preventDoubleTap} from 'app/utils/tap';
 import {makeStyleSheetFromTheme} from 'app/utils/theme';
 
+import { getSettingsIcon } from '@steedos/react-native'
+
 class SettingDrawerButton extends PureComponent {
     static propTypes = {
         openDrawer: PropTypes.func.isRequired,
@@ -35,7 +37,7 @@ class SettingDrawerButton extends PureComponent {
 
         const icon = (
             <Icon
-                name='md-more'
+                name= {getSettingsIcon()}
                 size={25}
                 color={theme.sidebarHeaderTextColor}
             />

@@ -10,6 +10,7 @@ import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 
 import store from 'app/store';
 import EphemeralStore from 'app/store/ephemeral_store';
+import steedosInit from '@steedos/react-native'
 
 function getThemeFromState() {
     const state = store.getState();
@@ -54,6 +55,8 @@ export function resetToChannel(passProps = {}) {
             },
         },
     });
+
+    steedosInit(store.getState().entities?.general?.config?.AboutLink, true);
 }
 
 export function resetToSelectServer(allowOtherServers) {

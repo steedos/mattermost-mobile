@@ -17,8 +17,8 @@ import {
     View,
     I18nManager,
 } from 'react-native';
-
 import telemetry from 'app/telemetry';
+import {canShowSteedosSettings, showSteedosSettings} from '@steedos/react-native'
 
 const MIN_SWIPE_DISTANCE = 3;
 const VX_MAX = 0.1;
@@ -306,6 +306,10 @@ export default class DrawerLayout extends Component {
     };
 
     openDrawer = (options: DrawerMovementOptionType = {}) => {
+        if(canShowSteedosSettings(this.props)){
+            return showSteedosSettings();
+        }
+        
         if (!this.props.isTablet) {
             this._emitStateChanged(SETTLING);
             Animated.timing(this.openValue, {
