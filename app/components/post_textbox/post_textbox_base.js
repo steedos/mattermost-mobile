@@ -217,7 +217,7 @@ export default class PostTextBoxBase extends PureComponent {
     };
 
     getAttachmentButton = () => {
-        const {canUploadFiles, channelIsReadOnly, files, maxFileSize, theme} = this.props;
+        const {canUploadFiles, channelIsReadOnly, files, maxFileSize, theme, channelId} = this.props;
         let attachmentButton = null;
 
         if (canUploadFiles && !channelIsReadOnly) {
@@ -231,6 +231,7 @@ export default class PostTextBoxBase extends PureComponent {
                     onShowFileMaxWarning={this.onShowFileMaxWarning}
                     onShowFileSizeWarning={this.onShowFileSizeWarning}
                     uploadFiles={this.handleUploadFiles}
+                    channelId={channelId}
                 />
             );
         }

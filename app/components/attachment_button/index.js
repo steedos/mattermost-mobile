@@ -25,6 +25,7 @@ import {PermissionTypes} from 'app/constants';
 import {changeOpacity} from 'app/utils/theme';
 import {t} from 'app/utils/i18n';
 import {showModalOverCurrentContext} from 'app/actions/navigation';
+import {Client4} from 'mattermost-redux/client';
 
 const ShareExtension = NativeModules.MattermostShare;
 
@@ -395,6 +396,12 @@ export default class AttachmentButton extends PureComponent {
         }
     };
 
+    startZoomMeeting = async() => {
+        let { channelId } = this.props
+        let url = `${Client4.getUrl()}/plugins/zoom/api/v1/meetings`
+        Client4.doFetch(url, {method: 'post', body: JSON.stringify({channel_id: channelId})})
+    }
+
     showFileAttachmentOptions = () => {
         const {
             canBrowseFiles,
@@ -415,6 +422,15 @@ export default class AttachmentButton extends PureComponent {
 
         this.props.blurTextBox();
         const items = [];
+
+        items.push({
+            action: this.startZoomMeeting,
+            text: {
+                id: t('mobile.meeting'),
+                defaultMessage: 'Meeting'
+            },
+            icon: 'phone'
+        })
 
         if (canTakePhoto) {
             items.push({

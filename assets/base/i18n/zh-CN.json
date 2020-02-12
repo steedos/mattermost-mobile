@@ -603,5 +603,6 @@
   "user.settings.push_notification.disabled_long": "您的系统管理员未开启推送通知。",
   "user.settings.push_notification.offline": "离线",
   "user.settings.push_notification.online": "在线，离开或离线",
-  "web.root.signup_info": "所有团队的通讯一站式解决，随时随地可访问和搜索"
+  "web.root.signup_info": "所有团队的通讯一站式解决，随时随地可访问和搜索",
+  "mobile.meeting": "视频会议"
 }
