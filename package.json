@@ -125,12 +125,13 @@
     "start": "node ./node_modules/react-native/local-cli/cli.js start",
     "check": "eslint --ignore-path .gitignore --ignore-pattern node_modules --quiet .",
     "fix": "eslint --ignore-path .gitignore --ignore-pattern node_modules --quiet . --fix",
-    "postinstall": "make post-install",
+    "postinstall": "yarn rm-steedos-file && make post-install",
     "test": "jest --forceExit --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "updatesnapshot": "jest --updateSnapshot",
-    "mmjstool": "mmjstool"
+    "mmjstool": "mmjstool",
+    "rm-steedos-file": "rm -rf ./node_modules/@steedos/react-native/ios && rm -rf ./node_modules/@steedos/react-native/android && rm -rf ./node_modules/@steedos/react-native/node_modules"
   },
   "jest": {
     "clearMocks": true,
