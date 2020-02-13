@@ -306,8 +306,8 @@ export default class DrawerLayout extends Component {
     };
 
     openDrawer = (options: DrawerMovementOptionType = {}) => {
-        if(canShowSteedosSettings(this.props)){
-            return showSteedosSettings();
+        if(!options.openSettingsDrawer && canShowSteedosSettings(this.props)){
+            return showSteedosSettings({openSettings: this.openDrawer});
         }
         
         if (!this.props.isTablet) {
