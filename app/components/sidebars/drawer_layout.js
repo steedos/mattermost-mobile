@@ -306,7 +306,7 @@ export default class DrawerLayout extends Component {
     };
 
     openDrawer = (options: DrawerMovementOptionType = {}) => {
-        if(!options.openSettingsDrawer && canShowSteedosSettings(this.props)){
+        if(canShowSteedosSettings(this.props, options)){
             return showSteedosSettings({openSettings: this.openDrawer});
         }
         
