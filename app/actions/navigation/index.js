@@ -10,7 +10,7 @@ import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
 
 import store from 'app/store';
 import EphemeralStore from 'app/store/ephemeral_store';
-import steedosInit from '@steedos/react-native'
+import steedosInit from '@steedos/react-native';
 
 function getThemeFromState() {
     const state = store.getState();

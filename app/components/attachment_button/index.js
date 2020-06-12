@@ -50,6 +50,7 @@ export default class AttachmentButton extends PureComponent {
         uploadFiles: PropTypes.func.isRequired,
         wrapper: PropTypes.bool,
         extraOptions: PropTypes.arrayOf(PropTypes.object),
+        channelId: PropTypes.any,
     };
 
     static defaultProps = {
@@ -62,6 +63,7 @@ export default class AttachmentButton extends PureComponent {
         canTakeVideo: true,
         maxFileCount: 5,
         extraOptions: null,
+        channelId: null,
     };
 
     static contextTypes = {
@@ -396,11 +398,11 @@ export default class AttachmentButton extends PureComponent {
         }
     };
 
-    startZoomMeeting = async() => {
-        let { channelId } = this.props
-        let url = `${Client4.getUrl()}/plugins/zoom/api/v1/meetings`
-        Client4.doFetch(url, {method: 'post', body: JSON.stringify({channel_id: channelId})})
-    }
+    startZoomMeeting = async () => {
+        const {channelId} = this.props;
+        const url = `${Client4.getUrl()}/plugins/zoom/api/v1/meetings`;
+        Client4.doFetch(url, {method: 'post', body: JSON.stringify({channel_id: channelId})});
+    };
 
     showFileAttachmentOptions = () => {
         const {
@@ -427,10 +429,10 @@ export default class AttachmentButton extends PureComponent {
             action: this.startZoomMeeting,
             text: {
                 id: t('mobile.meeting'),
-                defaultMessage: 'Meeting'
+                defaultMessage: 'Meeting',
             },
-            icon: 'phone'
-        })
+            icon: 'phone',
+        });
 
         if (canTakePhoto) {
             items.push({
