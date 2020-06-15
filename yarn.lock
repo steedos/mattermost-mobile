@@ -1353,8 +1353,10 @@
     xcode "2.0.0"
     yargs "^12.0.2"
 
-"@steedos/react-native@file:../steedos-mobile/steedosNative":
-  version "0.0.1"
+"@steedos/react-native@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/@steedos/react-native/download/@steedos/react-native-1.0.3.tgz#2ed8ddfa6576ed6aa763873766ea96508a3f5f14"
+  integrity sha1-Ltjd+mV27WqnY4c3ZuqWUIo/XxQ=
   dependencies:
     "@react-native-community/async-storage" "^1.7.1"
     base-64 "^0.1.0"
